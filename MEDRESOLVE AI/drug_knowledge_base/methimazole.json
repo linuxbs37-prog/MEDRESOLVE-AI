@@ -1,0 +1,114 @@
+{
+  "drug_id": "methimazole",
+  "drug_name": "Methimazole",
+  "category": "2. Trimester-Specific & Context-Dependent Risks",
+  "tier": "Tier 2: Nuanced / Trimester-Dependent Risk",
+  "aliases": [
+    "Methimazole",
+    "Tapazole"
+  ],
+  "primary_indication": "Hyperthyroidism, Graves' disease",
+  "known_critical_risks": [
+    "1st trimester teratogenicity (aplasia cutis, choanal atresia); Propylthiouracil preferred in 1st trimester, Methimazole in 2nd/3rd",
+    "Agranulocytosis",
+    "Hepatotoxicity"
+  ],
+  "data_source": "DailyMed (NLM/NIH) + openFDA",
+  "spl_metadata": {
+    "setid": "2231391d-c118-42ee-9aa9-5dc6883bff9a",
+    "title": "FELANORM (METHIMAZOLE) SOLUTION [VIRBAC AH INC]",
+    "published_date": "Aug 11, 2026",
+    "spl_version": 3
+  },
+  "regulatory_info": {
+    "sponsor_name": "CHARTWELL RX",
+    "application_number": "ANDA040411",
+    "initial_approval_date": "20110822"
+  },
+  "pharmacologic_class": {
+    "epc": [
+      "Thyroid Hormone Synthesis Inhibitor [EPC]"
+    ],
+    "moa": [
+      "Thyroid Hormone Synthesis Inhibitors [MoA]"
+    ],
+    "cs": []
+  },
+  "top_adverse_events_faers": [
+    {
+      "term": "DRUG INEFFECTIVE",
+      "count": 658
+    },
+    {
+      "term": "OFF LABEL USE",
+      "count": 492
+    },
+    {
+      "term": "FATIGUE",
+      "count": 453
+    },
+    {
+      "term": "HYPERTHYROIDISM",
+      "count": 416
+    },
+    {
+      "term": "NAUSEA",
+      "count": 401
+    },
+    {
+      "term": "DIARRHOEA",
+      "count": 351
+    },
+    {
+      "term": "HEADACHE",
+      "count": 348
+    },
+    {
+      "term": "PAIN",
+      "count": 325
+    },
+    {
+      "term": "DIZZINESS",
+      "count": 316
+    },
+    {
+      "term": "DYSPNOEA",
+      "count": 287
+    }
+  ],
+  "clinical_sections": {},
+  "patient_safety_guardrails": {
+    "contraindications": "### CONTRAINDICATIONS:\nDo not use in cats with hypersensitivity to methimazole or carbimazole. Do not use in cats with primary liver disease or renal failure.\nDo not use in cats with autoimmune disease. See ADVERSE REACTIONS.\nDo not use in cats with hematological disorders (such as anemia, neutropenia, lymphopenia, or thrombocytopenia) or coagulopathies. See ADVERSE REACTIONS.\nDo not use in pregnant or lactating queens. Laboratory studies in rats and mice have shown evidence of teratogenic and embryotoxic effects of methimazole.",
+    "boxed_warning": "No boxed warning specified in label.",
+    "warnings_and_precautions": "### HUMAN WARNINGS:\nNot for use in humans. Keep out of reach of children. For use in cats only. Wear protective single use, impermeable (e.g., latex or nitrile) gloves when administering the solution. Wash hands with soap and water after administration to avoid exposure to drug. Wear protective gloves to prevent direct contact with litter, feces, urine, or vomit of treated cats, and the solution. Wash hands after contact with the litter of treated cats.\nMethimazole is a human teratogen and crosses the placenta concentrating in the fetal thyroid gland. There is also a high rate of transfer into breast milk. Pregnant women or women who may become pregnant, and nursing mothers should wear gloves when handling the solution, litter or bodily fluids of treated cats. Individuals with an endocrine disorder that could be impacted by methimazole should use similar precautions.\nMethimazole may cause vomiting, gastric distress, headache, fever, arthralgia, pruritus, and pancytopenia. In the event of accidental ingestion/overdose, seek medical advice immediately and show the product label to the physician.\nAvoid skin and oral exposure, including hand-to-mouth contact. Wash any spillages or splatter from the skin immediately. Do not eat, drink, smoke/vape, or use smokeless tobacco while handling the product or used litter.\nFelanorm may cause skin or eye irritation. Avoid eye contact, including hand-to-eye contact. In case of accidental eye contact, rinse eyes immediately with clean running water. If irritation develops, seek medical advice.",
+    "drug_interactions": "Drug Interactions Anticoagulants (oral) Due to potential inhibition of vitamin K activity by methimazole, the activity of oral anticoagulants (e.g., warfarin) may be increased; additional monitoring of PT/INR should be considered, especially before surgical procedures. ß-adrenergic blocking agents Hyperthyroidism may cause an increased clearance of beta blockers with a high extraction ratio. A dose reduction of beta-adrenergic blockers may be needed when a hyperthyroid patient becomes euthyroid. Digitalis glycosides Serum digitalis levels may be increased when hyperthyroid patients on a stable digitalis glycoside regimen become euthyroid; a reduced dosage of digitalis glycosides may be needed. Theophylline Theophylline clearance may decrease when hyperthyroid patients on a stable theophylline regimen become euthyroid; a reduced dose of theophylline may be needed.",
+    "overdosage": "OVERDOSAGE Signs and Symptoms Symptoms may include nausea, vomiting, epigastric distress, headache, fever, joint pain, pruritus, and edema. Aplastic anemia (pancytopenia) or agranulocytosis may be manifested in hours to days. Less frequent events are hepatitis, nephrotic syndrome, exfoliative dermatitis, neuropathies, and CNS stimulation or depression. No information is available on the median lethal dose of the drug or the concentration of methimazole in biologic fluids associated with toxicity and/or death. Treatment To obtain up-to-date information about the treatment of overdose, a good resource is your certified Regional Poison Control Center. In managing overdosage, consider the possibility of multiple drug overdoses, interaction among drugs, and unusual drug kinetics in the patient. In the event of an overdose, appropriate supportive treatment should be initiated as dictated by the patient's medical status."
+  },
+  "patient_population_profiles": {
+    "pregnancy_and_teratogenicity": "Pregnancy (See WARNINGS ) If methimazole is used during the first trimester of pregnancy or if the patient becomes pregnant while taking this drug, the patient should be warned of the potential hazard to the fetus. In pregnant women with untreated or inadequately treated Graves' disease, there is an increased risk of adverse events of maternal heart failure, spontaneous abortion, preterm birth, stillbirth and fetal or neonatal hyperthyroidism. Because methimazole crosses placental membranes and can induce goiter and cretinism in the developing fetus, hyperthyroidism should be closely monitored in pregnant women and treatment adjusted such that a sufficient, but not excessive, dose be given during pregnancy. In many pregnant women, the thyroid dysfunction diminishes as the pregnancy proceeds; consequently, a reduction of dosage may be possible. In some instances, anti-thyroid therapy can be discontinued several weeks or months before delivery. Due to the rare occurrence of congenital malformations associated with methimazole use, it may be appropriate to use an alternative anti-thyroid medication in pregnant women requiring treatment for hyperthyroidism, particularly in the first trimester of pregnancy during organogenesis. Given the potential maternal adverse effects of propylthiouracil (e.g., hepatotoxicity), it may be preferable to switch from propylthiouracil to methimazole for the second and third trimesters.",
+    "lactation_and_nursing": "Nursing Mothers Methimazole is present in breast milk. However, several studies found no effect on clinical status in nursing infants of mothers taking methimazole. A long-term study of 139 thyrotoxic lactating mothers and their infants failed to demonstrate toxicity in infants who are nursed by mothers receiving treatment with methimazole. Monitor thyroid function at frequent (weekly or biweekly) intervals.",
+    "pediatric_use": "Pediatric Use Because of postmarketing reports of severe liver injury in pediatric patients treated with propylthiouracil, methimazole is the preferred choice when an antithyroid drug is required for a pediatric patient. (See DOSAGE AND ADMINISTRATION .)",
+    "geriatric_use": "Geriatric use precautions not specified in label.",
+    "renal_impairment": "See Dosage and Administration / Warnings for renal dosage adjustments.",
+    "hepatic_impairment": "See Dosage and Administration / Warnings for hepatic dosage adjustments.",
+    "weight_and_obesity_considerations": "Standard flat dosing applies; check clinical guidelines for severe obesity / cachexia adjustments."
+  },
+  "clinical_usage_guidance": {
+    "indications_and_usage": "### INDICATION:\nFelanorm (methimazole) is indicated for the treatment of hyperthyroidism in cats.",
+    "dosage_and_administration": "### DOSAGE AND ADMINISTRATION:\nAlways include the Instructions for Preparing a Dose of Felanorm (methimazole) Oral Solution and the Information for Cat Owners with the prescription. The starting dose of Felanorm is 2.5 mg administered every 12 hours. Following 3 weeks of treatment, the dose should be titrated to effect based on individual serum total T4 (TT4) levels and clinical response. Dose adjustments should be made in 2.5 mg increments. The maximum total dosage is 20 mg per day divided, not to exceed 10 mg as a single administration.\nHematology, biochemistry, and TT4 should be evaluated prior to initiating treatment and monitored after 3 weeks and 6 weeks of treatment. Thereafter, bloodwork should be monitored every 3 months and the dose adjusted as necessary. Cats receiving doses greater than 10 mg per day should be monitored more frequently.\nThe product should be administered orally using the enclosed graduated dosing syringe. The syringe has measurements representing the mg dose of the product. Rinse/clean the oral dosing syringe between uses. (See the Instructions for Preparing a Dose of Felanorm (methimazole) Oral Solution).",
+    "adverse_reactions": "### ADVERSE REACTIONS:\nIn a US field study with 113 cats, the most common adverse reactions included change in food consumption (increase or decrease), lethargy, vomiting, diarrhea/loose stool, skin lesions, and abnormal vocalization. Three cats were withdrawn early from the study, one due to unmasking of latent renal disease and two due to the development of skin lesions. Over the course of the study, there was a decreasing trend in the mean counts of red blood cells, lymphocytes, neutrophils and monocytes; however, means remained within or near normal ranges for the testing laboratory. In the extended use phase of the US field study with 101 cats, the most common adverse reactions reported in the study above (lethargy, anorexia) were also observed. Additional signs occurring more frequently in the long-term study were:\ndepression/withdrawn behavior, weight loss, hair coat abnormalities, increased blood urea nitrogen (BUN), weakness, agitation and diarrhea. Most of the adverse reactions reported were mild and transient.\nSerum chemistry and hematology results in the extended use study were consistent with the trends noted during the field study. The mean alanine transaminase (ALT) was above the reference range at the first two quarterly visits, but within the normal reference range (10-100 U/L) through the next two quarterly visits.\nMean lymphocyte counts decreased consistently during the study period, to slightly below the reference range (1200-8000 cells/mcL) at the fourth quarterly visit.\nSixteen cats experienced elevated antinuclear antibody (ANA) titers at one or more points during long-term therapy with methimazole , but the significance was not determined. Eighteen cats died or were euthanized during the extended use study, four of which may have been related to methimazole due to the unmasking/acceleration of chronic renal failure. See PRECAUTIONS.\nIn a foreign field study with 26 cats using a starting dose of 5 mg twice daily (twice the recommended starting dose), one cat was withdrawn due to lethargy, vomiting and facial excoriations. Marked thrombocytopenia was reported in two cats; the platelet count returned to normal in one cat when methimazole tablets were discontinued. Two cats collapsed and died within 12 days of starting methimazole at a dose of 5 mg twice daily. Both cats were reported with lethargy, vomiting, anorexia, and bloody diarrhea; one cat also had pallor.\nIn a second foreign field study with 78 cats using a starting dose of 2.5 mg twice daily, 4 cats were withdrawn due to suspected adverse reactions to methimazole including anemia, cholangiohepatitis, excoriations, vomiting, lethargy, jaundice, and anorexia. One cat receiving 2.5 mg three times daily collapsed and died after 8 weeks of treatment. Adverse reactions included pallor, anorexia, dehydration, jaundice, bleeding diathesis, and anemia. The most frequently reported adverse reactions included mild, transient, self-limiting vomiting, lethargy, and anorexia.\nForeign Market Experience: The following events were reported voluntarily during post-approval use of methimazole in foreign markets: facial pruritus, self-induced excoriations of the head and neck, generalized lymphadenopathy, thrombocytopenia, hematemesis, epistaxis, and elevation of serum liver enzymes and bilirubin.\nIf overdosage occurs, stop treatment and give symptomatic and supportive care.\nPOST APPROVAL EXPERIENCE (revised 2015): The following adverse events are based on voluntary, post approval reporting. Not all adverse events are reported to FDA/CVM. It is not always possible to reliably estimate the adverse event frequency or establish a causal relationship to product exposure using these data. The following adverse events are listed in decreasing order of reporting frequency: Anorexia, vomiting, head/facial pruritus or edema, depression/lethargy, weight loss, anemia, elevated liver enzymes, skin lesions, elevated BUN, diarrhea, and thrombocytopenia. In some reported cases, the patients recovered after adverse signs were recognized, the drug was withdrawn, and veterinary care was applied. In some cases, death (or euthanasia) has been reported as an outcome of the adverse reactions listed above.",
+    "mechanism_of_action": "### CLINICAL PHARMACOLOGY:\nMethimazole is an antithyroid drug that acts by blocking the biosynthesis of thyroid hormone in vivo. The primary action is to inhibit binding of iodide to the enzyme thyroid peroxidase, thereby preventing the catalyzed iodination of thyroglobulin and T3 and T4 synthesis.\nMethimazole is well absorbed following oral administration. Maximum plasma concentrations are achieved within 1-1 1/2 hours after dosing and methimazole is rapidly eliminated from the blood (T1/2 is approximately 3 hours). Administration of methimazole in a fasted state enhances absorption.",
+    "clinical_pharmacology": "### CLINICAL PHARMACOLOGY:\nMethimazole is an antithyroid drug that acts by blocking the biosynthesis of thyroid hormone in vivo. The primary action is to inhibit binding of iodide to the enzyme thyroid peroxidase, thereby preventing the catalyzed iodination of thyroglobulin and T3 and T4 synthesis.\nMethimazole is well absorbed following oral administration. Maximum plasma concentrations are achieved within 1-1 1/2 hours after dosing and methimazole is rapidly eliminated from the blood (T1/2 is approximately 3 hours). Administration of methimazole in a fasted state enhances absorption.",
+    "patient_counseling_information": "Advise patient to consult healthcare provider and review medication guide before use.",
+    "storage_and_handling": "### HOW SUPPLIED:\nFelanorm is available at 5mg/mL in bottles containing 30 or 100mL with 1mL dosing syringe.\nApproved by FDA under ANADA # 200-771\n\nManufactured for:\nVirbac AH, Inc.\nFort Worth, TX 76161, USA Felanorm ® is a registered trademark of the Virbac Group of Companies.\nimage description"
+  },
+  "all_patient_factor_tags": [
+    "Age (Pediatric / Children)",
+    "Age (Geriatric / Elderly)",
+    "Pregnancy / Teratogenicity",
+    "Lactation / Breastfeeding",
+    "Renal Impairment / Kidney",
+    "Hepatic Impairment / Liver",
+    "Cardiovascular / Arrhythmia"
+  ]
+}

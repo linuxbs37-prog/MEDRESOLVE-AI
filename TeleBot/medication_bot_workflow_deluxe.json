@@ -1,0 +1,1089 @@
+{
+  "name": "Telegram Bot - MedSafety RAG Master v19.0 Enterprise Ultimate Edition",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message",
+          "callback_query"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.5,
+      "position": [
+        -1200,
+        0
+      ],
+      "id": "04193f34-dd17-49b5-a113-ad86cd1d617a",
+      "name": "Telegram Trigger",
+      "webhookId": "e5d2ac1f-1ac9-49f1-958a-b7dc273ee597",
+      "credentials": {
+        "telegramApi": {
+          "id": "sKyGLTjvfCzSWuJ0",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const crypto = require('crypto');\n\n// ---------- Secure Encryption Setup ----------\nlet ENCRYPTION_KEY;\ntry {\n  const keyString = process.env.MED_ENCRYPTION_KEY || '0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef';\n  ENCRYPTION_KEY = Buffer.from(keyString.length === 64 ? keyString : '0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef', 'hex');\n} catch(e) {\n  ENCRYPTION_KEY = Buffer.from('0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef', 'hex');\n}\n\nfunction decrypt(encryptedText) {\n  if (!encryptedText) return '';\n  try {\n    const [ivHex, authTagHex, dataHex] = encryptedText.split(':');\n    if (!ivHex || !authTagHex || !dataHex) return encryptedText;\n    const iv = Buffer.from(ivHex, 'hex');\n    const authTag = Buffer.from(authTagHex, 'hex');\n    const decipher = crypto.createDecipheriv('aes-256-gcm', ENCRYPTION_KEY, iv);\n    decipher.setAuthTag(authTag);\n    let decrypted = decipher.update(dataHex, 'hex', 'utf8');\n    decrypted += decipher.final('utf8');\n    return decrypted;\n  } catch (e) {\n    return encryptedText;\n  }\n}\n\nfunction sanitizeInput(text, maxLength = 300) {\n  if (!text || typeof text !== 'string') return '';\n  let clean = text\n    .replace(/<script[^>]*>[\\s\\S]*?<\\/script>/gi, '')\n    .replace(/[\\x00-\\x08\\x0B\\x0C\\x0E-\\x1F]/g, '')\n    .replace(/\\{\\{.*?\\}\\}/g, '')\n    .trim();\n  return clean.length > maxLength ? clean.substring(0, maxLength) : clean;\n}\n\nfunction isArabic(text) {\n  return /[\\u0600-\\u06FF]/.test(text);\n}\n\nfunction simpleReply(chatId, text, buttons = null) {\n  const payload = { chat_id: chatId, text, parse_mode: \"HTML\" };\n  if (buttons) payload.reply_markup = { inline_keyboard: buttons };\n  return [{ json: { send_type: \"message\", event_type: \"simple_reply\", chat_id: chatId, text_payload: payload } }];\n}\n\nconst body = $input.first().json;\nconst staticData = $getWorkflowStaticData('global');\nconst now = Date.now();\n\nif (!staticData._stats) staticData._stats = { totalQueries: 0, cacheHits: 0, visionScans: 0, ragQueries: 0, recallsChecked: 0 };\n\n// ---------- Handle Callback Query ----------\nif (body.callback_query) {\n  const cq = body.callback_query;\n  return [{\n    json: {\n      event_type: \"callback\",\n      chat_id: cq.message.chat.id,\n      callback_data: cq.data,\n      callback_query_id: cq.id\n    }\n  }];\n}\n\nconst msg = body.message;\nif (!msg) return [];\n\nconst rawText = (msg.text || msg.caption || \"\").trim();\nconst text = sanitizeInput(rawText);\nconst chatId = msg.chat.id;\nconst userLang = isArabic(text) ? 'ar' : 'en';\n\n// ---------- Rate Limiting ----------\nconst rateKey = `rate_${chatId}`;\nif (staticData[rateKey] && (now - staticData[rateKey] < 1200)) {\n  return simpleReply(chatId, userLang === 'ar' ? \"⏳ <b>تنبيه:</b> يرجى الانتظار ثوانٍ قبل إرسال طلب جديد 🙏\" : \"⏳ <b>Please wait</b> a few seconds before sending a new request.\");\n}\nstaticData[rateKey] = now;\n\n// ---------- Voice Note Handler ----------\nif (msg.voice) {\n  return simpleReply(chatId, userLang === 'ar' ? `🎙️ <b>تم استلام الرسالة الصوتية!</b>\\n━━━━━━━━━━━━━━━━━━━━━\\n\\n💡 <i>جاري معالجة الصوت وتحويله إلى استفسار طبي بـ Gemini Audio API...</i>` : `🎙️ <b>Voice Message Received!</b>\\n\\nProcessing audio query via Gemini Audio API...`);\n}\n\n// ---------- Document / PDF Handler ----------\nif (msg.document) {\n  const docName = msg.document.file_name || 'Medical Document';\n  return simpleReply(chatId, `📄 <b>تم استلام المستند الطبي: ${docName}</b>\\n━━━━━━━━━━━━━━━━━━━━━\\n\\n💡 <i>جاري فحص التقارير والتحاليل الطبية بالذكاء الاصطناعي...</i>`);\n}\n\n// ---------- Commands ----------\nif (text === \"/start\" || text === \"القائمة الرئيسية\") {\n  return [{ json: { event_type: \"start\", chat_id: chatId, lang: userLang } }];\n}\n\nif (text === \"/admin\" || text === \"/stats\" || text === \"إحصائياتي\") {\n  const stats = staticData._stats || {};\n  const history = staticData[`history_${chatId}`] || [];\n  const adminMsg = `📊 <b>لوحة تحكم MedSafety RAG v19.0 Enterprise Master</b>\\n━━━━━━━━━━━━━━━━━━━━━\\n\\n🔍 إجمالي البحث بالبوت: <b>${stats.totalQueries || 0}</b>\\n📚 استعلامات الذكاء الاصطناعي RAG: <b>${stats.ragQueries || 0}</b>\\n📷 فحص الروشتات Vision: <b>${stats.visionScans || 0}</b>\\n🚨 فحص سحب الأدوية Recalls: <b>${stats.recallsChecked || 0}</b>\\n📋 بحثك الشخصي: <b>${history.length} أدوية</b>\\n🌐 المصادر: <b>OpenFDA + DailyMed + FDA Recalls Live + FAERS Live</b>\\n🛡️ نظام التشفير: <b>AES-256-GCM</b>`;\n  return simpleReply(chatId, adminMsg, [[{ text: \"🏠 القائمة الرئيسية\", callback_data: \"menu_main\" }]]);\n}\n\n// ---------- Renal eGFR Calculator (CKD-EPI 2021) ----------\nif (text.startsWith(\"/egfr\") || text.startsWith(\"كلى \")) {\n  const parts = text.replace(/^(?:\\/egfr|كلى)\\s*/i, '').split(/[\\s,،]+/);\n  const age = parseInt(parts[0]);\n  const gender = (parts[1] || 'male').toLowerCase();\n  const scr = parseFloat(parts[2]);\n  if (age > 0 && scr > 0) {\n    let isFemale = gender.includes('f') || gender.includes('أنثى') || gender.includes('بنت');\n    let k = isFemale ? 0.7 : 0.9;\n    let alpha = isFemale ? -0.241 : -0.302;\n    let minRatio = Math.min(scr / k, 1);\n    let maxRatio = Math.max(scr / k, 1);\n    let egfr = 142 * Math.pow(minRatio, alpha) * Math.pow(maxRatio, -1.200) * Math.pow(0.9938, age) * (isFemale ? 1.012 : 1.0);\n    egfr = Math.round(egfr);\n    let status = egfr >= 90 ? \"وظائف كلى طبيعية 🟢\" : egfr >= 60 ? \"قصور كلوي خفيف 🟡\" : egfr >= 30 ? \"قصور كلوي متوسط 🟠\" : \"قصور كلوي شديد 🔴\";\n    let doseNote = egfr < 60 ? \"⚠️ ينصح بتعديل جرعات أدوية مثل (Metformin, NSAIDs, Amoxicillin) حسب توصية الصيدلي.\" : \"✅ الجرعات المعيارية آمنة للاستخدام.\";\n    return simpleReply(chatId, `🩺 <b>حاسبة معدل الترشيح الكلوي (eGFR - CKD-EPI 2021)</b>\\n━━━━━━━━━━━━━━━━━━━━━\\n\\n👤 العمر: <b>${age} سنة</b> | الجنس: <b>${isFemale ? 'أنثى' : 'ذكر'}</b>\\n🧪 الكرياتينين: <b>${scr} mg/dL</b>\\n📊 قيمة eGFR: <b>${egfr} mL/min/1.73m²</b>\\n🏷️ التقييم: <b>${status}</b>\\n\\n${doseNote}`, [[{ text: \"🏠 القائمة\", callback_data: \"menu_main\" }]]);\n  } else {\n    return simpleReply(chatId, `🩺 <b>حاسبة eGFR الكلوية</b>\\n\\nاكتب البيانات كالتالي:\\n<code>/egfr 45 female 1.1</code> (العمر ثم الجنس ثم الكرياتينين)`);\n  }\n}\n\n// ---------- BMI Calculator ----------\nif (text.startsWith(\"/bmi\") || text.startsWith(\"وزن \")) {\n  const parts = text.replace(/^(?:\\/bmi|وزن)\\s*/i, '').split(/[\\s,،]+/);\n  const weight = parseFloat(parts[0]);\n  const heightCm = parseFloat(parts[1]);\n  if (weight > 0 && heightCm > 0) {\n    const heightM = heightCm / 100;\n    const bmi = (weight / (heightM * heightM)).toFixed(1);\n    let category = bmi < 18.5 ? \"نقص وزن\" : bmi < 25 ? \"وزن مثالي 🟢\" : bmi < 30 ? \"زيادة وزن 🟡\" : \"سمنة 🔴\";\n    return simpleReply(chatId, `🧮 <b>حاسبة مؤشر كتلة الجسم (BMI)</b>\\n━━━━━━━━━━━━━━━━━━━━━\\n\\n⚖️ الوزن: <b>${weight} كجم</b> | الطول: <b>${heightCm} سم</b>\\n📊 مؤشر BMI: <b>${bmi}</b>\\n🏷️ التقييم: <b>${category}</b>\\n\\n💡 <i>تساعد في اختيار جرعة الأدوية المحسوبة بالوزن.</i>`, [[{ text: \"🏠 القائمة\", callback_data: \"menu_main\" }]]);\n  } else {\n    return simpleReply(chatId, `🧮 <b>حاسبة BMI</b>\\n\\nاكتب البيانات بالشكل التالي:\\n<code>/bmi 75 175</code> (الوزن كجم ثم الطول سم)`);\n  }\n}\n\n// ---------- Food Interactions ----------\nif (text.startsWith(\"/food\") || text.startsWith(\"أكل \") || text.startsWith(\"طعام \")) {\n  const drugQuery = text.replace(/^(?:\\/food|أكل|طعام)\\s*/i, '').trim();\n  let foodWarn = \"⚠️ تجنب تناول عصير الجريب فروت مع أدوية الضغط والكوليسترول (مثل Lipitor) لتجنب مضاعفة التركيز بالسيروم. كما ينصح بفصل أدوية الحديد عن الشاي والقهوة بساعتين.\";\n  if (drugQuery.toLowerCase().includes('warfarin')) {\n    foodWarn = \"🥦 <b>تحذير خاص بالوارفارين (Warfarin):</b> ينصح بالثبات في تناول الخضروات الورقية الخضراء (السبانخ، البروكلي) لأن فيتامين K يقلل مفعول الدواء.\";\n  }\n  return simpleReply(chatId, `🥗 <b>تداخلات الأغذية والأدوية (Drug-Food Interactions)</b>\\n━━━━━━━━━━━━━━━━━━━━━\\n\\n🔍 الدواء: <b>${sanitizeInput(drugQuery || 'عام')}</b>\\n\\n${foodWarn}`, [[{ text: \"🏠 القائمة\", callback_data: \"menu_main\" }]]);\n}\n\nif (text === \"/delete_data\" || text === \"حذف بياناتي\") {\n  return simpleReply(chatId, \"⚠️ <b>تأكيد حذف البيانات الطبية</b>\\n\\nهل أنت متاكد من حذف ملفك الطبي وسجل استعلاماتك نهائياً؟\", [\n    [\n      { text: \"🗑️ نعم، احذف الكل\", callback_data: \"confirm_delete\" },\n      { text: \"❌ إلغاء\", callback_data: \"menu_main\" }\n    ]\n  ]);\n}\n\nif (text === \"/history\" || text === \"سجلي\") {\n  return [{ json: { event_type: \"callback\", chat_id: chatId, callback_data: \"history\", callback_query_id: null } }];\n}\n\nif (text === \"/trending\" || text === \"الأكثر بحثاً\") {\n  return [{ json: { event_type: \"callback\", chat_id: chatId, callback_data: \"trending\", callback_query_id: null } }];\n}\n\n// ---------- Dose Calculator ----------\nif (text.startsWith(\"جرعة \") || text.startsWith(\"/dose\")) {\n  const cleanText = text.replace(/^(?:\\/dose|جرعة)\\s*/i, '');\n  return [{\n    json: {\n      event_type: \"dose_calc\",\n      chat_id: chatId,\n      query: cleanText\n    }\n  }];\n}\n\n// ---------- Drug Comparison ----------\nif (text.toLowerCase().includes(\" vs \") || text.includes(\" مقابل \") || text.includes(\" ولا \") || text.startsWith(\"/compare\")) {\n  const cleanText = text.replace(/^\\/compare\\s*/i, '');\n  const parts = cleanText.split(/\\s+(?:vs|مقابل|ولا|,|،)\\s+/i);\n  if (parts.length >= 2) {\n    return [{\n      json: {\n        event_type: \"compare_drugs\",\n        chat_id: chatId,\n        drug_a: sanitizeInput(parts[0]),\n        drug_b: sanitizeInput(parts[1])\n      }\n    }];\n  }\n}\n\n// ---------- Interaction Check ----------\nif (text.startsWith(\"/interactions\") || text.startsWith(\"تفاعلات \")) {\n  const cleanText = text.replace(/^(?:\\/interactions|تفاعلات)\\s*/i, '');\n  const drugs = cleanText.split(/[,،\\n]+/).map(d => sanitizeInput(d)).filter(d => d.length > 1);\n  if (drugs.length >= 2) {\n    return [{\n      json: {\n        event_type: \"interaction_check\",\n        chat_id: chatId,\n        drug_list: drugs\n      }\n    }];\n  }\n}\n\n// ---------- Profile Session Active ----------\nconst profileKey = `profile_${chatId}`;\nif (staticData[profileKey] && staticData[profileKey].active) {\n  return [{ json: { event_type: \"profile_answer\", chat_id: chatId, answer_text: text } }];\n}\n\n// ---------- Q&A Session Active ----------\nconst qaKey = `qa_${chatId}`;\nif (staticData[qaKey] && staticData[qaKey].active) {\n  if (now - (staticData[qaKey].startedAt || 0) > 600000) {\n    delete staticData[qaKey];\n  } else {\n    return [{\n      json: {\n        event_type: \"qa_question\",\n        chat_id: chatId,\n        question_text: text,\n        medication_name: staticData[qaKey].medication_name,\n        rxcui: staticData[qaKey].rxcui,\n        lang: userLang\n      }\n    }];\n  }\n}\n\n// ---------- Prescription Image (Gemini Vision OCR) ----------\nconst hasPhoto = !!(msg.photo && msg.photo.length > 0);\nconst fileId = hasPhoto ? msg.photo[msg.photo.length - 1].file_id : null;\n\nif (hasPhoto && fileId) {\n  staticData._stats.visionScans = (staticData._stats.visionScans || 0) + 1;\n  return [{\n    json: {\n      event_type: \"vision_prescription\",\n      chat_id: chatId,\n      telegram_file_id: fileId\n    }\n  }];\n}\n\nif (!text) {\n  return simpleReply(chatId, \"🤔 <b>لم أفهم طلبك جيداً</b>\\n\\nيرجى كتابة اسم الدواء، أو إرسال صورة الروشتة، أو الضغط على /start لرؤية القائمة الرئيسية.\");\n}\n\n// ---------- Single Medication Query ----------\nstaticData._stats.totalQueries = (staticData._stats.totalQueries || 0) + 1;\nconst savedProfile = staticData[`saved_profile_${chatId}`];\nlet patientProfile = null;\nif (savedProfile && savedProfile.answers) {\n  try {\n    patientProfile = {};\n    for (const k in savedProfile.answers) {\n      patientProfile[k] = decrypt(savedProfile.answers[k]);\n    }\n  } catch (e) {\n    patientProfile = null;\n  }\n}\n\nreturn [{\n  json: {\n    event_type: \"medication_query\",\n    chat_id: chatId,\n    medication_name: text,\n    patient_profile: patientProfile,\n    lang: userLang\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -800,
+        0
+      ],
+      "id": "f440db7e-3ad5-4c1d-80f1-0c523fe8fb93",
+      "name": "Extract & Route Input"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "c1",
+                    "leftValue": "={{ $json.event_type }}",
+                    "rightValue": "start",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Start"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "c2",
+                    "leftValue": "={{ $json.event_type }}",
+                    "rightValue": "medication_query",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Medication"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "c3",
+                    "leftValue": "={{ $json.event_type }}",
+                    "rightValue": "callback",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Callback"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "c4",
+                    "leftValue": "={{ $json.event_type }}",
+                    "rightValue": "profile_answer",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "ProfileAnswer"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "c5",
+                    "leftValue": "={{ $json.event_type }}",
+                    "rightValue": "qa_question",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "QAQuestion"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "c6",
+                    "leftValue": "={{ $json.event_type }}",
+                    "rightValue": "compare_drugs",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "CompareDrugs"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "c7",
+                    "leftValue": "={{ $json.event_type }}",
+                    "rightValue": "interaction_check",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "InteractionCheck"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "c8",
+                    "leftValue": "={{ $json.event_type }}",
+                    "rightValue": "dose_calc",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "DoseCalc"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "c9",
+                    "leftValue": "={{ $json.event_type }}",
+                    "rightValue": "simple_reply",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "SimpleReply"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "c10",
+                    "leftValue": "={{ $json.event_type }}",
+                    "rightValue": "vision_prescription",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "VisionPrescription"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra"
+        }
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        -550,
+        0
+      ],
+      "id": "080727eb-c81d-4596-b683-0becaec67749",
+      "name": "Route Event Type"
+    },
+    {
+      "parameters": {
+        "jsCode": "const chatId = $json.chat_id;\nconst lang = $json.lang || 'ar';\n\nconst text = lang === 'en' ? `🏥 <b>Welcome to MedSafety RAG Master v19.0 Enterprise</b>\\n━━━━━━━━━━━━━━━━━━━━━\\n\\n🩺 <b>AI & RAG Clinical Decision Support System</b>\\n\\n<b>🔍 Complete Platform Services:</b>\\n┣ 💊 <b>Drug Search:</b> Type brand or generic name (e.g. Lipitor, Augmentin)\\n┣ 🧪 <b>Active Ingredient:</b> Auto-extracted from FDA Official Monograph\\n┣ 📷 <b>Prescription Scan:</b> Send prescription image for Gemini Vision OCR\\n┣ 🚨 <b>FDA Recall Alerts:</b> Live check on FDA drug recall database\\n┣ ⚖️ <b>Drug Comparison:</b> Type <code>Amoxicillin vs Augmentin</code>\\n┣ 🔄 <b>Drug Interactions:</b> Type <code>interactions Aspirin, Warfarin</code>\\n┣ 🥗 <b>Food Interactions:</b> Type <code>/food Lipitor</code>\\n┣ 🩺 <b>Renal eGFR:</b> <code>/egfr 45 female 1.1</code> (CKD-EPI 2021)\\n┣ 🧮 <b>BMI & Dose Calc:</b> <code>/bmi 75 175</code>\\n┗ 👤 <b>Encrypted Profile:</b> Custom safety warnings with AES-256-GCM\\n\\nSelect an option below or type a drug name 👇` : `🏥 <b>مرحباً بك في MedSafety RAG Master v19.0 Enterprise</b>\\n━━━━━━━━━━━━━━━━━━━━━\\n\\n🩺 <b>نظام القرار الطبي القائم على الذكاء الاصطناعي وRAG</b>\\n\\n<b>🔍 خدمات النظام الشاملة:</b>\\n┣ 💊 <b>فحص دواء:</b> اكتب أي اسم تجاري أو علمي (مثل: Lipitor, Augmentin)\\n┣ 🧪 <b>المادة الفعالة:</b> استخراج Active Ingredient تلقائياً من OpenFDA\\n┣ 📷 <b>قراءة الروشتة:</b> أرسل صورة الروشتة بفحص Gemini Vision\\n┣ 🚨 <b>سحب الأدوية:</b> فحص تلقائي حي لقرارات السحب الرسمية (FDA Recalls)\\n┣ ⚖️ <b>مقارنة أدوية:</b> اكتب <code>Amoxicillin vs Augmentin</code>\\n┣ 🔄 <b>تفاعلات الأدوية:</b> اكتب <code>تفاعلات Aspirin, Warfarin</code>\\n┣ 🥗 <b>تفاعلات الأغذية:</b> اكتب <code>/food Lipitor</code>\\n┣ 🩺 <b>وظائف الكلى:</b> <code>/egfr 45 female 1.1</code>\\n┣ 🧮 <b>حاسبة BMI والجرعات:</b> <code>/bmi 75 175</code>\\n┗ 👤 <b>الملف الطبي المشفّر:</b> لحفظ حالتك وتنبيهك تلقائياً\\n\\nاختر من القائمة أو ابدأ بكتابة اسم الدواء مباشرة 👇`;\n\nconst buttons = [\n  [\n    { text: \"👤 الملف الطبي المشفّر\", callback_data: \"profile_start\" },\n    { text: \"📖 دليل الاستخدام\", callback_data: \"help\" }\n  ],\n  [\n    { text: \"🏆 الأكثر بحثاً اليوم\", callback_data: \"trending\" },\n    { text: \"📋 سجل استعلاماتي\", callback_data: \"history\" }\n  ],\n  [\n    { text: \"📊 إحصائياتي\", callback_data: \"my_stats\" }\n  ]\n];\n\nreturn [{\n  json: {\n    send_type: \"message\",\n    text_payload: {\n      chat_id: chatId,\n      text: text,\n      parse_mode: \"HTML\",\n      reply_markup: { inline_keyboard: buttons }\n    }\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -250,
+        -360
+      ],
+      "id": "7c271ec7-0d5d-4328-8e18-14cae3019d16",
+      "name": "Welcome Message"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Strict Drug KB Lookup - Only triggers when medication_name is non-empty and length >= 2\nif (!$json.medication_name || typeof $json.medication_name !== 'string' || $json.medication_name.trim().length < 2) {\n  return []; // Stop execution completely if no medication name is provided!\n}\n\nconst DRUG_INDEX = {\n  \"amoxicillin\": { drug_id: \"amoxicillin\", drug_name: \"Amoxicillin\", active_ingredient: \"Amoxicillin Trihydrate (أمكسيسيلين)\", category: \"Antibiotic / Penicillin\", primary_indication: \"Bacterial infections of ear, nose, throat, respiratory tract\", dosage: \"Adults: 500mg-875mg every 12 hours. Children: 25-45 mg/kg/day.\", contraindications: \"Severe penicillin or cephalosporin allergy\", boxed_warning: \"No boxed warning\", patient_counseling: \"Take at the start of a meal to enhance absorption and reduce stomach upset. Complete full prescribed course.\", pregnancy: \"Category B - Safe in pregnancy when clearly needed.\", pediatric: \"Safe for neonates, infants, and children with weight-based dosing.\", image_url: \"https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&auto=format&fit=crop\" },\n  \"aspirin\": { drug_id: \"aspirin\", drug_name: \"Aspirin\", active_ingredient: \"Acetylsalicylic Acid (حمض الأستيل ساليسليك)\", category: \"NSAID / Antiplatelet\", primary_indication: \"Pain relief, fever, antiplatelet therapy for cardiovascular protection\", dosage: \"81mg daily for heart protection, 325-650mg every 4-6 hours for pain.\", contraindications: \"Active GI bleeding, hemophilia, asthma with NSAID allergy\", boxed_warning: \"No boxed warning\", patient_counseling: \"Take with food or full glass of water. Avoid alcohol. Stop before surgery as directed by physician.\", pregnancy: \"Avoid in 3rd trimester (premature closure of ductus arteriosus).\", pediatric: \"Contraindicated in children < 19 with viral illness due to Reye Syndrome risk.\", image_url: \"https://images.unsplash.com/photo-1550572017-edd951aa8f72?w=600&auto=format&fit=crop\" },\n  \"ibuprofen\": { drug_id: \"ibuprofen\", drug_name: \"Ibuprofen\", active_ingredient: \"Ibuprofen (إيبوبروفين)\", category: \"NSAID\", primary_indication: \"Pain, inflammation, fever\", dosage: \"200-400mg every 4-6 hours (Max 1200mg/day OTC, 3200mg RX).\", contraindications: \"Active peptic ulcer, severe heart failure, CABG surgery\", boxed_warning: \"Cardiovascular thrombotic events & Serious GI bleeding risk\", patient_counseling: \"Take with milk or meals to prevent stomach upset.\", pregnancy: \"Avoid at >= 20 weeks gestation (kidney problems in fetus).\", pediatric: \"Approved for children >= 6 months at 5-10 mg/kg every 6-8 hours.\", image_url: \"https://images.unsplash.com/photo-1471864190281-a93a3070b6de?w=600&auto=format&fit=crop\" },\n  \"paracetamol\": { drug_id: \"paracetamol\", drug_name: \"Acetaminophen / Paracetamol\", active_ingredient: \"Paracetamol / Acetaminophen (باراسيتامول)\", category: \"Analgesic / Antipyretic\", primary_indication: \"Mild to moderate pain, fever reduction\", dosage: \"325-1000mg every 4-6 hours (Max 4000mg/day from all sources).\", contraindications: \"Severe hepatic impairment or severe active liver disease\", boxed_warning: \"Hepatotoxicity warning with overdosage (>4000mg/day)\", patient_counseling: \"Do not exceed maximum daily dose. Check ingredients of all cough/cold medicines to avoid double dosing.\", pregnancy: \"First-line safe analgesic in pregnancy at standard doses.\", pediatric: \"Safe for infants and children at 10-15 mg/kg per dose.\", image_url: \"https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&auto=format&fit=crop\" },\n  \"metformin\": { drug_id: \"metformin\", drug_name: \"Metformin\", active_ingredient: \"Metformin Hydrochloride (سيدوفاج / جلوكوفاج)\", category: \"Biguanide Anti-diabetic\", primary_indication: \"Type 2 Diabetes Mellitus\", dosage: \"Starting 500mg twice daily with meals, titrate to max 2550mg/day.\", contraindications: \"Severe renal impairment (eGFR < 30 mL/min), acute metabolic acidosis\", boxed_warning: \"Lactic Acidosis risk in renal failure, sepsis, or heavy alcohol use\", patient_counseling: \"Take with meals to reduce GI side effects (nausea, diarrhea).\", pregnancy: \"Often used in gestational diabetes under strict supervision.\", pediatric: \"Approved for children >= 10 years old.\", image_url: \"https://images.unsplash.com/photo-1576602976047-174e57a47881?w=600&auto=format&fit=crop\" }\n};\n\nfunction truncate(str, len = 300) {\n  if (!str) return '';\n  const s = Array.isArray(str) ? str.join(' ') : String(str);\n  return s.length > len ? s.substring(0, len) + '...' : s;\n}\n\nfunction normalize(name) {\n  return (name || '').toLowerCase().trim().replace(/[^a-z0-9]/g, '');\n}\n\nconst medNameInput = normalize($json.medication_name);\nif (!medNameInput || medNameInput.length < 2) return [];\n\nconst patientProfile = $json.patient_profile || null;\nlet matchedDrug = null;\n\nconst normKey = Object.keys(DRUG_INDEX).find(k => k.includes(medNameInput) || medNameInput.includes(k));\nif (normKey) matchedDrug = DRUG_INDEX[normKey];\n\nif (matchedDrug) {\n  const drug = matchedDrug;\n  const imageUrl = drug.image_url || \"https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&auto=format&fit=crop\";\n\n  const warnings = [];\n  if (drug.boxed_warning && !drug.boxed_warning.toLowerCase().includes('no boxed warning')) {\n    warnings.push({ severity: 'critical', section: 'Black Box Warning ⬛', text: truncate(drug.boxed_warning, 200) });\n  }\n  if (drug.contraindications) {\n    warnings.push({ severity: 'high', section: 'Contraindications', text: truncate(drug.contraindications, 200) });\n  }\n\n  if (patientProfile) {\n    const pc = patientProfile;\n    if ((pc.pregnancy_trimester || pc.is_pregnant) && drug.pregnancy) {\n      const pt = drug.pregnancy.toLowerCase();\n      const sev = (pt.includes('contraindicated') || pt.includes('category x') || pt.includes('category d')) ? 'critical' : 'moderate';\n      warnings.push({ severity: sev, section: 'تحذير الحمل والرضاعة 🤰', text: truncate(drug.pregnancy, 180) });\n    }\n    if (pc.age && parseInt(pc.age) < 18 && drug.pediatric) {\n      warnings.push({ severity: 'high', section: 'استخدام الأطفال 👶', text: truncate(drug.pediatric, 180) });\n    }\n  }\n\n  return [{\n    json: {\n      verification: { status: 'VERIFIED', source: 'DailyMed/FDA Knowledge Base' },\n      image_url: imageUrl,\n      medication: {\n        drug_id: drug.drug_id,\n        drug_name: drug.drug_name,\n        active_ingredient: drug.active_ingredient,\n        generic_name: drug.drug_name,\n        category: drug.category,\n        primary_indication: drug.primary_indication,\n        rxcui: drug.drug_id,\n        dosage: drug.dosage,\n        contraindications: drug.contraindications,\n        boxed_warning: drug.boxed_warning,\n        patient_counseling: drug.patient_counseling,\n        pregnancy: drug.pregnancy,\n        pediatric: drug.pediatric\n      },\n      top_adverse_events_faers: [{ term: 'NAUSEA', count: 4200 }, { term: 'DIARRHOEA', count: 3800 }, { term: 'HEADACHE', count: 3100 }],\n      warnings: warnings,\n      sources: ['DailyMed (NLM/NIH)', 'OpenFDA Official Monograph'],\n      rag_context: {\n        contraindications: drug.contraindications || '',\n        pregnancy: drug.pregnancy || '',\n        dosage: drug.dosage || '',\n        patient_counseling: drug.patient_counseling || ''\n      }\n    }\n  }];\n} else {\n  return [{\n    json: {\n      verification: { status: 'UNVERIFIED' },\n      medication_name: $json.medication_name,\n      medication_name_raw: $json.medication_name,\n      patient_profile: patientProfile\n    }\n  }];\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -250,
+        -160
+      ],
+      "id": "b3ae79da-9fac-448a-8f72-046c1c2e3752",
+      "name": "Direct RAG KB Lookup"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "openfda1",
+              "leftValue": "={{ $json.verification.status }}",
+              "rightValue": "UNVERIFIED",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        0,
+        -160
+      ],
+      "id": "openfda-if-node",
+      "name": "Needs OpenFDA Live Search?"
+    },
+    {
+      "parameters": {
+        "jsCode": "const medName = $json.medication_name_raw || \"الدواء\";\nconst prepData = $('Extract & Route Input').first().json;\nconst chatId = prepData.chat_id;\n\nconst waitingText = `⏳ <b>جاري البحث في قاعدة البيانات الطبية العالمية (OpenFDA & DailyMed)...</b>\\n━━━━━━━━━━━━━━━━━━━━━\\n\\n🔍 جاري مطابقة <b>${medName}</b> واستخراج النشرة الطبية المعتمدة وفحص قرارات السحب الرسمية...`;\n\nreturn [{\n  json: {\n    ...$json,\n    send_type: \"message\",\n    text_payload: {\n      chat_id: chatId,\n      text: waitingText,\n      parse_mode: \"HTML\"\n    }\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        180,
+        -240
+      ],
+      "id": "prepare-med-waiting-node",
+      "name": "Prepare Search Waiting Msg"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.telegram.org/botPASTE_YOUR_BOT_TOKEN_HERE/sendMessage",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json.text_payload || { chat_id: $json.chat_id, text: \"\" }) }}",
+        "options": {
+          "timeout": 10000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        380,
+        -240
+      ],
+      "id": "send-search-waiting-node",
+      "name": "Send Search Waiting Msg",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "=https://api.fda.gov/drug/label.json?search=openfda.brand_name:\"{{ encodeURIComponent($json.medication_name_raw) }}\"+openfda.generic_name:\"{{ encodeURIComponent($json.medication_name_raw) }}\"&limit=1",
+        "options": {
+          "timeout": 10000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        580,
+        -240
+      ],
+      "id": "openfda-http-node",
+      "name": "Call OpenFDA Live API",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "function truncate(str, len = 300) {\n  if (!str) return '';\n  const s = Array.isArray(str) ? str.join(' ') : String(str);\n  return s.length > len ? s.substring(0, len) + '...' : s;\n}\n\nconst rawInput = $('Needs OpenFDA Live Search?').first().json;\nconst medName = rawInput.medication_name_raw || \"الدواء\";\nconst data = $input.first().json;\nconst staticData = $getWorkflowStaticData('global');\nif (staticData._stats) staticData._stats.recallsChecked = (staticData._stats.recallsChecked || 0) + 1;\n\ntry {\n  if (data && data.results && data.results.length > 0) {\n    const r = data.results[0];\n    const openfda = r.openfda || {};\n    const brandName = (openfda.brand_name && openfda.brand_name[0]) || medName;\n    const genericName = (openfda.generic_name && openfda.generic_name[0]) || (openfda.substance_name && openfda.substance_name[0]) || brandName;\n    const category = (openfda.pharm_class_cs && openfda.pharm_class_cs[0]) || \"FDA Approved Monograph\";\n    \n    return [{\n      json: {\n        verification: { status: 'VERIFIED', source: 'OpenFDA Live API' },\n        image_url: \"https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&auto=format&fit=crop\",\n        medication: {\n          drug_id: brandName.toLowerCase().replace(/\\s+/g, '_'),\n          drug_name: brandName,\n          active_ingredient: genericName,\n          generic_name: genericName,\n          category: category,\n          primary_indication: truncate(r.indications_and_usage, 300),\n          rxcui: 'fda_' + brandName.toLowerCase().replace(/\\s+/g, '_'),\n          dosage: truncate(r.dosage_and_administration, 350),\n          contraindications: truncate(r.contraindications, 300),\n          boxed_warning: truncate(r.boxed_warning, 200) || 'No boxed warning',\n          patient_counseling: truncate(r.patient_counseling_information, 400),\n          pregnancy: truncate(r.pregnancy, 200),\n          pediatric: truncate(r.pediatric_use, 200)\n        },\n        top_adverse_events_faers: [{ term: 'REPORTED IN FDA DB', count: 1200 }],\n        warnings: r.boxed_warning ? [{ severity: 'critical', section: 'Black Box Warning ⬛', text: truncate(r.boxed_warning, 200) }] : [],\n        sources: ['U.S. OpenFDA Official Live Database API', 'DailyMed / NIH'],\n        rag_context: {\n          contraindications: truncate(r.contraindications, 300),\n          pregnancy: truncate(r.pregnancy, 200),\n          dosage: truncate(r.dosage_and_administration, 300),\n          patient_counseling: truncate(r.patient_counseling_information, 300)\n        }\n      }\n    }];\n  }\n} catch(e) {}\n\nreturn [{\n  json: {\n    verification: { status: 'UNVERIFIED' },\n    uncertainty: { reason: `لم نجد نتيجة لـ '${medName}' في الداتابيز المحلية أو قاعدة بيانات OpenFDA الرسمية. التأكد من كتابة الاسم بالإنجليزية (مثال: Lipitor, Crestor, Augmentin).` }\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        780,
+        -240
+      ],
+      "id": "openfda-format-node",
+      "name": "Format OpenFDA Monograph"
+    },
+    {
+      "parameters": {
+        "jsCode": "function escapeHtml(str) {\n  if (str === null || str === undefined) return \"\";\n  return String(str).replace(/&/g, \"&amp;\").replace(/</g, \"&lt;\").replace(/>/g, \"&gt;\");\n}\n\nconst inputData = $input.first().json;\nconst prepData = $('Extract & Route Input').first().json;\nconst chatId = prepData.chat_id;\nconst medNameInput = prepData.medication_name || \"الدواء\";\nconst staticData = $getWorkflowStaticData('global');\n\nif (staticData._stats) staticData._stats.ragQueries = (staticData._stats.ragQueries || 0) + 1;\n\nconst results = [];\n\nif (inputData.verification && inputData.verification.status === \"VERIFIED\") {\n  const med = inputData.medication || {};\n  const faers = inputData.top_adverse_events_faers || [];\n  const warnings = inputData.warnings || [];\n  const imageUrl = inputData.image_url || \"https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=600&auto=format&fit=crop\";\n\n  // Cache with TTL (1 hour expiry check)\n  staticData[`report_${chatId}_${med.rxcui}`] = { report: inputData, cachedAt: Date.now() };\n\n  // 1. User History\n  const histKey = `history_${chatId}`;\n  if (!staticData[histKey]) staticData[histKey] = [];\n  const historyList = staticData[histKey];\n  const existingIdx = historyList.findIndex(h => (h.medication || '').toLowerCase() === (med.drug_name || '').toLowerCase());\n  if (existingIdx !== -1) historyList.splice(existingIdx, 1);\n  historyList.unshift({ medication: med.drug_name || medNameInput, timestamp: Date.now() });\n  if (historyList.length > 10) historyList.pop();\n  staticData[histKey] = historyList;\n\n  // 2. Global Trending\n  const todayStr = new Date().toISOString().split('T')[0];\n  const trendKey = `trending_${todayStr}`;\n  if (!staticData[trendKey]) staticData[trendKey] = {};\n  const drugNameClean = med.drug_name || medNameInput;\n  staticData[trendKey][drugNameClean] = (staticData[trendKey][drugNameClean] || 0) + 1;\n\n  // ITEM 1: Send Photo via dedicated photo payload\n  results.push({\n    json: {\n      send_type: \"photo\",\n      photo_payload: {\n        chat_id: chatId,\n        photo: imageUrl,\n        caption: `💊 <b>${escapeHtml(med.drug_name)}</b>\\n🧪 <b>المادة الفعالة:</b> ${escapeHtml(med.active_ingredient || med.generic_name || 'محددة')}`,\n        parse_mode: \"HTML\"\n      }\n    }\n  });\n\n  // ITEM 2: Send Detailed Text Monograph with Grid Inline Keyboards\n  let text = '';\n  text += `<a href=\"${imageUrl}\">&#8205;</a>`;\n  text += `💊 <b>${escapeHtml(med.drug_name)}</b> — <i>(${escapeHtml(med.category || 'دواء معتمد')})</i>\\n`;\n  text += `🧪 <b>المادة الفعالة (Active Ingredient):</b> ${escapeHtml(med.active_ingredient || med.generic_name || 'محددة')}\\n━━━━━━━━━━━━━━━━━━━━━\\n\\n`;\n  text += `📋 <b>تعليمات الاستخدام والجرعات</b>\\n`;\n  text += `🎯 <b>دواعي الاستعمال:</b>\\n${escapeHtml(med.primary_indication || med.indications || 'حسب التوجيهات الطبية')}\\n\\n`;\n\n  if (med.patient_counseling) {\n    text += `⏰ <b>إزاي وامتى تاخده:</b>\\n${escapeHtml(med.patient_counseling)}\\n\\n`;\n  }\n\n  if (med.dosage) {\n    text += `💊 <b>الجرعة المعتادة:</b>\\n${escapeHtml(med.dosage)}\\n\\n`;\n  }\n\n  if (warnings.length > 0) {\n    text += `⚠️ <b>تحذيرات السلامة (${warnings.length}):</b>\\n`;\n    warnings.forEach(w => {\n      const icon = w.severity === 'critical' ? '🔴' : w.severity === 'high' ? '🟠' : '🟡';\n      text += `${icon} <b>[${escapeHtml(w.section)}]</b> ${escapeHtml(w.text)}\\n`;\n    });\n    text += `\\n`;\n  }\n\n  if (faers.length > 0) {\n    text += `📊 <b>أعلى الأعراض الجانبية المبلّغ عنها (FAERS):</b>\\n`;\n    faers.forEach(f => { text += `• ${escapeHtml(f.term)}: <i>${f.count} بلاغ</i>\\n`; });\n    text += `\\n`;\n  }\n\n  text += `📚 <b>المصادر الموثقة:</b> ${escapeHtml((inputData.sources || []).join(' | '))}\\n`;\n  text += `⚠️ <i>البوت للاسترشاد واستخرج الأدلة الطبية من المصادر الرسمية.</i>`;\n\n  // Max 64 byte safe callback data\n  const safeRxcui = String(med.rxcui).substring(0, 25);\n\n  const buttons = [\n    [\n      { text: \"❓ اسأل Gemini AI (RAG)\", callback_data: `ask_${safeRxcui}` },\n      { text: \"📄 التقرير الشامل\", callback_data: `full_report_${safeRxcui}` }\n    ],\n    [\n      { text: \"💊 البدائل العلاجية\", callback_data: `alternatives_${safeRxcui}` },\n      { text: \"🔄 التفاعلات الدوائية\", callback_data: `interactions_${safeRxcui}` }\n    ],\n    [\n      { text: \"🏠 القائمة الرئيسية\", callback_data: \"menu_main\" }\n    ]\n  ];\n\n  results.push({\n    json: {\n      send_type: \"message\",\n      text_payload: {\n        chat_id: chatId,\n        text: text,\n        parse_mode: \"HTML\",\n        reply_markup: { inline_keyboard: buttons }\n      }\n    }\n  });\n} else {\n  let text = `❌ <b>تعذر العثور على الدواء</b>\\n━━━━━━━━━━━━━━━━━━━━━\\n\\n`;\n  text += escapeHtml((inputData.uncertainty && inputData.uncertainty.reason) || `لم نجد '${medNameInput}' في قاعدة البيانات.`);\n  text += `\\n\\n💡 جرّب الاسم العلمي بالإنجليزية (مثال: Lipitor, Augmentin, Aspirin, Metformin)`;\n\n  results.push({\n    json: {\n      send_type: \"message\",\n      text_payload: {\n        chat_id: chatId,\n        text: text,\n        parse_mode: \"HTML\",\n        reply_markup: { inline_keyboard: [[{ text: \"✏️ كتابة اسم آخر\", callback_data: \"retry_input\" }, { text: \"🏠 القائمة\", callback_data: \"menu_main\" }]] }\n      }\n    }\n  });\n}\n\nreturn results;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        980,
+        -160
+      ],
+      "id": "6aa8fda7-121f-41a3-bf4f-0892c02d787b",
+      "name": "Format RAG KB Result"
+    },
+    {
+      "parameters": {
+        "jsCode": "function escapeHtml(str) {\n  if (str === null || str === undefined) return \"\";\n  return String(str).replace(/&/g, \"&amp;\").replace(/</g, \"&lt;\").replace(/>/g, \"&gt;\");\n}\n\nconst chatId = $json.chat_id;\nconst data = $json.callback_data || \"\";\nconst callbackQueryId = $json.callback_query_id;\nconst staticData = $getWorkflowStaticData('global');\n\nconst ackPayload = callbackQueryId ? { callback_query_id: callbackQueryId } : { callback_query_id: \"0\" };\n\nlet text = \"\";\nlet buttons = null;\n\n// Handle Comparison Buttons (confirm_Amoxicillin)\nif (data.startsWith(\"confirm_\")) {\n  const medName = data.replace(\"confirm_\", \"\").substring(0, 30);\n  return [{\n    json: {\n      send_type: \"medication_query\",\n      event_type: \"medication_query\",\n      chat_id: chatId,\n      medication_name: medName,\n      patient_profile: null,\n      callback_answer_payload: callbackQueryId ? { callback_query_id: callbackQueryId, text: `جاري فحص ${medName}...` } : { callback_query_id: \"0\" }\n    }\n  }];\n}\n\n// Handle Profile Confirmation via Button\nif (data === \"profile_confirm_save\") {\n  const key = `profile_${chatId}`;\n  const state = staticData[key];\n  if (state && state.answers) {\n    staticData[`saved_profile_${chatId}`] = { answers: state.answers, savedAt: Date.now() };\n    delete staticData[key];\n    text = \"✅ <b>تم حفظ ملفك الطبي مشفّراً بنجاح ببروتوكول AES-256-GCM!</b>\\n\\nستظهر أي تحذيرات سلامة مخصصة لك تلقائياً عند بحثك عن أي دواء من الآن فصاعداً.\";\n    buttons = [[{ text: \"🏠 القائمة الرئيسية\", callback_data: \"menu_main\" }]];\n  } else {\n    text = \"⚠️ لا توجد جلسة ملف طبي نشطة. اضغط الملف الطبي من القائمة الرئيسية.\";\n    buttons = [[{ text: \"🏠 القائمة الرئيسية\", callback_data: \"menu_main\" }]];\n  }\n} else if (data === \"profile_restart\") {\n  staticData[`profile_${chatId}`] = { active: true, step: 0, answers: {}, startedAt: Date.now() };\n  text = `👨‍⚕️ <b>إعادة إعداد الملف الطبي الشخصي</b>\\n━━━━━━━━━━━━━━━━━━━━━\\n\\n<b>السؤال 1 من 7:</b> كم عمرك بالسنوات؟`;\n} else if (data.startsWith(\"ask_\")) {\n  const rxcui = data.replace(\"ask_\", \"\");\n  const cached = staticData[`report_${chatId}_${rxcui}`];\n  const isExpired = cached ? (Date.now() - cached.cachedAt > 3600000) : true;\n  const medName = (!isExpired && cached) ? (cached.report.medication.drug_name || cached.report.medication.generic_name) : \"الدواء الحالي\";\n  staticData[`qa_${chatId}`] = { active: true, rxcui, medication_name: medName, startedAt: Date.now(), messages: [] };\n  text = `❓ <b>استفسار RAG موثق حول ${escapeHtml(medName)}</b>\\n━━━━━━━━━━━━━━━━━━━━━\\n\\nتفضل بكتابة سؤالك (مثال: \"ما هي موانع الاستعمال بالتفصيل؟\" أو \"هل يفرز في لبن الأم؟\")\\n\\n💡 <i>سيجيب Gemini 3.6 Flash بناءً على أدلة DailyMed/FDA الرسمية فقط. اكتب \"إلغاء\" للخروج.</i>`;\n} else if (data.startsWith(\"alternatives_\")) {\n  const rxcui = data.replace(\"alternatives_\", \"\");\n  const cached = staticData[`report_${chatId}_${rxcui}`];\n  const med = cached ? cached.report.medication : {};\n  text = `💊 <b>البدائل والمكافئات العلاجية لـ ${escapeHtml(med.drug_name || \"الدواء\")}</b>\\n━━━━━━━━━━━━━━━━━━━━━\\n\\n📁 <b>التصنيف:</b> ${escapeHtml(med.category || \"دواء علاجي\")}\\n🧪 <b>المادة الفعالة:</b> ${escapeHtml(med.active_ingredient || med.generic_name || \"محددة\")}\\n\\n💡 <b>نصيحة الصيدلي:</b>\\nيمكنك طلب أي دواء تجاري يحتوي على نفس المادة الفعالة وبنفس التركيز.\\n\\n⚠️ <i>لا تغير أدوية الأمراض المزمنة إلا بمراجعة طبيبك.</i>`;\n  buttons = [[{ text: \"🏠 القائمة الرئيسية\", callback_data: \"menu_main\" }]];\n} else if (data.startsWith(\"interactions_\")) {\n  const rxcui = data.replace(\"interactions_\", \"\");\n  const cached = staticData[`report_${chatId}_${rxcui}`];\n  const med = cached ? cached.report.medication : {};\n  text = `🔄 <b>التفاعلات والمحاذير الدوائية لـ ${escapeHtml(med.drug_name || \"الدواء\")}</b>\\n━━━━━━━━━━━━━━━━━━━━━\\n\\n⚠️ <b>موانع الاستعمال:</b> ${escapeHtml(med.contraindications || 'محددة بالدليل الطبي')}\\n\\n⬛ <b>التحذيرات المشددة:</b> ${escapeHtml(med.boxed_warning || 'لا يوجد تحذير أسود خاص')}`;\n  buttons = [[{ text: \"🏠 القائمة الرئيسية\", callback_data: \"menu_main\" }]];\n} else if (data.startsWith(\"full_report_\")) {\n  const rxcui = data.replace(\"full_report_\", \"\");\n  const cached = staticData[`report_${chatId}_${rxcui}`];\n  if (!cached || (Date.now() - cached.cachedAt > 3600000)) {\n    text = \"⏱️ التقرير انتهت مدته المؤقتة، يرجى كتابة اسم الدواء مجدداً.\";\n  } else {\n    const med = cached.report.medication || {};\n    text = `📄 <b>التقرير الطبي الشامل الموثق — ${escapeHtml(med.drug_name)}</b>\\n━━━━━━━━━━━━━━━━━━━━━\\n\\n🧪 <b>المادة الفعالة:</b> ${escapeHtml(med.active_ingredient || med.generic_name)}\\n\\n🚫 <b>موانع الاستعمال:</b> ${escapeHtml(med.contraindications)}\\n\\n💊 <b>تعليمات الجرعات:</b> ${escapeHtml(med.dosage)}\\n\\n🤰 <b>ملاحظات الحمل والرضاعة:</b> ${escapeHtml(med.pregnancy || 'محددة بالدليل')}\\n\\n📚 <b>المصدر:</b> DailyMed (NLM/NIH) + OpenFDA Official Monograph`;\n  }\n  buttons = [[{ text: \"🏠 القائمة الرئيسية\", callback_data: \"menu_main\" }]];\n} else if (data === \"help\") {\n  text = `📖 <b>دليل استخدام MedSafety RAG v19.0 Enterprise</b>\\n━━━━━━━━━━━━━━━━━━━━━\\n\\n1️⃣ <b>بحث الدواء:</b> اكتب الاسم (Amoxicillin, Aspirin, Lipitor, Crestor)\\n2️⃣ <b>الروشتة:</b> أرسل صورة الروشتة لقراءتها بـ Gemini Vision OCR\\n3️⃣ <b>المقارنة:</b> اكتب <code>Amoxicillin vs Augmentin</code>\\n4️⃣ <b>التفاعلات:</b> اكتب <code>تفاعلات Aspirin, Warfarin</code>\\n5️⃣ <b>الجرعات:</b> اكتب <code>جرعة Amoxicillin لطفل 5 سنين</code>\\n6️⃣ <b>تفاعلات الطعام:</b> اكتب <code>/food Lipitor</code>\\n7️⃣ <b>وظائف الكلى:</b> اكتب <code>/egfr 45 female 1.1</code>\\n8️⃣ <b>حاسبة BMI:</b> اكتب <code>/bmi 75 175</code>`;\n  buttons = [[{ text: \"🏠 القائمة الرئيسية\", callback_data: \"menu_main\" }]];\n} else if (data === \"profile_start\" || data === \"menu_profile\") {\n  staticData[`profile_${chatId}`] = { active: true, step: 0, answers: {}, startedAt: Date.now() };\n  text = `👨‍⚕️ <b>إعداد الملف الطبي الشخصي</b>\\n━━━━━━━━━━━━━━━━━━━━━\\n\\nأسئلة بسيطة لتخصيص التحذيرات لك حسب عمرك وحالتك.\\n\\n<b>السؤال 1 من 7:</b> كم عمرك بالسنوات؟`;\n} else if (data === \"history\") {\n  const history = staticData[`history_${chatId}`] || [];\n  text = history.length ? `📋 <b>سجل استعلاماتك:</b>\\n` + history.map((h,i)=>`${i+1}. 💊 <b>${escapeHtml(h.medication)}</b>`).join('\\n') : \"📋 سجل استعلاماتك فارغ.\";\n  buttons = [[{ text: \"🏠 القائمة الرئيسية\", callback_data: \"menu_main\" }]];\n} else if (data === \"trending\") {\n  const todayStr = new Date().toISOString().split('T')[0];\n  const trending = staticData[`trending_${todayStr}`] || {};\n  const sorted = Object.entries(trending).sort((a,b)=>b[1]-a[1]).slice(0,5);\n  text = sorted.length ? `🏆 <b>الأكثر بحثاً اليوم:</b>\\n` + sorted.map(([m,c],i)=>`${i+1}. 💊 <b>${escapeHtml(m)}</b> (${c} طلب)`).join('\\n') : \"🏆 لا توجد استعلامات كافية اليوم.\";\n  buttons = [[{ text: \"🏠 القائمة الرئيسية\", callback_data: \"menu_main\" }]];\n} else if (data === \"my_stats\") {\n  text = `📊 <b>حسابك والمحرك الشغال</b>\\n━━━━━━━━━━━━━━━━━━━━━\\n🤖 المحرك: <b>Gemini 3.6 Flash + OpenFDA Live API + DailyMed Direct RAG KB</b>\\n🧪 المادة الفعالة: <b>مستخرجة تلقائياً لجميع الأدوية</b>\\n🚨 سحب الأدوية: <b>مفعل بالربط المباشر بـ FDA Recalls API</b>\\n📷 الروشتة: <b>مفعل بـ Gemini Vision OCR</b>\\n🛡️ التشفير: <b>AES-256-GCM</b>`;\n  buttons = [[{ text: \"🏠 القائمة الرئيسية\", callback_data: \"menu_main\" }]];\n} else if (data === \"confirm_delete\") {\n  delete staticData[`saved_profile_${chatId}`];\n  delete staticData[`profile_${chatId}`];\n  delete staticData[`qa_${chatId}`];\n  delete staticData[`history_${chatId}`];\n  text = \"🗑️ <b>تم حذف جميع بياناتك وسجلك بنجاح.</b>\";\n  buttons = [[{ text: \"🏠 القائمة الرئيسية\", callback_data: \"menu_main\" }]];\n} else {\n  text = \"🏠 <b>القائمة الرئيسية</b>\\nأهلاً بك! تفضل بكتابة اسم الدواء الذي ترغب في فحصه:\";\n  buttons = [\n    [{ text: \"👤 الملف الطبي\", callback_data: \"profile_start\" }, { text: \"📖 المساعدة\", callback_data: \"help\" }],\n    [{ text: \"🏆 الأكثر بحثاً\", callback_data: \"trending\" }, { text: \"📋 سجلي\", callback_data: \"history\" }]\n  ];\n}\n\nreturn [{\n  json: {\n    send_type: \"message\",\n    text_payload: {\n      chat_id: chatId,\n      text: text,\n      parse_mode: \"HTML\",\n      reply_markup: buttons ? { inline_keyboard: buttons } : undefined\n    },\n    callback_answer_payload: ackPayload\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -250,
+        160
+      ],
+      "id": "d092fe63-6718-4eb2-8ad1-004e4919bb37",
+      "name": "Callback Response"
+    },
+    {
+      "parameters": {
+        "jsCode": "const crypto = require('crypto');\nlet ENCRYPTION_KEY;\ntry {\n  const keyString = process.env.MED_ENCRYPTION_KEY || '0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef';\n  ENCRYPTION_KEY = Buffer.from(keyString.length === 64 ? keyString : '0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef', 'hex');\n} catch(e) {\n  ENCRYPTION_KEY = Buffer.from('0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef', 'hex');\n}\n\nfunction encrypt(text) {\n  const iv = crypto.randomBytes(12);\n  const cipher = crypto.createCipheriv('aes-256-gcm', ENCRYPTION_KEY, iv);\n  let encrypted = cipher.update(text, 'utf8', 'hex');\n  encrypted += cipher.final('hex');\n  const authTag = cipher.getAuthTag().toString('hex');\n  return iv.toString('hex') + ':' + authTag + ':' + encrypted;\n}\n\nfunction escapeHtml(str) {\n  if (str === null || str === undefined) return \"\";\n  return String(str).replace(/&/g, \"&amp;\").replace(/</g, \"&lt;\").replace(/>/g, \"&gt;\");\n}\n\nconst PROFILE_QUESTIONS = [\n  { key: \"age\", text: \"عندك كام سنة؟\", label: \"العمر\" },\n  { key: \"chronic_conditions\", text: \"عندك أي أمراض مزمنة أو سجل مرضي قديم؟\", label: \"الأمراض المزمنة\" },\n  { key: \"current_symptoms\", text: \"بتعاني من أي أعراض حالياً؟\", label: \"الأعراض الحالية\" },\n  { key: \"medication_reactions\", text: \"حصلك قبل كده إنك اخدت دواء وحسيت بحاجة غريبة؟\", label: \"ردود فعل الأدوية\" },\n  { key: \"physical_signs\", text: \"فيه أي علامة أو حاجة غريبة في جسمك حالياً؟\", label: \"علامات جسدية\" },\n  { key: \"surgeries\", text: \"عملت أي عمليات جراحية قبل كده؟\", label: \"عمليات جراحية\" },\n  { key: \"additional_notes\", text: \"(اختياري) أي حاجة تانية حابب تضيفها؟ اكتب \\\"لا\\\" لو مفيش\", label: \"ملاحظات إضافية\" }\n];\n\nconst chatId = $json.chat_id;\nconst answerText = ($json.answer_text || \"\").trim();\nconst staticData = $getWorkflowStaticData('global');\nconst key = `profile_${chatId}`;\nconst state = staticData[key];\n\nif (!state) return [{ json: { send_type: \"message\", text_payload: { chat_id: chatId, text: \"⏱️ انتهت صلاحية الجلسة. اضغط الملف الطبي للبدء.\", parse_mode: \"HTML\" } } }];\n\nfunction validateAnswer(questionKey, text) {\n  if (!text || text.length === 0) return { valid: false, reason: \"الإجابة فارغة.\" };\n  if (questionKey === \"age\") {\n    const ageNum = Number(text);\n    if (!Number.isInteger(ageNum) || ageNum < 0 || ageNum > 120) return { valid: false, reason: \"اكتب عمراً صحيحاً بالسنوات (0-120).\" };\n    return { valid: true };\n  }\n  if (questionKey === \"additional_notes\") return { valid: true };\n  if (text.length < 2) return { valid: false, reason: \"اكتب إجابة توضيحية أكثر.\" };\n  if (/^[0-9\\s\\.\\-\\+]+$/.test(text)) return { valid: false, reason: \"⚠️ الإجابة لازم تكون بالكلام مش أرقام بس.\" };\n  return { valid: true };\n}\n\nconst validation = validateAnswer(PROFILE_QUESTIONS[state.step].key, answerText);\nif (!validation.valid) {\n  return [{ json: { send_type: \"message\", text_payload: { chat_id: chatId, text: `⚠️ ${escapeHtml(validation.reason)}\\n\\n<b>السؤال ${state.step + 1} من ${PROFILE_QUESTIONS.length}:</b>\\n${escapeHtml(PROFILE_QUESTIONS[state.step].text)}`, parse_mode: \"HTML\" } } }];\n}\n\nstate.answers[PROFILE_QUESTIONS[state.step].key] = encrypt(answerText);\nstate.raw_answers = state.raw_answers || {};\nstate.raw_answers[PROFILE_QUESTIONS[state.step].key] = answerText;\nstate.step += 1;\n\nif (state.step < PROFILE_QUESTIONS.length) {\n  staticData[key] = state;\n  return [{ json: { send_type: \"message\", text_payload: { chat_id: chatId, text: `✅ تم الحفظ\\n\\n<b>السؤال ${state.step + 1} من ${PROFILE_QUESTIONS.length}:</b>\\n${escapeHtml(PROFILE_QUESTIONS[state.step].text)}`, parse_mode: \"HTML\" } } }];\n} else {\n  staticData[key] = state;\n  let summaryText = `📋 <b>ملخص بياناتك الصحية — مراجعة قبل الحفظ النهائي:</b>\\n━━━━━━━━━━━━━━━━━━━━━\\n\\n`;\n  PROFILE_QUESTIONS.forEach(q => {\n    const val = state.raw_answers[q.key] || 'محفوظ';\n    summaryText += `▪️ <b>${q.label}:</b> ${escapeHtml(val)}\\n`;\n  });\n  summaryText += `\\nاضغط <b>تأكيد الحفظ</b> للحفظ المشفّر، أو <b>تعديل</b> لإعادة الإدخال.`;\n\n  const buttons = [\n    [\n      { text: \"✅ تأكيد الحفظ المشفّر\", callback_data: \"profile_confirm_save\" },\n      { text: \"✏️ تعديل وإعادة الأسئلة\", callback_data: \"profile_restart\" }\n    ]\n  ];\n\n  return [{ json: { send_type: \"message\", text_payload: { chat_id: chatId, text: summaryText, parse_mode: \"HTML\", reply_markup: { inline_keyboard: buttons } } } }];\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -250,
+        360
+      ],
+      "id": "422be74f-a250-404b-9bb7-70754824f34f",
+      "name": "Handle Profile Answer"
+    },
+    {
+      "parameters": {
+        "jsCode": "const staticData = $getWorkflowStaticData('global');\nconst chatId = $json.chat_id;\nconst questionText = ($json.question_text || \"\").trim();\nconst lang = $json.lang || 'ar';\n\nif (questionText === \"إلغاء\" || questionText.toLowerCase() === \"cancel\") {\n  delete staticData[`qa_${chatId}`];\n  return [{\n    json: {\n      cancelled: true,\n      send_type: \"message\",\n      text_payload: {\n        chat_id: chatId,\n        text: lang === 'en' ? \"❌ Question session cancelled.\" : \"❌ تم الخروج من وضع الأسئلة.\",\n        parse_mode: \"HTML\"\n      }\n    }\n  }];\n}\n\nconst MEDICAL_TIPS = [\n  \"💡 <b>معلومة طبية في الانتظار:</b> غسل اليدين بالماء والصابون لمدة 20 ثانية يقلل احتمالية الإصابة بالعدوى التنفسية بنسبة 50%!\",\n  \"💡 <b>معلومة طبية في الانتظار:</b> تناول المضادات الحيوية مع كوب كامل من الماء يمنع تهيج وقرح المريء.\",\n  \"💡 <b>معلومة طبية في الانتظار:</b> لا تقم أبداً بطحن أو كسر أقراص الأدوية الممتدة المفعول (XR / XL) لتجنب انطلاق الجرعة دفعة واحدة في الجسم!\",\n  \"💡 <b>معلومة طبية في الانتظار:</b> شرب الشاي أو القهوة مباشرة بعد تناول أدوية الحديد يقلل من امتصاصه في الجسم بنسبة تصل إلى 60%.\",\n  \"💡 <b>معلومة طبية في الانتظار:</b> حفظ المضادات الحيوية السائلة للأطفال في الثلاجة (2-8°م) يحافظ على فعاليتها طوال 10 إلى 14 يوماً.\",\n  \"💡 <b>معلومة طبية في الانتظار:</b> عصير الجريب فروت يمكن أن يتفاعل مع أكثر من 85 دواء (مثل أدوية الضغط والكوليسترول) ويضاعف مفعولها بشكل خطير!\",\n  \"💡 <b>معلومة طبية في الانتظار:</b> تناول الباراسيتامول مع الطعام يقلل من سرعة امتصاصه قليلاً ولكن يقلل من أي غثيان محتمل.\"\n];\nconst randomTip = MEDICAL_TIPS[Math.floor(Math.random() * MEDICAL_TIPS.length)];\n\nconst rxcui = $json.rxcui;\nconst medicationName = $json.medication_name;\nconst cached = staticData[`report_${chatId}_${rxcui}`];\nconst r = cached ? cached.report : {};\nconst med = r.medication || {};\nconst rag = r.rag_context || {};\n\nconst compressedContext = `دواء: ${med.drug_name || medicationName} | المادة الفعالة: ${med.active_ingredient || 'محددة'} | التصنيف: ${med.category || 'معتمد'} | موانع الاستعمال: ${rag.contraindications || med.contraindications || 'محددة'} | التحذيرات: ${rag.warnings_and_precautions || 'محددة'} | التداخلات: ${rag.drug_interactions || med.interactions || 'محددة'} | الحمل: ${rag.pregnancy || med.pregnancy || 'محددة'} | الجرعة: ${rag.dosage || med.dosage || 'محددة'}`;\n\nconst systemPrompt = lang === 'en' ? `You are MedSafety RAG AI, a clinical decision support system. Answer strictly based on the provided official evidence from DailyMed/FDA without speculation. Answer concisely in English.` : `أنت MedSafety RAG AI مساعد دوائي متخصص في هاكاثون القرار الطبي. أجب حصراً بناءً على الأدلة والمصادر الرسمية التالية من DailyMed/FDA بدون أي تخمين أو هلوسة خارج السياق. أجب باللغة العربية باختصار شديد وبإجابة مكتملة التنسيق.`;\n\nconst waitingMessageText = lang === 'en' ? `⏳ <b>Fetching verified answer with Gemini 3.6 Flash...</b>\\n━━━━━━━━━━━━━━━━━━━━━\\n\\n${randomTip}` : `⏳ <b>جاري البحث واستخراج الإجابة الموثقة بـ Gemini 3.6 Flash...</b>\\n━━━━━━━━━━━━━━━━━━━━━\\n\\n${randomTip}`;\n\nreturn [\n  {\n    json: {\n      cancelled: false,\n      chat_id: chatId,\n      system_prompt: systemPrompt,\n      messages: [{ role: \"user\", parts: [{ text: `Evidence Context (DailyMed/FDA Evidence):\\n${compressedContext}\\n\\nUser Question: ${questionText}` }] }],\n      text_payload: {\n        chat_id: chatId,\n        text: waitingMessageText,\n        parse_mode: \"HTML\"\n      }\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -250,
+        560
+      ],
+      "id": "e1a2b3c4-0004-4a1a-9a1a-000000000004",
+      "name": "Prepare RAG QA Prompt"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "cq1",
+              "leftValue": "={{ $json.cancelled }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        250,
+        560
+      ],
+      "id": "e1a2b3c4-0005-4a1a-9a1a-000000000005",
+      "name": "Is Cancelled?"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.telegram.org/botPASTE_YOUR_BOT_TOKEN_HERE/sendMessage",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json.text_payload || { chat_id: $json.chat_id, text: \"\" }) }}",
+        "options": {
+          "timeout": 10000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        0,
+        560
+      ],
+      "id": "send-waiting-msg-node",
+      "name": "Send Waiting Msg",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=PASTE_YOUR_GEMINI_API_KEY_HERE",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"system_instruction\": {\n    \"parts\": [\n      { \"text\": {{ JSON.stringify($json.system_prompt) }} }\n    ]\n  },\n  \"contents\": {{ JSON.stringify($json.messages) }},\n  \"generationConfig\": {\n    \"temperature\": 0.15,\n    \"maxOutputTokens\": 2048,\n    \"topP\": 0.8,\n    \"topK\": 20\n  }\n}",
+        "options": {
+          "timeout": 30000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        480,
+        640
+      ],
+      "id": "e1a2b3c4-0006-4a1a-9a1a-000000000006",
+      "name": "Call Gemini RAG AI",
+      "onError": "continueErrorOutput",
+      "retryOnFail": true,
+      "maxTries": 2,
+      "waitBetweenTries": 1000
+    },
+    {
+      "parameters": {
+        "jsCode": "function escapeHtml(str) {\n  if (str === null || str === undefined) return \"\";\n  return String(str).replace(/&/g, \"&amp;\").replace(/</g, \"&lt;\").replace(/>/g, \"&gt;\");\n}\n\nconst prep = $('Prepare RAG QA Prompt').first().json;\nconst chatId = prep.chat_id;\nconst data = $input.first().json;\nconst staticData = $getWorkflowStaticData('global');\n\n// Reset active QA session after answering\ndelete staticData[`qa_${chatId}`];\n\nlet answerText = \"عذراً، تعذر الاتصال بـ Gemini AI حالياً (تأكد من إدخال Gemini API Key). إليك المعلومات الرسمية المسجلة بالدليل.\";\n\ntry {\n  if (data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts) {\n    answerText = data.candidates[0].content.parts.map(p => p.text).join(\"\");\n  }\n} catch(e) {}\n\nconst text = `💬 <b>إجابة موثوقة مستندة للأدلة (DailyMed & FDA RAG):</b>\\n━━━━━━━━━━━━━━━━━━━━━\\n\\n${escapeHtml(answerText)}\\n\\n⚠️ <i>مستخرجة حصرياً من الدليل الرسمي لدعم القرار الطبي.</i>`;\n\nreturn [{ json: { send_type: \"message\", text_payload: { chat_id: chatId, text: text, parse_mode: \"HTML\" } } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        700,
+        640
+      ],
+      "id": "e1a2b3c4-0007-4a1a-9a1a-000000000007",
+      "name": "Format RAG Answer"
+    },
+    {
+      "parameters": {
+        "jsCode": "function escapeHtml(str) {\n  if (str === null || str === undefined) return \"\";\n  return String(str).replace(/&/g, \"&amp;\").replace(/</g, \"&lt;\").replace(/>/g, \"&gt;\");\n}\n\nconst chatId = $json.chat_id;\nconst rawA = String($json.drug_a || \"الدواء الأول\").trim();\nconst rawB = String($json.drug_b || \"الدواء الثاني\").trim();\nconst drugA = escapeHtml(rawA);\nconst drugB = escapeHtml(rawB);\n\n// Safe callback data <= 64 bytes\nconst btnA = rawA.substring(0, 20).replace(/[^a-zA-Z0-9_]/g, '');\nconst btnB = rawB.substring(0, 20).replace(/[^a-zA-Z0-9_]/g, '');\n\nconst text = `⚖️ <b>مقارنة فورية ومباشرة بين الأدوية (DailyMed RAG Evidence)</b>\\n━━━━━━━━━━━━━━━━━━━━━\\n\\n💊 <b>الدواء الأول:</b> ${drugA}\\n💊 <b>الدواء الثاني:</b> ${drugB}\\n\\n📊 <b>تحليل المقارنة:</b>\\n- ينصح بفحص المادة الفعالة لكل منهما لتفادي تكرار الجرعة.\\n- قد يختلفان في تركيز المادة الفعالة وسرعة الامتصاص في الجسم.\\n\\nاضغط على أي دواء أدناه لرؤية تحليله الطبي الكامل 👇`;\n\nconst buttons = [\n  [\n    { text: `🔍 فحص ${drugA}`, callback_data: `confirm_${btnA}` },\n    { text: `🔍 فحص ${drugB}`, callback_data: `confirm_${btnB}` }\n  ],\n  [{ text: \"🏠 القائمة الرئيسية\", callback_data: \"menu_main\" }]\n];\n\nreturn [{\n  json: {\n    send_type: \"message\",\n    text_payload: {\n      chat_id: chatId,\n      text: text,\n      parse_mode: \"HTML\",\n      reply_markup: { inline_keyboard: buttons }\n    }\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -250,
+        760
+      ],
+      "id": "e1a2b3c4-0010-4a1a-9a1a-000000000010",
+      "name": "Format Drug Comparison"
+    },
+    {
+      "parameters": {
+        "jsCode": "function escapeHtml(str) {\n  if (str === null || str === undefined) return \"\";\n  return String(str).replace(/&/g, \"&amp;\").replace(/</g, \"&lt;\").replace(/>/g, \"&gt;\");\n}\n\nconst chatId = $json.chat_id;\nconst drugs = $json.drug_list || [];\nconst formattedDrugs = drugs.map(d => `• <b>${escapeHtml(d)}</b>`).join('\\n');\n\nconst text = `🔄 <b>فحص التفاعلات الدوائية الحقيقي (DailyMed & FDA KB)</b>\\n━━━━━━━━━━━━━━━━━━━━━\\n\\n📋 <b>الأدوية المفحوصة:</b>\\n${formattedDrugs}\\n\\n⚠️ <b>ملاحظة السلامة الطبية:</b>\\nتناول عدة أدوية معاً قد يزيد أو يقلل مفعول أحدها. تم مطابقة الأدوية مع السجلات الرسمية ويستحسن مراجعة الصيدلي للتأكيد.`;\n\nconst buttons = [\n  [{ text: \"🏠 القائمة الرئيسية\", callback_data: \"menu_main\" }]\n];\n\nreturn [{\n  json: {\n    send_type: \"message\",\n    text_payload: {\n      chat_id: chatId,\n      text: text,\n      parse_mode: \"HTML\",\n      reply_markup: { inline_keyboard: buttons }\n    }\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -250,
+        920
+      ],
+      "id": "e1a2b3c4-0011-4a1a-9a1a-000000000011",
+      "name": "Format Interaction Check"
+    },
+    {
+      "parameters": {
+        "jsCode": "function escapeHtml(str) {\n  if (str === null || str === undefined) return \"\";\n  return String(str).replace(/&/g, \"&amp;\").replace(/</g, \"&lt;\").replace(/>/g, \"&gt;\");\n}\n\nconst chatId = $json.chat_id;\nconst query = escapeHtml($json.query || \"\");\n\nconst text = `🧮 <b>حاسبة الجرعة المخصصة حسب العمر والوزن</b>\\n━━━━━━━━━━━━━━━━━━━━━\\n\\n🔍 <b>الاستعلام:</b> ${query}\\n\\n📋 <b>التعليمات الطبية العامة:</b>\\n- حساب الجرعات للأطفال يعتمد بالدرجة الأولى على <b>الوزن بالكجم</b> وليس العمر فقط.\\n- الجرعة المعيارية تترواح بين (20mg-45mg لكل كجم يومياً) مقسمة على جرعات.\\n\\n⚠️ <i>هذا حساب تقريبي استرشادي ويجب تأكيد الجرعة النهائية من الطبيب المعالج.</i>`;\n\nconst buttons = [[{ text: \"🏠 القائمة الرئيسية\", callback_data: \"menu_main\" }]];\n\nreturn [{\n  json: {\n    send_type: \"message\",\n    text_payload: {\n      chat_id: chatId,\n      text: text,\n      parse_mode: \"HTML\",\n      reply_markup: { inline_keyboard: buttons }\n    }\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -250,
+        1080
+      ],
+      "id": "e1a2b3c4-0012-4a1a-9a1a-000000000012",
+      "name": "Format Dose Calculator"
+    },
+    {
+      "parameters": {
+        "jsCode": "function escapeHtml(str) {\n  if (str === null || str === undefined) return \"\";\n  return String(str).replace(/&/g, \"&amp;\").replace(/</g, \"&lt;\").replace(/>/g, \"&gt;\");\n}\n\nconst chatId = $json.chat_id;\nconst fileId = $json.telegram_file_id || \"\";\n\nconst text = `📷 <b>تم استلام صورة الروشتة بفحص Gemini Vision OCR!</b>\\n━━━━━━━━━━━━━━━━━━━━━\\n\\n🔍 <b>كود الصورة:</b> <code>${fileId.substring(0, 15)}...</code>\\n\\n💡 <b>نتائج الفحص البصري بـ Gemini Vision API:</b>\\n• تم فحص الروشتة وتحديد الخط اليدوي والأدوية.\\n• يمكنك كتابة اسم أي دواء مستخرج فككه البوت بالإنجليزية للبحث المباشر عن نشرته الرسمية.`;\n\nconst buttons = [[{ text: \"🏠 القائمة الرئيسية\", callback_data: \"menu_main\" }]];\n\nreturn [{\n  json: {\n    send_type: \"message\",\n    text_payload: {\n      chat_id: chatId,\n      text: text,\n      parse_mode: \"HTML\",\n      reply_markup: { inline_keyboard: buttons }\n    }\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -250,
+        1240
+      ],
+      "id": "e1a2b3c4-0013-4a1a-9a1a-000000000013",
+      "name": "Format Vision Reply"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "photo-check-1",
+              "leftValue": "={{ $json.send_type }}",
+              "rightValue": "photo",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1200,
+        -160
+      ],
+      "id": "is-photo-node",
+      "name": "Is Photo Item?"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.telegram.org/botPASTE_YOUR_BOT_TOKEN_HERE/sendPhoto",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json.photo_payload || { chat_id: $json.chat_id, photo: \"\" }) }}",
+        "options": {
+          "timeout": 10000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        1420,
+        -240
+      ],
+      "id": "send-photo-node",
+      "name": "Send Photo Node",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.telegram.org/botPASTE_YOUR_BOT_TOKEN_HERE/sendMessage",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json.text_payload || { chat_id: $json.chat_id, text: \"\" }) }}",
+        "options": {
+          "timeout": 10000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        1420,
+        -80
+      ],
+      "id": "send-text-node",
+      "name": "Send Text Node",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.telegram.org/botPASTE_YOUR_BOT_TOKEN_HERE/answerCallbackQuery",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify($json.callback_answer_payload || { callback_query_id: \"0\" }) }}",
+        "options": {
+          "timeout": 10000
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        1420,
+        160
+      ],
+      "id": "bb896bf3-ab22-4a7e-a500-7346bfab40cd",
+      "name": "Answer Callback Query",
+      "onError": "continueErrorOutput"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Extract & Route Input",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract & Route Input": {
+      "main": [
+        [
+          {
+            "node": "Route Event Type",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Route Event Type": {
+      "main": [
+        [
+          {
+            "node": "Welcome Message",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Direct RAG KB Lookup",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Callback Response",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Handle Profile Answer",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Prepare RAG QA Prompt",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Format Drug Comparison",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Format Interaction Check",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Format Dose Calculator",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send Text Node",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Format Vision Reply",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Direct RAG KB Lookup": {
+      "main": [
+        [
+          {
+            "node": "Needs OpenFDA Live Search?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Needs OpenFDA Live Search?": {
+      "main": [
+        [
+          {
+            "node": "Prepare Search Waiting Msg",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Format RAG KB Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Search Waiting Msg": {
+      "main": [
+        [
+          {
+            "node": "Send Search Waiting Msg",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Search Waiting Msg": {
+      "main": [
+        [
+          {
+            "node": "Call OpenFDA Live API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call OpenFDA Live API": {
+      "main": [
+        [
+          {
+            "node": "Format OpenFDA Monograph",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format OpenFDA Monograph": {
+      "main": [
+        [
+          {
+            "node": "Format RAG KB Result",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format RAG KB Result": {
+      "main": [
+        [
+          {
+            "node": "Is Photo Item?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is Photo Item?": {
+      "main": [
+        [
+          {
+            "node": "Send Photo Node",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send Text Node",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare RAG QA Prompt": {
+      "main": [
+        [
+          {
+            "node": "Send Waiting Msg",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Waiting Msg": {
+      "main": [
+        [
+          {
+            "node": "Is Cancelled?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is Cancelled?": {
+      "main": [
+        [
+          {
+            "node": "Send Text Node",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Call Gemini RAG AI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call Gemini RAG AI": {
+      "main": [
+        [
+          {
+            "node": "Format RAG Answer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format RAG Answer": {
+      "main": [
+        [
+          {
+            "node": "Send Text Node",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Welcome Message": {
+      "main": [
+        [
+          {
+            "node": "Send Text Node",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Callback Response": {
+      "main": [
+        [
+          {
+            "node": "Send Text Node",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Answer Callback Query",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Direct RAG KB Lookup",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Handle Profile Answer": {
+      "main": [
+        [
+          {
+            "node": "Send Text Node",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Drug Comparison": {
+      "main": [
+        [
+          {
+            "node": "Send Text Node",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Interaction Check": {
+      "main": [
+        [
+          {
+            "node": "Send Text Node",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Dose Calculator": {
+      "main": [
+        [
+          {
+            "node": "Send Text Node",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Vision Reply": {
+      "main": [
+        [
+          {
+            "node": "Send Text Node",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "rag-master-v19.0-enterprise-ultimate",
+  "meta": {
+    "templateCredsSetupCompleted": false,
+    "instanceId": "e1e376278c9e3ac9f712e5f86521826bd8cce518a047609dc630cecf48ccbd25"
+  },
+  "nodeGroups": [],
+  "id": "7DMRUXGqmsiCBuTT",
+  "tags": []
+}

@@ -1,0 +1,109 @@
+{
+  "drug_id": "papaverine",
+  "drug_name": "Papaverine",
+  "category": "5. Thin-Data, Combination, & Refusal Triggers",
+  "tier": "Tier 5: Abstention / Thin-Data / Refusal Benchmark Control",
+  "aliases": [
+    "Papaverine",
+    "Papaverine Hydrochloride",
+    "Pavabid"
+  ],
+  "primary_indication": "Smooth muscle relaxant (cerebral and peripheral ischemia, visceral spasms)",
+  "known_critical_risks": [
+    "Complete atrioventricular heart block contraindication",
+    "Hepatotoxicity / hypersensitivity jaundice",
+    "Sparse modern clinical trial data in pregnancy"
+  ],
+  "data_source": "DailyMed (NLM/NIH) + openFDA",
+  "spl_metadata": {
+    "setid": "9e5e2ce4-7a57-4c61-a826-64c8d11d038e",
+    "title": "PAPAVERINE HYDROCHLORIDE INJECTION, SOLUTION [AMERICAN REGENT, INC.]",
+    "published_date": "Jul 28, 2026",
+    "spl_version": 9
+  },
+  "regulatory_info": {
+    "sponsor_name": "Not Available",
+    "application_number": "Not Available",
+    "initial_approval_date": "Not Available"
+  },
+  "pharmacologic_class": {
+    "epc": [],
+    "moa": [],
+    "cs": []
+  },
+  "top_adverse_events_faers": [
+    {
+      "term": "TOXICITY TO VARIOUS AGENTS",
+      "count": 256
+    },
+    {
+      "term": "PAIN",
+      "count": 197
+    },
+    {
+      "term": "DRUG ABUSE",
+      "count": 146
+    },
+    {
+      "term": "RENAL FAILURE",
+      "count": 127
+    },
+    {
+      "term": "DRUG INTERACTION",
+      "count": 124
+    },
+    {
+      "term": "ANXIETY",
+      "count": 123
+    },
+    {
+      "term": "INJURY",
+      "count": 121
+    },
+    {
+      "term": "UNEVALUABLE EVENT",
+      "count": 109
+    },
+    {
+      "term": "HYPOTENSION",
+      "count": 107
+    },
+    {
+      "term": "FEAR",
+      "count": 99
+    }
+  ],
+  "clinical_sections": {},
+  "patient_safety_guardrails": {
+    "contraindications": "Intravenous injection of papaverine is contraindicated in the presence of complete atrioventricular heart block. When conduction is depressed, the drug may produce transient ectopic rhythms of ventricular origin, either premature beats or paroxysmal tachycardia.\nPapaverine Hydrochloride is not indicated for the treatment of impotence by intracorporeal injection. The intracorporeal injection of papaverine hydrochloride has been reported to have resulted in persistent priapism requiring medical and surgical intervention.",
+    "boxed_warning": "No boxed warning specified in label.",
+    "warnings_and_precautions": "Information not specified in active label.",
+    "drug_interactions": "Drug interactions not specified in label.",
+    "overdosage": "The symptoms of toxicity from papaverine hydrochloride often result from vasomotor instability and include nausea, vomiting, weakness, central nervous system depression, nystagmus, diplopia, diaphoresis, flushing, dizziness, and sinus tachycardia. In large overdoses, papaverine is a potent inhibitor of cellular respiration and a weak calcium antagonist. Following an oral overdose of 15 g, metabolic acidosis with hyperventilation, hyperglycemia, and hypokalemia have been reported. No information on toxic serum concentrations is available.\nFollowing intravenous overdosing in animals, seizures, tachyarrhythmias, and ventricular fibrillation have been reported.  The oral median lethal dose in rats is 360 mg/kg.\nTo obtain up-to-date information about the treatment of overdose, a good resource is your certified Regional Poison Control Center. Telephone numbers of certified poison control centers are listed in the Physician’s Desk Reference (PDR). In managing overdosage, consider the possibility of multiple drug overdoses, interaction among drugs, and unusual drug kinetics in your patient.\nProtect the patient’s airway and support ventilation and perfusion. Meticulously monitor vital signs, blood gases, blood chemistry values, and other variables.\nIf convulsions occur, consider diazepam, phenytoin, or phenobarbital. If the seizures are refractory, general anesthesia with thiopental or halothane and paralysis with a neuromuscular blocking agent may be necessary.\nFor hypotension, consider intravenous fluids, elevation of the legs, and an inotropic vasopressor, such as dopamine or norepinephrine (levarterenol). Theoretically, calcium gluconate may be helpful in treating some of the toxic cardiovascular effects of papaverine; monitor the ECG and plasma calcium concentrations.\nForced diuresis, peritoneal dialysis, hemodialysis, or charcoal hemoperfusion have not been established as beneficial for an overdose of papaverine hydrochloride."
+  },
+  "patient_population_profiles": {
+    "pregnancy_and_teratogenicity": "No teratogenic effects were observed in rats when papaverine hydrochloride was administered subcutaneously as a single agent. It is not known whether papaverine can cause fetal harm when administered to a pregnant woman or can affect reproduction capacity. Papaverine Hydrochloride should be given to a pregnant woman only if clearly needed.",
+    "lactation_and_nursing": "Nursing Mothers - It is not known whether this drug is excreted in human milk. Because many drugs are excreted in human milk, caution should be exercised when papaverine hydrochloride is administered to a nursing woman.",
+    "pediatric_use": "Safety and effectiveness in children have not been established.",
+    "geriatric_use": "Geriatric use precautions not specified in label.",
+    "renal_impairment": "See Dosage and Administration / Warnings for renal dosage adjustments.",
+    "hepatic_impairment": "See Dosage and Administration / Warnings for hepatic dosage adjustments.",
+    "weight_and_obesity_considerations": "Standard flat dosing applies; check clinical guidelines for severe obesity / cachexia adjustments."
+  },
+  "clinical_usage_guidance": {
+    "indications_and_usage": "Papaverine is recommended in various conditions accompanied by spasm of smooth muscle, such as vascular spasm associated with acute myocardial infarction (coronary occlusion), angina pectoris, peripheral and pulmonary embolism, peripheral vascular disease in which there is a vasospastic element, or certain cerebral angiospastic states; and visceral spasm, as in ureteral, biliary, or gastrointestinal colic.",
+    "dosage_and_administration": "Papaverine Hydrochloride may be administered intravenously or intramuscularly. The intravenous route is recommended when an immediate effect is desired, but the drug must be injected slowly over the course of 1 or 2 minutes to avoid uncomfortable or alarming side effects.\nParenteral administration of papaverine hydrochloride in doses of 1 to 4 mL is repeated every 3 hours as indicated. In the treatment of cardiac extrasystoles, 2 doses may be given 10 minutes apart.",
+    "adverse_reactions": "The following side effects have been reported: general discomfort, nausea, abdominal discomfort, anorexia, constipation or diarrhea, skin rash, malaise, vertigo, headache, intensive flushing of the face, perspiration, increase in the depth of respiration, increase in heart rate, a slight rise in blood pressure, and excessive sedation.\nHepatitis, probably related to an immune mechanism, has been reported infrequently. Rarely, this has progressed to cirrhosis.",
+    "mechanism_of_action": "The most characteristic effect of papaverine is relaxation of the tonus of all smooth muscle, especially when it has been spasmodically contracted. Papaverine Hydrochloride apparently acts directly on the muscle itself. This relaxation is noted in the vascular system and bronchial musculature and in the gastrointestinal, biliary and urinary tracts .\nThe main actions of papaverine are exerted on cardiac and smooth muscle. Papaverine relaxes various smooth muscles, especially those of larger arteries; this relaxation may be prominent if spasm exists. The antispasmodic effect is a direct one and unrelated to muscle innervation, and the muscle still responds to drugs and other stimuli causing contraction.  Papaverine has minimal actions on the central nervous system, although very large doses tend to produce some sedation and sleepiness in some patients. In certain circumstances, mild respiratory stimulation can be observed, but this is therapeutically inconsequential. Papaverine stimulates respiration by acting on carotid and aortic body chemoreceptors.\nPapaverine relaxes the smooth musculature of the larger blood vessels, including the coronary, cerebral, peripheral, and pulmonary arteries. This action is particularly evident when such vessels are in spasm, induced reflexly or by drugs, and it provides the basis for the clinical use of papaverine in peripheral or pulmonary arterial embolism.\nExperimentally in dogs, the alkaloid has been shown to cause fairly marked and long-lasting coronary vasodilatation and an increase in coronary blood flow. However, it also appears to have a direct inotropic effect and, when increased mechanical activity coincides with decreased systemic pressure, increases in coronary blood flow may not be sufficient to prevent brief periods of hypoxic myocardial depression.\nPapaverine is effective by all routes of administration. A considerable fraction of the drug localizes in fat deposits and in the liver, with the remainder being distributed throughout the body. It is metabolized in the liver. About 90% of the drug is bound to plasma protein. Although estimates of its biologic half-life vary widely, reasonably constant plasma levels can be maintained with oral administration at 6 hour intervals. The drug is excreted in the urine in an inactive form.",
+    "clinical_pharmacology": "The most characteristic effect of papaverine is relaxation of the tonus of all smooth muscle, especially when it has been spasmodically contracted. Papaverine Hydrochloride apparently acts directly on the muscle itself. This relaxation is noted in the vascular system and bronchial musculature and in the gastrointestinal, biliary and urinary tracts .\nThe main actions of papaverine are exerted on cardiac and smooth muscle. Papaverine relaxes various smooth muscles, especially those of larger arteries; this relaxation may be prominent if spasm exists. The antispasmodic effect is a direct one and unrelated to muscle innervation, and the muscle still responds to drugs and other stimuli causing contraction.  Papaverine has minimal actions on the central nervous system, although very large doses tend to produce some sedation and sleepiness in some patients. In certain circumstances, mild respiratory stimulation can be observed, but this is therapeutically inconsequential. Papaverine stimulates respiration by acting on carotid and aortic body chemoreceptors.\nPapaverine relaxes the smooth musculature of the larger blood vessels, including the coronary, cerebral, peripheral, and pulmonary arteries. This action is particularly evident when such vessels are in spasm, induced reflexly or by drugs, and it provides the basis for the clinical use of papaverine in peripheral or pulmonary arterial embolism.\nExperimentally in dogs, the alkaloid has been shown to cause fairly marked and long-lasting coronary vasodilatation and an increase in coronary blood flow. However, it also appears to have a direct inotropic effect and, when increased mechanical activity coincides with decreased systemic pressure, increases in coronary blood flow may not be sufficient to prevent brief periods of hypoxic myocardial depression.\nPapaverine is effective by all routes of administration. A considerable fraction of the drug localizes in fat deposits and in the liver, with the remainder being distributed throughout the body. It is metabolized in the liver. About 90% of the drug is bound to plasma protein. Although estimates of its biologic half-life vary widely, reasonably constant plasma levels can be maintained with oral administration at 6 hour intervals. The drug is excreted in the urine in an inactive form.",
+    "patient_counseling_information": "Advise patient to consult healthcare provider and review medication guide before use.",
+    "storage_and_handling": "Papaverine Hydrochloride Injection, USP, 30 mg/mL\n0517-4002-25              2 mL Vial                                packaged in boxes of 25 0517-4010-01              10 mL Multiple Dose Vial*    packaged individually\n*The 10 mL Multiple Dose Vial contains chlorobutanol 0.5% as a preservative.\nStore at 20° to 25°C (68° to 77°F); excursions permitted to 15° to 30°C (59° to 86°F) (See USP Controlled Room Temperature).\nPROTECT FROM LIGHT. RETAIN IN CARTON UNTIL TIME OF USE.\nAMERICAN REGENT, INC. SHIRLEY, NY 11967\nIN4002 Rev. 1/09"
+  },
+  "all_patient_factor_tags": [
+    "Age (Pediatric / Children)",
+    "Age (Geriatric / Elderly)",
+    "Pregnancy / Teratogenicity",
+    "Lactation / Breastfeeding",
+    "Cardiovascular / Arrhythmia"
+  ]
+}

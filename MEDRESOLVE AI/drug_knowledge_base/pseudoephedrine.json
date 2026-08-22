@@ -1,0 +1,111 @@
+{
+  "drug_id": "pseudoephedrine",
+  "drug_name": "Pseudoephedrine",
+  "category": "5. Thin-Data, Combination, & Refusal Triggers",
+  "tier": "Tier 5: Abstention / Thin-Data / OTC Combination Trigger",
+  "aliases": [
+    "Pseudoephedrine",
+    "Sudafed",
+    "Nexafed",
+    "Zephrex-D"
+  ],
+  "primary_indication": "Nasal and sinus congestion relief (oral sympathomimetic)",
+  "known_critical_risks": [
+    "Avoid in 1st trimester of pregnancy (associated with fetal gastroschisis and vascular disruption)",
+    "Contraindicated in severe hypertension, severe coronary artery disease, or with MAOIs",
+    "Increases blood pressure and blood glucose"
+  ],
+  "data_source": "DailyMed (NLM/NIH) + openFDA",
+  "spl_metadata": {
+    "setid": "1fdb1ba5-4072-4baf-9e30-f01d57bf6d82",
+    "title": "NASAL DECONGESTANT MAXIMUM STRENGTH, NON-DROWSY (PSEUDOEPHEDRINE HCL) TABLET, FILM COATED [AMERISOURCE BERGEN]",
+    "published_date": "Aug 17, 2026",
+    "spl_version": 12
+  },
+  "regulatory_info": {
+    "sponsor_name": "CHATTEM SANOFI",
+    "application_number": "NDA020786",
+    "initial_approval_date": "19971224"
+  },
+  "pharmacologic_class": {
+    "epc": [],
+    "moa": [],
+    "cs": []
+  },
+  "top_adverse_events_faers": [
+    {
+      "term": "DRUG INEFFECTIVE",
+      "count": 7779
+    },
+    {
+      "term": "PAIN",
+      "count": 7565
+    },
+    {
+      "term": "SYSTEMIC LUPUS ERYTHEMATOSUS",
+      "count": 7091
+    },
+    {
+      "term": "RHEUMATOID ARTHRITIS",
+      "count": 7022
+    },
+    {
+      "term": "ABDOMINAL DISCOMFORT",
+      "count": 6888
+    },
+    {
+      "term": "PEMPHIGUS",
+      "count": 6873
+    },
+    {
+      "term": "FATIGUE",
+      "count": 6865
+    },
+    {
+      "term": "ALOPECIA",
+      "count": 6731
+    },
+    {
+      "term": "GLOSSODYNIA",
+      "count": 6515
+    },
+    {
+      "term": "RASH",
+      "count": 6308
+    }
+  ],
+  "clinical_sections": {},
+  "patient_safety_guardrails": {
+    "contraindications": "Contraindications not explicitly detailed.",
+    "boxed_warning": "No boxed warning specified in label.",
+    "warnings_and_precautions": "if you are now taking a prescription monoamine oxidase inhibitor (MAOI) (certain drugs for depression, psychiatric or emotional conditions, or Parkinson’s disease), or for 2 weeks after stopping the MAOI drug. If you do not know if your prescription drug contains an MAOI, ask a doctor or pharmacist before taking this product.\n\n• heart disease\n• diabetes\n• thyroid disease\n• high blood pressure\n• difficulty in urination due to enlargement of the prostate gland do not exceed recommended dosage.\n\n• nervousness, dizziness, or sleeplessness occur\n• symptoms do not improve within 7 days or occur with fever ask a health professional before use.\nIn case of overdose, get medical help or contact a Poison Control Center right away.",
+    "drug_interactions": "Drug interactions not specified in label.",
+    "overdosage": "Overdosage management not specified in label."
+  },
+  "patient_population_profiles": {
+    "pregnancy_and_teratogenicity": "ask a health professional before use.",
+    "lactation_and_nursing": "Lactation / nursing mothers guidance not explicitly detailed.",
+    "pediatric_use": "Pediatric use and age limitations not specified in label.",
+    "geriatric_use": "Geriatric use precautions not specified in label.",
+    "renal_impairment": "See Dosage and Administration / Warnings for renal dosage adjustments.",
+    "hepatic_impairment": "See Dosage and Administration / Warnings for hepatic dosage adjustments.",
+    "weight_and_obesity_considerations": "Standard flat dosing applies; check clinical guidelines for severe obesity / cachexia adjustments."
+  },
+  "clinical_usage_guidance": {
+    "indications_and_usage": "• temporarily relieves nasal congestion due to the common cold, hay fever or other upper respiratory allergies\n• temporarily relieves sinus congestion and pressure",
+    "dosage_and_administration": "adults and children 12 years and over | take 2 tablets every 4 to 6 hours; do not take more than 8 tablets in 24 hours | children ages 6 to 11 years | take 1 tablet every 4 to 6 hours; do not take more than 4 tablets in 24 hours | children under 6 years | do not use |",
+    "adverse_reactions": "Adverse reactions not specified in label.",
+    "mechanism_of_action": "Information not specified in active label.",
+    "clinical_pharmacology": "Clinical pharmacology details not available.",
+    "patient_counseling_information": "Advise patient to consult healthcare provider and review medication guide before use.",
+    "storage_and_handling": "• each tablet contains: calcium 15 mg\n• TAMPER EVIDENT: DO NOT USE IF OUTER PACKAGE IS OPENED OR BLISTER IS TORN OR BROKEN\n• store at 25°C (77°F); excursions permitted between 15°-30°C (59°-86°F)\n• see end flap for expiration date and lot number"
+  },
+  "all_patient_factor_tags": [
+    "Age (Pediatric / Children)",
+    "Age (Geriatric / Elderly)",
+    "Hypertension / Blood Pressure",
+    "Diabetes / Glycemic Control",
+    "Lactation / Breastfeeding",
+    "Hepatic Impairment / Liver"
+  ]
+}

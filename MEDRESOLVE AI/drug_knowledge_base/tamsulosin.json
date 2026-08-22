@@ -1,0 +1,50 @@
+{
+    "search_query": "Tamsulosin",
+    "generic_name": null,
+    "brand_name": null,
+    "pharm_class": [],
+    "label_clinical_info": {},
+    "regulatory_info": {},
+    "top_adverse_events": [
+        {
+            "term": "FATIGUE",
+            "count": 4570
+        },
+        {
+            "term": "DEATH",
+            "count": 3404
+        },
+        {
+            "term": "DIARRHOEA",
+            "count": 3310
+        },
+        {
+            "term": "DYSPNOEA",
+            "count": 3291
+        },
+        {
+            "term": "DIZZINESS",
+            "count": 3238
+        },
+        {
+            "term": "OFF LABEL USE",
+            "count": 2967
+        },
+        {
+            "term": "FALL",
+            "count": 2883
+        },
+        {
+            "term": "DRUG INEFFECTIVE",
+            "count": 2846
+        },
+        {
+            "term": "ASTHENIA",
+            "count": 2647
+        },
+        {
+            "term": "NAUSEA",
+            "count": 2492
+        }
+    ]
+}

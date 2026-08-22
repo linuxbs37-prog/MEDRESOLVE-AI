@@ -1,0 +1,120 @@
+{
+  "drug_id": "ibuprofen",
+  "drug_name": "Ibuprofen",
+  "category": "2. Trimester-Specific & Context-Dependent Risks",
+  "tier": "Tier 2: Nuanced / Trimester-Dependent Risk",
+  "aliases": [
+    "Ibuprofen",
+    "Advil",
+    "Motrin",
+    "Caldolor"
+  ],
+  "primary_indication": "Pain, fever, osteoarthritis, rheumatoid arthritis",
+  "known_critical_risks": [
+    "Avoid at >= 20 weeks gestation (oligohydramnios) and >= 30 weeks (premature closure of fetal ductus arteriosus)",
+    "GI ulceration/bleeding",
+    "CV thrombotic risk",
+    "Renal impairment"
+  ],
+  "data_source": "DailyMed (NLM/NIH) + openFDA",
+  "spl_metadata": {
+    "setid": "159b68b7-54e5-4f83-b632-f49e7b4b14a5",
+    "title": "IBUPROFEN TABLET, COATED [P & L DEVELOPMENT, LLC]",
+    "published_date": "Aug 17, 2026",
+    "spl_version": 2
+  },
+  "regulatory_info": {
+    "sponsor_name": "BIONPHARMA",
+    "application_number": "ANDA216999",
+    "initial_approval_date": "20230801"
+  },
+  "pharmacologic_class": {
+    "epc": [
+      "Nonsteroidal Anti-inflammatory Drug [EPC]"
+    ],
+    "moa": [
+      "Cyclooxygenase Inhibitors [MoA]"
+    ],
+    "cs": [
+      "Anti-Inflammatory Agents, Non-Steroidal [CS]"
+    ]
+  },
+  "top_adverse_events_faers": [
+    {
+      "term": "DRUG INEFFECTIVE",
+      "count": 17134
+    },
+    {
+      "term": "PAIN",
+      "count": 16114
+    },
+    {
+      "term": "FATIGUE",
+      "count": 15311
+    },
+    {
+      "term": "NAUSEA",
+      "count": 14496
+    },
+    {
+      "term": "HEADACHE",
+      "count": 12951
+    },
+    {
+      "term": "ARTHRALGIA",
+      "count": 11377
+    },
+    {
+      "term": "DYSPNOEA",
+      "count": 11213
+    },
+    {
+      "term": "VOMITING",
+      "count": 10718
+    },
+    {
+      "term": "DIARRHOEA",
+      "count": 10351
+    },
+    {
+      "term": "RASH",
+      "count": 9496
+    }
+  ],
+  "clinical_sections": {},
+  "patient_safety_guardrails": {
+    "contraindications": "Contraindications not explicitly detailed.",
+    "boxed_warning": "No boxed warning specified in label.",
+    "warnings_and_precautions": "### Warnings\nAllergy alert: Ibuprofen may cause a severe allergic reaction, especially in people allergic to aspirin. Symptoms may include:\n\n• hives\n• facial swelling\n• asthma (wheezing) shock\n• skin reddening\n• rash\n• blisters If an allergic reaction occurs, stop use and seek medical help right away. Stomach bleeding warning: This product contains an NSAID, which may cause severe stomach bleeding. The chance is higher if you:\n\n• are age 60 or older\n• have had stomach ulcers or bleeding problems\n• take a blood thinning (anticoagulant) or steroid drug\n• take other drugs containing prescription or nonprescription NSAIDs (aspirin, ibuprofen, naproxen, or others)\n• have 3 or more alcoholic drinks every day while using this product\n• take more or for a longer time than directed Heart attack and stroke warning: NSAIDs, except aspirin, increase the risk of heart attack, heart failure, and stroke. These can be fatal. The risk is higher if you use more than directed\n\n### For external use only\n\n### Do not use\n\n• if you have ever had an allergic reaction to ibuprofen or any other pain reliever/fever reducer\n• right before or after heart surgery\n\n### Ask a doctor before use if\n\n• you have problems or serious side effects from taking pain relievers or fever reducers\n• stomach bleeding warning applies to you\n• you have a history of stomach problems, such as heartburn\n• you have high blood pressure, heart disease, liver cirrhosis, kidney disease, asthma, or had a stroke\n• you are taking a diuretic\n\n### Ask a doctor or pharmacist before use if\n\n• taking aspirin for heart attack or stroke, because ibuprofen may decrease this benefit of aspirin\n• under a doctor's care for any serious condition\n• taking any other drug\n\n### When using this product\n\n• take with food or milk if stomach upset occurs\n\n### Stop use and ask a doctor if\n\n• you experience any of the following signs of stomach bleeding:\n• have bloody or black stools\n• feel faint\n• vomit blood\n• have stomach pain that does not get better\n• you have symptoms of heart problems or stroke:\n• chest pain\n• slurred speech\n• leg swelling\n• trouble breathing\n• weakness in one part or side of body\n• pain gets worse or lasts more than 10 days\n• fever gets worse or lasts more than 3 days\n• redness or swelling is present in the painful area\n• any new symptoms appear\n\n### Pregnancy/Breastfeeding\nIf pregnant or breast-feeding, ask a health professional before use. It is especially important not to use ibuprofen at 20 weeks or later in pregnancy unless definitely directed to do so by a doctor because it may cause problems in the unborn child or complications during delivery.\n\n### Keep out of reach of children\nKeep out of reach of children. In case of overdose, get medical help or contact a Poison Control Center right away. (1-800-222-1222)",
+    "drug_interactions": "Drug interactions not specified in label.",
+    "overdosage": "Overdosage management not specified in label."
+  },
+  "patient_population_profiles": {
+    "pregnancy_and_teratogenicity": "### Pregnancy/Breastfeeding\nIf pregnant or breast-feeding, ask a health professional before use. It is especially important not to use ibuprofen at 20 weeks or later in pregnancy unless definitely directed to do so by a doctor because it may cause problems in the unborn child or complications during delivery.",
+    "lactation_and_nursing": "Lactation / nursing mothers guidance not explicitly detailed.",
+    "pediatric_use": "Pediatric use and age limitations not specified in label.",
+    "geriatric_use": "Geriatric use precautions not specified in label.",
+    "renal_impairment": "See Dosage and Administration / Warnings for renal dosage adjustments.",
+    "hepatic_impairment": "See Dosage and Administration / Warnings for hepatic dosage adjustments.",
+    "weight_and_obesity_considerations": "Standard flat dosing applies; check clinical guidelines for severe obesity / cachexia adjustments."
+  },
+  "clinical_usage_guidance": {
+    "indications_and_usage": "### Uses\n\n• temporarily relieves minor aches and pains due to:\n• headache\n• muscular aches\n• minor pain of arthritis\n• toothache\n• backache\n• the common cold\n• menstrual cramps\n• temporarily reduces fever",
+    "dosage_and_administration": "### Directions\n\n• do not take more than directed\n• the smallest effective dose should be used\n• adults and children 12 years and older:\n• take 1 tablet every 4 to 6 hours while symptoms persist\n• if pain or fever does not respond to 1 tablet, 2 tablets may be used\n• do not exceed 6 tablets in 24 hours, unless directed by a doctor\n• children under 12 years: ask a doctor",
+    "adverse_reactions": "Adverse reactions not specified in label.",
+    "mechanism_of_action": "Information not specified in active label.",
+    "clinical_pharmacology": "Clinical pharmacology details not available.",
+    "patient_counseling_information": "Advise patient to consult healthcare provider and review medication guide before use.",
+    "storage_and_handling": "Store at controlled room temperature 20°C to 25°C (68°F to 77°F). Protect from moisture and excessive light."
+  },
+  "all_patient_factor_tags": [
+    "Age (Pediatric / Children)",
+    "Age (Geriatric / Elderly)",
+    "Hypertension / Blood Pressure",
+    "Pregnancy / Teratogenicity",
+    "Lactation / Breastfeeding",
+    "Renal Impairment / Kidney",
+    "Hepatic Impairment / Liver",
+    "Cardiovascular / Arrhythmia"
+  ]
+}

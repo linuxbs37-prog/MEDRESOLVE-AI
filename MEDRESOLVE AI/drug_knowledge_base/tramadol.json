@@ -1,0 +1,50 @@
+{
+    "search_query": "Tramadol",
+    "generic_name": null,
+    "brand_name": null,
+    "pharm_class": [],
+    "label_clinical_info": {},
+    "regulatory_info": {},
+    "top_adverse_events": [
+        {
+            "term": "DRUG DEPENDENCE",
+            "count": 7522
+        },
+        {
+            "term": "PAIN",
+            "count": 5589
+        },
+        {
+            "term": "NAUSEA",
+            "count": 3718
+        },
+        {
+            "term": "OVERDOSE",
+            "count": 3655
+        },
+        {
+            "term": "DRUG INEFFECTIVE",
+            "count": 3243
+        },
+        {
+            "term": "FATIGUE",
+            "count": 3206
+        },
+        {
+            "term": "EMOTIONAL DISTRESS",
+            "count": 2798
+        },
+        {
+            "term": "DIARRHOEA",
+            "count": 2778
+        },
+        {
+            "term": "VOMITING",
+            "count": 2755
+        },
+        {
+            "term": "HEADACHE",
+            "count": 2751
+        }
+    ]
+}

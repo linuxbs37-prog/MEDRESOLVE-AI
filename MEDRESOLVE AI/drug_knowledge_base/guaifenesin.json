@@ -1,0 +1,112 @@
+{
+  "drug_id": "guaifenesin",
+  "drug_name": "Guaifenesin",
+  "category": "5. Thin-Data, Combination, & Refusal Triggers",
+  "tier": "Tier 5: Abstention / Thin-Data / OTC Combination Trigger",
+  "aliases": [
+    "Guaifenesin",
+    "Mucinex",
+    "Robitussin",
+    "Organidin NR"
+  ],
+  "primary_indication": "Expectorant to loosen phlegm and thin bronchial secretions",
+  "known_critical_risks": [
+    "Limited human pregnancy safety data (avoid combination formulations with alcohol or decongestants in 1st trimester)",
+    "Maintain adequate hydration"
+  ],
+  "data_source": "DailyMed (NLM/NIH) + openFDA",
+  "spl_metadata": {
+    "setid": "610accad-2f8b-4605-9357-a58e6e18d417",
+    "title": "SEVERE COLD AND FLU (ACETAMINOPHEN, DEXTROMETHORPHAN HBR, GUAIFENESIN, PHENYLEPHRINE HCL) TABLET, FILM COATED [CARDINAL HEALTH 110, LLC. DBA LEADER]",
+    "published_date": "Aug 17, 2026",
+    "spl_version": 12
+  },
+  "regulatory_info": {
+    "sponsor_name": "RECKITT BENCKISER",
+    "application_number": "NDA021282",
+    "initial_approval_date": "20171027"
+  },
+  "pharmacologic_class": {
+    "epc": [
+      "Expectorant [EPC]"
+    ],
+    "moa": [],
+    "cs": []
+  },
+  "top_adverse_events_faers": [
+    {
+      "term": "DYSPNOEA",
+      "count": 1149
+    },
+    {
+      "term": "DRUG INEFFECTIVE",
+      "count": 1119
+    },
+    {
+      "term": "NAUSEA",
+      "count": 1068
+    },
+    {
+      "term": "FATIGUE",
+      "count": 1016
+    },
+    {
+      "term": "PNEUMONIA",
+      "count": 967
+    },
+    {
+      "term": "DIARRHOEA",
+      "count": 966
+    },
+    {
+      "term": "PAIN",
+      "count": 940
+    },
+    {
+      "term": "COUGH",
+      "count": 887
+    },
+    {
+      "term": "HEADACHE",
+      "count": 885
+    },
+    {
+      "term": "DEPENDENCE",
+      "count": 860
+    }
+  ],
+  "clinical_sections": {},
+  "patient_safety_guardrails": {
+    "contraindications": "Contraindications not explicitly detailed.",
+    "boxed_warning": "No boxed warning specified in label.",
+    "warnings_and_precautions": "Liver warning: This product contains acetaminophen. Severe liver damage may occur if you take\n\n• more than 4,000 mg of acetaminophen in 24 hours\n• with other drugs containing acetaminophen\n• 3 or more alcoholic drinks every day while using this product Allergy alert: Acetaminophen may cause severe skin reactions. Symptoms may include:\n\n• skin reddening\n• blisters\n• rash If a skin reaction occurs, stop use and seek medical help right away.\nSore throat warning: If sore throat is severe, persists for more than 2 days, is accompanied or followed by fever, headache, rash, nausea, or vomiting, consult a doctor promptly.\n\n• with any other drug containing acetaminophen (prescription or nonprescription). If you are not sure whether a drug contains acetaminophen, ask a doctor or pharmacist.\n• if you are now taking a prescription monoamine oxidase inhibitor (MAOI) (certain drugs for depression, psychiatric, or emotional conditions, or Parkinson’s disease), or for 2 weeks after stopping the MAOI drug. If you do not know if your prescription drug contains an MAOI, ask a doctor or pharmacist before taking this product.\n• liver disease\n• diabetes\n• heart disease\n• thyroid disease\n• high blood pressure\n• difficulty in urination due to enlargement of the prostate gland\n• persistent or chronic cough such as occurs with smoking, asthma, chronic bronchitis, or emphysema\n• cough that occurs with too much phlegm (mucus) taking the blood thinning drug warfarin.\ndo not exceed recommended dosage.\n\n• nervousness, dizziness, or sleeplessness occur\n• pain, nasal congestion, or cough gets worse or lasts more than 7 days\n• new symptoms occur\n• fever gets worse or lasts more than 3 days\n• redness or swelling is present\n• cough comes back or occurs with rash or headache that lasts. These could be signs of a serious condition. ask a health professional before use.\nIn case of overdose, get medical help or contact a Poison Control Center right away. Prompt medical attention is critical for adults as well as for children even if you do not notice any signs or symptoms.",
+    "drug_interactions": "Drug interactions not specified in label.",
+    "overdosage": "Overdosage management not specified in label."
+  },
+  "patient_population_profiles": {
+    "pregnancy_and_teratogenicity": "ask a health professional before use.",
+    "lactation_and_nursing": "Lactation / nursing mothers guidance not explicitly detailed.",
+    "pediatric_use": "Pediatric use and age limitations not specified in label.",
+    "geriatric_use": "Geriatric use precautions not specified in label.",
+    "renal_impairment": "See Dosage and Administration / Warnings for renal dosage adjustments.",
+    "hepatic_impairment": "See Dosage and Administration / Warnings for hepatic dosage adjustments.",
+    "weight_and_obesity_considerations": "Standard flat dosing applies; check clinical guidelines for severe obesity / cachexia adjustments."
+  },
+  "clinical_usage_guidance": {
+    "indications_and_usage": "• temporarily relieves these common cold and flu symptoms:\n• sore throat\n• cough\n• nasal congestion\n• headache\n• minor aches and pains\n• helps loosen phlegm (mucus) and thin bronchial secretions to make coughs more productive\n• temporarily reduces fever",
+    "dosage_and_administration": "• do not take more than directed\n• adults and children 12 years and over\n• take 2 caplets every 4 hours\n• swallow whole - do not crush, chew, or dissolve\n• do not take more than 10 caplets in 24 hours\n• children under 12 years: ask a doctor",
+    "adverse_reactions": "Adverse reactions not specified in label.",
+    "mechanism_of_action": "Information not specified in active label.",
+    "clinical_pharmacology": "Clinical pharmacology details not available.",
+    "patient_counseling_information": "Advise patient to consult healthcare provider and review medication guide before use.",
+    "storage_and_handling": "• each caplet contains: sodium 3 mg\n• TAMPER EVIDENT: DO NOT USE IF OUTER PACKAGE IS OPENED OR BLISTER IS TORN OR BROKEN\n• store at 25°C (77°F); excursions permitted between 15°-30°C (59°-86°F)\n• see end flap for expiration date and lot number"
+  },
+  "all_patient_factor_tags": [
+    "Age (Pediatric / Children)",
+    "Age (Geriatric / Elderly)",
+    "Hypertension / Blood Pressure",
+    "Diabetes / Glycemic Control",
+    "Lactation / Breastfeeding",
+    "Hepatic Impairment / Liver"
+  ]
+}

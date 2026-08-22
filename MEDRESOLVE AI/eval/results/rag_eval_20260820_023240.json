@@ -1,0 +1,2854 @@
+{
+  "aggregate": {
+    "n_queries": 35,
+    "mrr": 0.831,
+    "avg_rank_of_hits": 1.4706,
+    "avg_rank": 1.4706,
+    "precision@1": 0.7429,
+    "recall@1": 0.3262,
+    "f1@1": 0.4495,
+    "ndcg@1": 0.6857,
+    "hit_rate@1": 0.7429,
+    "precision@3": 0.5619,
+    "recall@3": 0.5476,
+    "f1@3": 0.5357,
+    "ndcg@3": 0.659,
+    "hit_rate@3": 0.9143,
+    "precision@5": 0.4229,
+    "recall@5": 0.6357,
+    "f1@5": 0.4879,
+    "ndcg@5": 0.6949,
+    "hit_rate@5": 0.9429,
+    "precision@10": 0.2829,
+    "recall@10": 0.6905,
+    "f1@10": 0.3825,
+    "ndcg@10": 0.7182,
+    "hit_rate@10": 0.9714,
+    "query_ids": [
+      "CH_01",
+      "CH_02",
+      "CH_03",
+      "CH_04",
+      "CH_05",
+      "CH_06",
+      "CH_07",
+      "CH_08",
+      "CH_09",
+      "CH_10",
+      "CH_11",
+      "CH_12",
+      "CH_13",
+      "CH_14",
+      "CH_15",
+      "OV_01",
+      "OV_02",
+      "OV_03",
+      "OV_04",
+      "OV_05",
+      "RR_01",
+      "RR_02",
+      "RR_03",
+      "RR_04",
+      "RR_05",
+      "RR_06",
+      "RR_07",
+      "RR_08",
+      "RR_09",
+      "RR_10",
+      "RR_11",
+      "RR_12",
+      "RR_13",
+      "RR_14",
+      "RR_15"
+    ],
+    "n_duplicate_chunks_removed_total": 0
+  },
+  "rows": [
+    {
+      "query_id": "RR_01",
+      "query": "Personalized risk assessment for lisinopril in a patient with renal impairment",
+      "n_retrieved": 5,
+      "n_relevant": 3,
+      "n_duplicate_chunks_removed": 0,
+      "latency_ms": 14540.7,
+      "mrr": 1.0,
+      "avg_rank": 1.0,
+      "chunks_preview": [
+        {
+          "rank": 1,
+          "drug": "lisinopril",
+          "section": "GERIATRIC_USE",
+          "score": 1.2346,
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "drug": "lisinopril",
+          "section": "RENAL_IMPAIRMENT",
+          "score": 0.9096,
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "drug": "duloxetine",
+          "section": "PATIENT_POPULATIONS_AND_DEMOGRAPHICS",
+          "score": 0.7844,
+          "relevant": false
+        },
+        {
+          "rank": 4,
+          "drug": "atorvastatin",
+          "section": "RENAL_IMPAIRMENT",
+          "score": 0.4276,
+          "relevant": false
+        },
+        {
+          "rank": 5,
+          "drug": "methotrexate",
+          "section": "RENAL_IMPAIRMENT",
+          "score": 0.3375,
+          "relevant": false
+        }
+      ],
+      "precision@1": 1.0,
+      "recall@1": 0.3333,
+      "f1@1": 0.5,
+      "ndcg@1": 1.0,
+      "hit_rate@1": 1.0,
+      "precision@3": 0.6667,
+      "recall@3": 0.3333,
+      "f1@3": 0.4444,
+      "ndcg@3": 0.5419,
+      "hit_rate@3": 1.0,
+      "precision@5": 0.4,
+      "recall@5": 0.3333,
+      "f1@5": 0.3636,
+      "ndcg@5": 0.5419,
+      "hit_rate@5": 1.0,
+      "precision@10": 0.2,
+      "recall@10": 0.3333,
+      "f1@10": 0.25,
+      "ndcg@10": 0.5419,
+      "hit_rate@10": 1.0
+    },
+    {
+      "query_id": "RR_02",
+      "query": "Personalized risk assessment for metformin in a patient with CKD",
+      "n_retrieved": 3,
+      "n_relevant": 3,
+      "n_duplicate_chunks_removed": 0,
+      "latency_ms": 8681.3,
+      "mrr": 1.0,
+      "avg_rank": 1.0,
+      "chunks_preview": [
+        {
+          "rank": 1,
+          "drug": "metformin",
+          "section": "PREGNANCY",
+          "score": 1.8471,
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "drug": "metformin",
+          "section": "RENAL_IMPAIRMENT",
+          "score": 1.457,
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "drug": "metformin",
+          "section": "BOXED_WARNING",
+          "score": 0.6116,
+          "relevant": true
+        }
+      ],
+      "precision@1": 1.0,
+      "recall@1": 0.3333,
+      "f1@1": 0.5,
+      "ndcg@1": 1.0,
+      "hit_rate@1": 1.0,
+      "precision@3": 1.0,
+      "recall@3": 0.6667,
+      "f1@3": 0.8,
+      "ndcg@3": 0.8129,
+      "hit_rate@3": 1.0,
+      "precision@5": 0.6,
+      "recall@5": 0.6667,
+      "f1@5": 0.6316,
+      "ndcg@5": 0.8129,
+      "hit_rate@5": 1.0,
+      "precision@10": 0.3,
+      "recall@10": 0.6667,
+      "f1@10": 0.4138,
+      "ndcg@10": 0.8129,
+      "hit_rate@10": 1.0
+    },
+    {
+      "query_id": "RR_03",
+      "query": "Personalized risk assessment for labetalol in a pregnant patient with hypertension",
+      "n_retrieved": 3,
+      "n_relevant": 3,
+      "n_duplicate_chunks_removed": 0,
+      "latency_ms": 10145.0,
+      "mrr": 1.0,
+      "avg_rank": 1.0,
+      "chunks_preview": [
+        {
+          "rank": 1,
+          "drug": "labetalol",
+          "section": "DRUG_OVERVIEW",
+          "score": 2.8186,
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "drug": "labetalol",
+          "section": "DOSAGE_AND_ADMINISTRATION",
+          "score": 1.0537,
+          "relevant": false
+        },
+        {
+          "rank": 3,
+          "drug": "amlodipine",
+          "section": "PREGNANCY",
+          "score": 0.6353,
+          "relevant": false
+        }
+      ],
+      "precision@1": 1.0,
+      "recall@1": 0.3333,
+      "f1@1": 0.5,
+      "ndcg@1": 0.1429,
+      "hit_rate@1": 1.0,
+      "precision@3": 0.3333,
+      "recall@3": 0.3333,
+      "f1@3": 0.3333,
+      "ndcg@3": 0.1065,
+      "hit_rate@3": 1.0,
+      "precision@5": 0.2,
+      "recall@5": 0.3333,
+      "f1@5": 0.25,
+      "ndcg@5": 0.1065,
+      "hit_rate@5": 1.0,
+      "precision@10": 0.1,
+      "recall@10": 0.3333,
+      "f1@10": 0.1538,
+      "ndcg@10": 0.1065,
+      "hit_rate@10": 1.0
+    },
+    {
+      "query_id": "RR_04",
+      "query": "Personalized risk for atorvastatin in a patient with hepatic impairment",
+      "n_retrieved": 8,
+      "n_relevant": 3,
+      "n_duplicate_chunks_removed": 0,
+      "latency_ms": 9815.9,
+      "mrr": 1.0,
+      "avg_rank": 1.0,
+      "chunks_preview": [
+        {
+          "rank": 1,
+          "drug": "atorvastatin",
+          "section": "WARNINGS_AND_PRECAUTIONS",
+          "score": 5.6547,
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "drug": "atorvastatin",
+          "section": "RENAL_IMPAIRMENT",
+          "score": 4.0619,
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "drug": "atorvastatin",
+          "section": "GERIATRIC_USE",
+          "score": 3.9171,
+          "relevant": true
+        },
+        {
+          "rank": 4,
+          "drug": "atorvastatin",
+          "section": "HEPATIC_IMPAIRMENT",
+          "score": 3.4964,
+          "relevant": true
+        },
+        {
+          "rank": 5,
+          "drug": "methotrexate",
+          "section": "HEPATIC_IMPAIRMENT",
+          "score": 2.09,
+          "relevant": false
+        },
+        {
+          "rank": 6,
+          "drug": "leflunomide",
+          "section": "HEPATIC_IMPAIRMENT",
+          "score": 0.4857,
+          "relevant": false
+        },
+        {
+          "rank": 7,
+          "drug": "duloxetine",
+          "section": "PATIENT_POPULATIONS_AND_DEMOGRAPHICS",
+          "score": 0.3017,
+          "relevant": false
+        },
+        {
+          "rank": 8,
+          "drug": "atorvastatin",
+          "section": "DRUG_OVERVIEW",
+          "score": 0.1934,
+          "relevant": false
+        }
+      ],
+      "precision@1": 1.0,
+      "recall@1": 0.3333,
+      "f1@1": 0.5,
+      "ndcg@1": 1.0,
+      "hit_rate@1": 1.0,
+      "precision@3": 1.0,
+      "recall@3": 0.6667,
+      "f1@3": 0.8,
+      "ndcg@3": 0.8839,
+      "hit_rate@3": 1.0,
+      "precision@5": 0.8,
+      "recall@5": 0.6667,
+      "f1@5": 0.7273,
+      "ndcg@5": 0.8839,
+      "hit_rate@5": 1.0,
+      "precision@10": 0.4,
+      "recall@10": 0.6667,
+      "f1@10": 0.5,
+      "ndcg@10": 0.8839,
+      "hit_rate@10": 1.0
+    },
+    {
+      "query_id": "RR_05",
+      "query": "Risk report for warfarin in an elderly patient",
+      "n_retrieved": 10,
+      "n_relevant": 3,
+      "n_duplicate_chunks_removed": 0,
+      "latency_ms": 6563.2,
+      "mrr": 1.0,
+      "avg_rank": 1.0,
+      "chunks_preview": [
+        {
+          "rank": 1,
+          "drug": "warfarin",
+          "section": "GERIATRIC_USE",
+          "score": 5.9282,
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "drug": "warfarin",
+          "section": "BOXED_WARNING",
+          "score": 2.7471,
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "drug": "atorvastatin",
+          "section": "GERIATRIC_USE",
+          "score": 2.7032,
+          "relevant": false
+        },
+        {
+          "rank": 4,
+          "drug": "nitrofurantoin",
+          "section": "GERIATRIC_USE",
+          "score": 2.2339,
+          "relevant": false
+        },
+        {
+          "rank": 5,
+          "drug": "warfarin",
+          "section": "PREGNANCY",
+          "score": 2.2056,
+          "relevant": true
+        },
+        {
+          "rank": 6,
+          "drug": "warfarin",
+          "section": "CONTRAINDICATIONS",
+          "score": 1.3281,
+          "relevant": true
+        },
+        {
+          "rank": 7,
+          "drug": "warfarin",
+          "section": "WARNINGS_AND_PRECAUTIONS",
+          "score": 0.9643,
+          "relevant": true
+        },
+        {
+          "rank": 8,
+          "drug": "warfarin",
+          "section": "LACTATION",
+          "score": 0.6726,
+          "relevant": true
+        },
+        {
+          "rank": 9,
+          "drug": "salbutamol_albuterol",
+          "section": "GERIATRIC_USE",
+          "score": 0.6589,
+          "relevant": false
+        },
+        {
+          "rank": 10,
+          "drug": "metformin",
+          "section": "GERIATRIC_USE",
+          "score": 0.0121,
+          "relevant": false
+        }
+      ],
+      "precision@1": 1.0,
+      "recall@1": 0.3333,
+      "f1@1": 0.5,
+      "ndcg@1": 1.0,
+      "hit_rate@1": 1.0,
+      "precision@3": 0.6667,
+      "recall@3": 0.6667,
+      "f1@3": 0.6667,
+      "ndcg@3": 0.958,
+      "hit_rate@3": 1.0,
+      "precision@5": 0.6,
+      "recall@5": 0.6667,
+      "f1@5": 0.6316,
+      "ndcg@5": 0.958,
+      "hit_rate@5": 1.0,
+      "precision@10": 0.6,
+      "recall@10": 0.6667,
+      "f1@10": 0.6316,
+      "ndcg@10": 0.958,
+      "hit_rate@10": 1.0
+    },
+    {
+      "query_id": "RR_06",
+      "query": "Risk assessment for methotrexate in a patient planning pregnancy",
+      "n_retrieved": 10,
+      "n_relevant": 2,
+      "n_duplicate_chunks_removed": 0,
+      "latency_ms": 7397.4,
+      "mrr": 1.0,
+      "avg_rank": 1.0,
+      "chunks_preview": [
+        {
+          "rank": 1,
+          "drug": "methotrexate",
+          "section": "PREGNANCY",
+          "score": 5.9473,
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "drug": "methotrexate",
+          "section": "BOXED_WARNING",
+          "score": 4.748,
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "drug": "methotrexate",
+          "section": "WARNINGS_AND_PRECAUTIONS",
+          "score": 4.2631,
+          "relevant": true
+        },
+        {
+          "rank": 4,
+          "drug": "methimazole",
+          "section": "PREGNANCY",
+          "score": 3.3378,
+          "relevant": false
+        },
+        {
+          "rank": 5,
+          "drug": "metformin",
+          "section": "PREGNANCY",
+          "score": 3.1368,
+          "relevant": false
+        },
+        {
+          "rank": 6,
+          "drug": "methotrexate",
+          "section": "HEPATIC_IMPAIRMENT",
+          "score": 2.954,
+          "relevant": true
+        },
+        {
+          "rank": 7,
+          "drug": "methotrexate",
+          "section": "LACTATION",
+          "score": 2.9257,
+          "relevant": true
+        },
+        {
+          "rank": 8,
+          "drug": "methotrexate",
+          "section": "DRUG_OVERVIEW",
+          "score": 2.7402,
+          "relevant": false
+        },
+        {
+          "rank": 9,
+          "drug": "methotrexate",
+          "section": "RENAL_IMPAIRMENT",
+          "score": 2.3831,
+          "relevant": true
+        },
+        {
+          "rank": 10,
+          "drug": "methotrexate",
+          "section": "DOSAGE_AND_ADMINISTRATION",
+          "score": 1.6308,
+          "relevant": false
+        }
+      ],
+      "precision@1": 1.0,
+      "recall@1": 0.5,
+      "f1@1": 0.6667,
+      "ndcg@1": 1.0,
+      "hit_rate@1": 1.0,
+      "precision@3": 1.0,
+      "recall@3": 1.0,
+      "f1@3": 1.0,
+      "ndcg@3": 1.0,
+      "hit_rate@3": 1.0,
+      "precision@5": 0.6,
+      "recall@5": 1.0,
+      "f1@5": 0.75,
+      "ndcg@5": 1.0,
+      "hit_rate@5": 1.0,
+      "precision@10": 0.6,
+      "recall@10": 1.0,
+      "f1@10": 0.75,
+      "ndcg@10": 1.0,
+      "hit_rate@10": 1.0
+    },
+    {
+      "query_id": "RR_07",
+      "query": "Risk report for isotretinoin in a patient with pregnancy",
+      "n_retrieved": 10,
+      "n_relevant": 2,
+      "n_duplicate_chunks_removed": 0,
+      "latency_ms": 8507.5,
+      "mrr": 1.0,
+      "avg_rank": 1.0,
+      "chunks_preview": [
+        {
+          "rank": 1,
+          "drug": "isotretinoin",
+          "section": "BOXED_WARNING",
+          "score": 5.8526,
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "drug": "isotretinoin",
+          "section": "DRUG_OVERVIEW",
+          "score": 3.095,
+          "relevant": false
+        },
+        {
+          "rank": 3,
+          "drug": "isotretinoin",
+          "section": "PREGNANCY",
+          "score": 2.8709,
+          "relevant": true
+        },
+        {
+          "rank": 4,
+          "drug": "metformin",
+          "section": "PREGNANCY",
+          "score": 2.6351,
+          "relevant": false
+        },
+        {
+          "rank": 5,
+          "drug": "methotrexate",
+          "section": "PREGNANCY",
+          "score": 2.2243,
+          "relevant": false
+        },
+        {
+          "rank": 6,
+          "drug": "valproic_acid_sodium_valproate",
+          "section": "PATIENT_POPULATIONS_AND_DEMOGRAPHICS",
+          "score": 2.1936,
+          "relevant": false
+        },
+        {
+          "rank": 7,
+          "drug": "leflunomide",
+          "section": "PREGNANCY",
+          "score": 2.0552,
+          "relevant": false
+        },
+        {
+          "rank": 8,
+          "drug": "amlodipine",
+          "section": "PREGNANCY",
+          "score": 1.5089,
+          "relevant": false
+        },
+        {
+          "rank": 9,
+          "drug": "isotretinoin",
+          "section": "PEDIATRIC_USE",
+          "score": 1.4456,
+          "relevant": true
+        },
+        {
+          "rank": 10,
+          "drug": "losartan",
+          "section": "PREGNANCY",
+          "score": 0.7593,
+          "relevant": false
+        }
+      ],
+      "precision@1": 1.0,
+      "recall@1": 0.5,
+      "f1@1": 0.6667,
+      "ndcg@1": 1.0,
+      "hit_rate@1": 1.0,
+      "precision@3": 0.6667,
+      "recall@3": 1.0,
+      "f1@3": 0.8,
+      "ndcg@3": 0.9197,
+      "hit_rate@3": 1.0,
+      "precision@5": 0.4,
+      "recall@5": 1.0,
+      "f1@5": 0.5714,
+      "ndcg@5": 0.9197,
+      "hit_rate@5": 1.0,
+      "precision@10": 0.3,
+      "recall@10": 1.0,
+      "f1@10": 0.4615,
+      "ndcg@10": 0.9197,
+      "hit_rate@10": 1.0
+    },
+    {
+      "query_id": "RR_08",
+      "query": "Risk assessment for losartan in a patient with diabetes and renal impairment",
+      "n_retrieved": 10,
+      "n_relevant": 4,
+      "n_duplicate_chunks_removed": 0,
+      "latency_ms": 9168.9,
+      "mrr": 1.0,
+      "avg_rank": 1.0,
+      "chunks_preview": [
+        {
+          "rank": 1,
+          "drug": "losartan",
+          "section": "RENAL_IMPAIRMENT",
+          "score": 5.0901,
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "drug": "losartan",
+          "section": "DRUG_INTERACTIONS",
+          "score": 5.0259,
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "drug": "losartan",
+          "section": "DRUG_OVERVIEW",
+          "score": 4.346,
+          "relevant": true
+        },
+        {
+          "rank": 4,
+          "drug": "losartan",
+          "section": "GERIATRIC_USE",
+          "score": 4.0971,
+          "relevant": true
+        },
+        {
+          "rank": 5,
+          "drug": "losartan",
+          "section": "PREGNANCY",
+          "score": 2.8752,
+          "relevant": true
+        },
+        {
+          "rank": 6,
+          "drug": "losartan",
+          "section": "WARNINGS_AND_PRECAUTIONS",
+          "score": 2.3753,
+          "relevant": true
+        },
+        {
+          "rank": 7,
+          "drug": "losartan",
+          "section": "HEPATIC_IMPAIRMENT",
+          "score": 1.9194,
+          "relevant": true
+        },
+        {
+          "rank": 8,
+          "drug": "duloxetine",
+          "section": "PATIENT_POPULATIONS_AND_DEMOGRAPHICS",
+          "score": 1.4465,
+          "relevant": false
+        },
+        {
+          "rank": 9,
+          "drug": "losartan",
+          "section": "CONTRAINDICATIONS",
+          "score": 1.3103,
+          "relevant": true
+        },
+        {
+          "rank": 10,
+          "drug": "atorvastatin",
+          "section": "RENAL_IMPAIRMENT",
+          "score": 0.4409,
+          "relevant": false
+        }
+      ],
+      "precision@1": 1.0,
+      "recall@1": 0.25,
+      "f1@1": 0.4,
+      "ndcg@1": 1.0,
+      "hit_rate@1": 1.0,
+      "precision@3": 1.0,
+      "recall@3": 0.5,
+      "f1@3": 0.6667,
+      "ndcg@3": 0.568,
+      "hit_rate@3": 1.0,
+      "precision@5": 1.0,
+      "recall@5": 0.5,
+      "f1@5": 0.6667,
+      "ndcg@5": 0.5321,
+      "hit_rate@5": 1.0,
+      "precision@10": 0.8,
+      "recall@10": 0.75,
+      "f1@10": 0.7742,
+      "ndcg@10": 0.6887,
+      "hit_rate@10": 1.0
+    },
+    {
+      "query_id": "RR_09",
+      "query": "Risk report for hydrochlorothiazide in a patient with gout",
+      "n_retrieved": 2,
+      "n_relevant": 2,
+      "n_duplicate_chunks_removed": 0,
+      "latency_ms": 8927.2,
+      "mrr": 1.0,
+      "avg_rank": 1.0,
+      "chunks_preview": [
+        {
+          "rank": 1,
+          "drug": "hydrochlorothiazide",
+          "section": "WARNINGS_AND_PRECAUTIONS",
+          "score": 3.3793,
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "drug": "hydrochlorothiazide",
+          "section": "DOSAGE_AND_ADMINISTRATION",
+          "score": 0.1481,
+          "relevant": false
+        }
+      ],
+      "precision@1": 1.0,
+      "recall@1": 0.5,
+      "f1@1": 0.6667,
+      "ndcg@1": 1.0,
+      "hit_rate@1": 1.0,
+      "precision@3": 0.3333,
+      "recall@3": 0.5,
+      "f1@3": 0.4,
+      "ndcg@3": 0.9173,
+      "hit_rate@3": 1.0,
+      "precision@5": 0.2,
+      "recall@5": 0.5,
+      "f1@5": 0.2857,
+      "ndcg@5": 0.9173,
+      "hit_rate@5": 1.0,
+      "precision@10": 0.1,
+      "recall@10": 0.5,
+      "f1@10": 0.1667,
+      "ndcg@10": 0.9173,
+      "hit_rate@10": 1.0
+    },
+    {
+      "query_id": "RR_10",
+      "query": "Risk assessment for amlodipine in a standard adult patient with hypertension",
+      "n_retrieved": 3,
+      "n_relevant": 3,
+      "n_duplicate_chunks_removed": 0,
+      "latency_ms": 9346.7,
+      "mrr": 0.5,
+      "avg_rank": 2.0,
+      "chunks_preview": [
+        {
+          "rank": 1,
+          "drug": "amlodipine",
+          "section": "PREGNANCY",
+          "score": 3.5967,
+          "relevant": false
+        },
+        {
+          "rank": 2,
+          "drug": "amlodipine",
+          "section": "DRUG_OVERVIEW",
+          "score": 2.3564,
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "drug": "amlodipine",
+          "section": "WARNINGS_AND_PRECAUTIONS",
+          "score": 0.3705,
+          "relevant": true
+        }
+      ],
+      "precision@1": 0.0,
+      "recall@1": 0.0,
+      "f1@1": 0.0,
+      "ndcg@1": 0.0,
+      "hit_rate@1": 0.0,
+      "precision@3": 0.6667,
+      "recall@3": 0.6667,
+      "f1@3": 0.6667,
+      "ndcg@3": 0.2738,
+      "hit_rate@3": 1.0,
+      "precision@5": 0.4,
+      "recall@5": 0.6667,
+      "f1@5": 0.5,
+      "ndcg@5": 0.2738,
+      "hit_rate@5": 1.0,
+      "precision@10": 0.2,
+      "recall@10": 0.6667,
+      "f1@10": 0.3077,
+      "ndcg@10": 0.2738,
+      "hit_rate@10": 1.0
+    },
+    {
+      "query_id": "RR_11",
+      "query": "Risk report for valproic acid in a pregnant patient",
+      "n_retrieved": 10,
+      "n_relevant": 2,
+      "n_duplicate_chunks_removed": 0,
+      "latency_ms": 9252.3,
+      "mrr": 1.0,
+      "avg_rank": 1.0,
+      "chunks_preview": [
+        {
+          "rank": 1,
+          "drug": "valproic_acid_sodium_valproate",
+          "section": "PATIENT_POPULATIONS_AND_DEMOGRAPHICS",
+          "score": 6.6199,
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "drug": "valproic_acid",
+          "section": "PREGNANCY",
+          "score": 6.0077,
+          "relevant": false
+        },
+        {
+          "rank": 3,
+          "drug": "valproic_acid",
+          "section": "LACTATION",
+          "score": 5.685,
+          "relevant": false
+        },
+        {
+          "rank": 4,
+          "drug": "valproic_acid",
+          "section": "WARNINGS_AND_PRECAUTIONS",
+          "score": 5.1212,
+          "relevant": false
+        },
+        {
+          "rank": 5,
+          "drug": "valproic_acid",
+          "section": "BOXED_WARNING",
+          "score": 3.9156,
+          "relevant": false
+        },
+        {
+          "rank": 6,
+          "drug": "valproic_acid_sodium_valproate",
+          "section": "CONTRAINDICATIONS_AND_WARNINGS",
+          "score": 3.6129,
+          "relevant": true
+        },
+        {
+          "rank": 7,
+          "drug": "valproic_acid",
+          "section": "PEDIATRIC_USE",
+          "score": 3.3439,
+          "relevant": false
+        },
+        {
+          "rank": 8,
+          "drug": "valproic_acid",
+          "section": "CONTRAINDICATIONS",
+          "score": 3.0009,
+          "relevant": false
+        },
+        {
+          "rank": 9,
+          "drug": "valproic_acid",
+          "section": "GERIATRIC_USE",
+          "score": 2.7375,
+          "relevant": false
+        },
+        {
+          "rank": 10,
+          "drug": "valproic_acid_sodium_valproate",
+          "section": "DOSAGE_AND_ADMINISTRATION",
+          "score": 2.5745,
+          "relevant": false
+        }
+      ],
+      "precision@1": 1.0,
+      "recall@1": 0.5,
+      "f1@1": 0.6667,
+      "ndcg@1": 1.0,
+      "hit_rate@1": 1.0,
+      "precision@3": 0.3333,
+      "recall@3": 0.5,
+      "f1@3": 0.4,
+      "ndcg@3": 0.6131,
+      "hit_rate@3": 1.0,
+      "precision@5": 0.2,
+      "recall@5": 0.5,
+      "f1@5": 0.2857,
+      "ndcg@5": 0.6131,
+      "hit_rate@5": 1.0,
+      "precision@10": 0.2,
+      "recall@10": 1.0,
+      "f1@10": 0.3333,
+      "ndcg@10": 0.8316,
+      "hit_rate@10": 1.0
+    },
+    {
+      "query_id": "RR_12",
+      "query": "Risk assessment for nitrofurantoin in a patient with renal impairment",
+      "n_retrieved": 10,
+      "n_relevant": 3,
+      "n_duplicate_chunks_removed": 0,
+      "latency_ms": 11124.0,
+      "mrr": 1.0,
+      "avg_rank": 1.0,
+      "chunks_preview": [
+        {
+          "rank": 1,
+          "drug": "nitrofurantoin",
+          "section": "CONTRAINDICATIONS",
+          "score": 6.2268,
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "drug": "nitrofurantoin",
+          "section": "DRUG_OVERVIEW",
+          "score": 4.0002,
+          "relevant": false
+        },
+        {
+          "rank": 3,
+          "drug": "nitrofurantoin",
+          "section": "GERIATRIC_USE",
+          "score": 3.9068,
+          "relevant": true
+        },
+        {
+          "rank": 4,
+          "drug": "atorvastatin",
+          "section": "RENAL_IMPAIRMENT",
+          "score": 3.5882,
+          "relevant": false
+        },
+        {
+          "rank": 5,
+          "drug": "nitrofurantoin",
+          "section": "RENAL_IMPAIRMENT",
+          "score": 3.096,
+          "relevant": true
+        },
+        {
+          "rank": 6,
+          "drug": "methotrexate",
+          "section": "RENAL_IMPAIRMENT",
+          "score": 2.6124,
+          "relevant": false
+        },
+        {
+          "rank": 7,
+          "drug": "metformin",
+          "section": "RENAL_IMPAIRMENT",
+          "score": 1.7492,
+          "relevant": false
+        },
+        {
+          "rank": 8,
+          "drug": "duloxetine",
+          "section": "PATIENT_POPULATIONS_AND_DEMOGRAPHICS",
+          "score": 1.4495,
+          "relevant": false
+        },
+        {
+          "rank": 9,
+          "drug": "nitrofurantoin",
+          "section": "WARNINGS_AND_PRECAUTIONS",
+          "score": 1.1359,
+          "relevant": true
+        },
+        {
+          "rank": 10,
+          "drug": "misoprostol",
+          "section": "GERIATRIC_USE",
+          "score": 0.616,
+          "relevant": false
+        }
+      ],
+      "precision@1": 1.0,
+      "recall@1": 0.3333,
+      "f1@1": 0.5,
+      "ndcg@1": 1.0,
+      "hit_rate@1": 1.0,
+      "precision@3": 0.6667,
+      "recall@3": 0.6667,
+      "f1@3": 0.6667,
+      "ndcg@3": 0.8179,
+      "hit_rate@3": 1.0,
+      "precision@5": 0.6,
+      "recall@5": 0.6667,
+      "f1@5": 0.6316,
+      "ndcg@5": 0.8179,
+      "hit_rate@5": 1.0,
+      "precision@10": 0.4,
+      "recall@10": 0.6667,
+      "f1@10": 0.5,
+      "ndcg@10": 0.8179,
+      "hit_rate@10": 1.0
+    },
+    {
+      "query_id": "RR_13",
+      "query": "Risk report for lisinopril in a pregnant patient",
+      "n_retrieved": 10,
+      "n_relevant": 2,
+      "n_duplicate_chunks_removed": 0,
+      "latency_ms": 7984.2,
+      "mrr": 0.1667,
+      "avg_rank": 6.0,
+      "chunks_preview": [
+        {
+          "rank": 1,
+          "drug": "valproic_acid_sodium_valproate",
+          "section": "PATIENT_POPULATIONS_AND_DEMOGRAPHICS",
+          "score": 2.3199,
+          "relevant": false
+        },
+        {
+          "rank": 2,
+          "drug": "leflunomide",
+          "section": "PREGNANCY",
+          "score": 1.9565,
+          "relevant": false
+        },
+        {
+          "rank": 3,
+          "drug": "misoprostol",
+          "section": "BOXED_WARNING",
+          "score": 1.4018,
+          "relevant": false
+        },
+        {
+          "rank": 4,
+          "drug": "methotrexate",
+          "section": "PREGNANCY",
+          "score": 0.9604,
+          "relevant": false
+        },
+        {
+          "rank": 5,
+          "drug": "amlodipine",
+          "section": "PREGNANCY",
+          "score": 0.8795,
+          "relevant": false
+        },
+        {
+          "rank": 6,
+          "drug": "lisinopril",
+          "section": "BOXED_WARNING",
+          "score": 0.8544,
+          "relevant": true
+        },
+        {
+          "rank": 7,
+          "drug": "lisinopril",
+          "section": "DRUG_OVERVIEW",
+          "score": 0.7996,
+          "relevant": false
+        },
+        {
+          "rank": 8,
+          "drug": "thalidomide",
+          "section": "PREGNANCY",
+          "score": 0.4106,
+          "relevant": false
+        },
+        {
+          "rank": 9,
+          "drug": "losartan",
+          "section": "PREGNANCY",
+          "score": 0.3347,
+          "relevant": false
+        },
+        {
+          "rank": 10,
+          "drug": "metformin",
+          "section": "PREGNANCY",
+          "score": 0.3151,
+          "relevant": false
+        }
+      ],
+      "precision@1": 0.0,
+      "recall@1": 0.0,
+      "f1@1": 0.0,
+      "ndcg@1": 0.0,
+      "hit_rate@1": 0.0,
+      "precision@3": 0.0,
+      "recall@3": 0.0,
+      "f1@3": 0.0,
+      "ndcg@3": 0.0,
+      "hit_rate@3": 0.0,
+      "precision@5": 0.0,
+      "recall@5": 0.0,
+      "f1@5": 0.0,
+      "ndcg@5": 0.0,
+      "hit_rate@5": 0.0,
+      "precision@10": 0.1,
+      "recall@10": 0.5,
+      "f1@10": 0.1667,
+      "ndcg@10": 0.2184,
+      "hit_rate@10": 1.0
+    },
+    {
+      "query_id": "RR_14",
+      "query": "Risk assessment for rosuvastatin in a diabetic patient",
+      "n_retrieved": 6,
+      "n_relevant": 3,
+      "n_duplicate_chunks_removed": 0,
+      "latency_ms": 10878.0,
+      "mrr": 0.5,
+      "avg_rank": 2.0,
+      "chunks_preview": [
+        {
+          "rank": 1,
+          "drug": "atorvastatin",
+          "section": "WARNINGS_AND_PRECAUTIONS",
+          "score": 2.4536,
+          "relevant": false
+        },
+        {
+          "rank": 2,
+          "drug": "rosuvastatin",
+          "section": "CONTRAINDICATIONS",
+          "score": 1.8182,
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "drug": "atorvastatin",
+          "section": "GERIATRIC_USE",
+          "score": 1.4178,
+          "relevant": false
+        },
+        {
+          "rank": 4,
+          "drug": "atorvastatin",
+          "section": "RENAL_IMPAIRMENT",
+          "score": 0.8163,
+          "relevant": false
+        },
+        {
+          "rank": 5,
+          "drug": "rosuvastatin",
+          "section": "DOSAGE_AND_ADMINISTRATION",
+          "score": 0.2744,
+          "relevant": false
+        },
+        {
+          "rank": 6,
+          "drug": "rosuvastatin",
+          "section": "PATIENT_POPULATIONS_AND_DEMOGRAPHICS",
+          "score": 0.0126,
+          "relevant": true
+        }
+      ],
+      "precision@1": 0.0,
+      "recall@1": 0.0,
+      "f1@1": 0.0,
+      "ndcg@1": 0.0,
+      "hit_rate@1": 0.0,
+      "precision@3": 0.3333,
+      "recall@3": 0.3333,
+      "f1@3": 0.3333,
+      "ndcg@3": 0.4582,
+      "hit_rate@3": 1.0,
+      "precision@5": 0.2,
+      "recall@5": 0.3333,
+      "f1@5": 0.25,
+      "ndcg@5": 0.4582,
+      "hit_rate@5": 1.0,
+      "precision@10": 0.2,
+      "recall@10": 0.6667,
+      "f1@10": 0.3077,
+      "ndcg@10": 0.5444,
+      "hit_rate@10": 1.0
+    },
+    {
+      "query_id": "RR_15",
+      "query": "Risk report for metoprolol in a patient with heart failure",
+      "n_retrieved": 4,
+      "n_relevant": 3,
+      "n_duplicate_chunks_removed": 0,
+      "latency_ms": 13425.4,
+      "mrr": 1.0,
+      "avg_rank": 1.0,
+      "chunks_preview": [
+        {
+          "rank": 1,
+          "drug": "metoprolol",
+          "section": "CONTRAINDICATIONS",
+          "score": 3.9172,
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "drug": "metoprolol",
+          "section": "PATIENT_POPULATIONS_AND_DEMOGRAPHICS",
+          "score": 2.3915,
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "drug": "methimazole",
+          "section": "PREGNANCY",
+          "score": 2.0846,
+          "relevant": false
+        },
+        {
+          "rank": 4,
+          "drug": "metoprolol",
+          "section": "DRUG_OVERVIEW",
+          "score": 1.582,
+          "relevant": true
+        }
+      ],
+      "precision@1": 1.0,
+      "recall@1": 0.3333,
+      "f1@1": 0.5,
+      "ndcg@1": 1.0,
+      "hit_rate@1": 1.0,
+      "precision@3": 0.6667,
+      "recall@3": 0.6667,
+      "f1@3": 0.6667,
+      "ndcg@3": 0.6733,
+      "hit_rate@3": 1.0,
+      "precision@5": 0.6,
+      "recall@5": 1.0,
+      "f1@5": 0.75,
+      "ndcg@5": 0.9129,
+      "hit_rate@5": 1.0,
+      "precision@10": 0.3,
+      "recall@10": 1.0,
+      "f1@10": 0.4615,
+      "ndcg@10": 0.9129,
+      "hit_rate@10": 1.0
+    },
+    {
+      "query_id": "CH_01",
+      "query": "What are the contraindications of lisinopril in patients with renal impairment?",
+      "n_retrieved": 8,
+      "n_relevant": 3,
+      "n_duplicate_chunks_removed": 0,
+      "latency_ms": 14766.6,
+      "mrr": 0.5,
+      "avg_rank": 2.0,
+      "chunks_preview": [
+        {
+          "rank": 1,
+          "drug": "nitrofurantoin",
+          "section": "CONTRAINDICATIONS",
+          "score": 5.5608,
+          "relevant": false
+        },
+        {
+          "rank": 2,
+          "drug": "lisinopril",
+          "section": "CONTRAINDICATIONS",
+          "score": 4.7028,
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "drug": "metformin",
+          "section": "CONTRAINDICATIONS",
+          "score": 3.81,
+          "relevant": false
+        },
+        {
+          "rank": 4,
+          "drug": "lisinopril",
+          "section": "RENAL_IMPAIRMENT",
+          "score": 2.4287,
+          "relevant": true
+        },
+        {
+          "rank": 5,
+          "drug": "lisinopril",
+          "section": "DRUG_INTERACTIONS",
+          "score": 2.1379,
+          "relevant": false
+        },
+        {
+          "rank": 6,
+          "drug": "metformin",
+          "section": "RENAL_IMPAIRMENT",
+          "score": 1.3837,
+          "relevant": false
+        },
+        {
+          "rank": 7,
+          "drug": "duloxetine",
+          "section": "PATIENT_POPULATIONS_AND_DEMOGRAPHICS",
+          "score": 1.0024,
+          "relevant": false
+        },
+        {
+          "rank": 8,
+          "drug": "lisinopril",
+          "section": "GERIATRIC_USE",
+          "score": 0.141,
+          "relevant": true
+        }
+      ],
+      "precision@1": 0.0,
+      "recall@1": 0.0,
+      "f1@1": 0.0,
+      "ndcg@1": 0.0,
+      "hit_rate@1": 0.0,
+      "precision@3": 0.3333,
+      "recall@3": 0.3333,
+      "f1@3": 0.3333,
+      "ndcg@3": 0.4702,
+      "hit_rate@3": 1.0,
+      "precision@5": 0.4,
+      "recall@5": 0.6667,
+      "f1@5": 0.5,
+      "ndcg@5": 0.6078,
+      "hit_rate@5": 1.0,
+      "precision@10": 0.3,
+      "recall@10": 0.6667,
+      "f1@10": 0.4138,
+      "ndcg@10": 0.6078,
+      "hit_rate@10": 1.0
+    },
+    {
+      "query_id": "CH_02",
+      "query": "What is the mechanism of action of metformin?",
+      "n_retrieved": 1,
+      "n_relevant": 2,
+      "n_duplicate_chunks_removed": 0,
+      "latency_ms": 10655.2,
+      "mrr": 0.0,
+      "avg_rank": null,
+      "chunks_preview": [
+        {
+          "rank": 1,
+          "drug": "metoprolol",
+          "section": "DRUG_OVERVIEW",
+          "score": 0.1596,
+          "relevant": false
+        }
+      ],
+      "precision@1": 0.0,
+      "recall@1": 0.0,
+      "f1@1": 0.0,
+      "ndcg@1": 0.0,
+      "hit_rate@1": 0.0,
+      "precision@3": 0.0,
+      "recall@3": 0.0,
+      "f1@3": 0.0,
+      "ndcg@3": 0.0,
+      "hit_rate@3": 0.0,
+      "precision@5": 0.0,
+      "recall@5": 0.0,
+      "f1@5": 0.0,
+      "ndcg@5": 0.0,
+      "hit_rate@5": 0.0,
+      "precision@10": 0.0,
+      "recall@10": 0.0,
+      "f1@10": 0.0,
+      "ndcg@10": 0.0,
+      "hit_rate@10": 0.0
+    },
+    {
+      "query_id": "CH_03",
+      "query": "What monitoring is required for warfarin therapy?",
+      "n_retrieved": 10,
+      "n_relevant": 3,
+      "n_duplicate_chunks_removed": 0,
+      "latency_ms": 11918.0,
+      "mrr": 0.3333,
+      "avg_rank": 3.0,
+      "chunks_preview": [
+        {
+          "rank": 1,
+          "drug": "warfarin",
+          "section": "RENAL_IMPAIRMENT",
+          "score": 4.8525,
+          "relevant": false
+        },
+        {
+          "rank": 2,
+          "drug": "warfarin",
+          "section": "HEPATIC_IMPAIRMENT",
+          "score": 4.238,
+          "relevant": false
+        },
+        {
+          "rank": 3,
+          "drug": "warfarin",
+          "section": "BOXED_WARNING",
+          "score": 3.839,
+          "relevant": true
+        },
+        {
+          "rank": 4,
+          "drug": "warfarin",
+          "section": "DOSAGE_AND_ADMINISTRATION",
+          "score": 3.4748,
+          "relevant": true
+        },
+        {
+          "rank": 5,
+          "drug": "warfarin",
+          "section": "GERIATRIC_USE",
+          "score": 2.1305,
+          "relevant": false
+        },
+        {
+          "rank": 6,
+          "drug": "azithromycin",
+          "section": "DRUG_INTERACTIONS",
+          "score": 2.0643,
+          "relevant": false
+        },
+        {
+          "rank": 7,
+          "drug": "methimazole",
+          "section": "DRUG_INTERACTIONS",
+          "score": 1.2348,
+          "relevant": false
+        },
+        {
+          "rank": 8,
+          "drug": "warfarin",
+          "section": "LACTATION",
+          "score": 1.1068,
+          "relevant": false
+        },
+        {
+          "rank": 9,
+          "drug": "warfarin",
+          "section": "PEDIATRIC_USE",
+          "score": 0.9737,
+          "relevant": false
+        },
+        {
+          "rank": 10,
+          "drug": "warfarin",
+          "section": "DRUG_INTERACTIONS",
+          "score": 0.2638,
+          "relevant": true
+        }
+      ],
+      "precision@1": 0.0,
+      "recall@1": 0.0,
+      "f1@1": 0.0,
+      "ndcg@1": 0.0,
+      "hit_rate@1": 0.0,
+      "precision@3": 0.3333,
+      "recall@3": 0.3333,
+      "f1@3": 0.3333,
+      "ndcg@3": 0.2346,
+      "hit_rate@3": 1.0,
+      "precision@5": 0.4,
+      "recall@5": 0.6667,
+      "f1@5": 0.5,
+      "ndcg@5": 0.4367,
+      "hit_rate@5": 1.0,
+      "precision@10": 0.3,
+      "recall@10": 1.0,
+      "f1@10": 0.4615,
+      "ndcg@10": 0.5724,
+      "hit_rate@10": 1.0
+    },
+    {
+      "query_id": "CH_04",
+      "query": "Is atorvastatin safe to use in patients with liver disease?",
+      "n_retrieved": 10,
+      "n_relevant": 2,
+      "n_duplicate_chunks_removed": 0,
+      "latency_ms": 15572.8,
+      "mrr": 1.0,
+      "avg_rank": 1.0,
+      "chunks_preview": [
+        {
+          "rank": 1,
+          "drug": "atorvastatin",
+          "section": "HEPATIC_IMPAIRMENT",
+          "score": 7.2143,
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "drug": "atorvastatin",
+          "section": "WARNINGS_AND_PRECAUTIONS",
+          "score": 4.9247,
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "drug": "atorvastatin",
+          "section": "GERIATRIC_USE",
+          "score": 4.1501,
+          "relevant": true
+        },
+        {
+          "rank": 4,
+          "drug": "atorvastatin",
+          "section": "DRUG_OVERVIEW",
+          "score": 3.9194,
+          "relevant": false
+        },
+        {
+          "rank": 5,
+          "drug": "rosuvastatin",
+          "section": "CONTRAINDICATIONS",
+          "score": 3.7057,
+          "relevant": false
+        },
+        {
+          "rank": 6,
+          "drug": "atorvastatin",
+          "section": "PEDIATRIC_USE",
+          "score": 3.5619,
+          "relevant": true
+        },
+        {
+          "rank": 7,
+          "drug": "atorvastatin",
+          "section": "RENAL_IMPAIRMENT",
+          "score": 3.1206,
+          "relevant": true
+        },
+        {
+          "rank": 8,
+          "drug": "metformin",
+          "section": "HEPATIC_IMPAIRMENT",
+          "score": 2.1724,
+          "relevant": false
+        },
+        {
+          "rank": 9,
+          "drug": "duloxetine",
+          "section": "PATIENT_POPULATIONS_AND_DEMOGRAPHICS",
+          "score": 2.0943,
+          "relevant": false
+        },
+        {
+          "rank": 10,
+          "drug": "hydrochlorothiazide",
+          "section": "WARNINGS_AND_PRECAUTIONS",
+          "score": 1.2918,
+          "relevant": false
+        }
+      ],
+      "precision@1": 1.0,
+      "recall@1": 0.5,
+      "f1@1": 0.6667,
+      "ndcg@1": 0.4286,
+      "hit_rate@1": 1.0,
+      "precision@3": 1.0,
+      "recall@3": 1.0,
+      "f1@3": 1.0,
+      "ndcg@3": 0.834,
+      "hit_rate@3": 1.0,
+      "precision@5": 0.6,
+      "recall@5": 1.0,
+      "f1@5": 0.75,
+      "ndcg@5": 0.834,
+      "hit_rate@5": 1.0,
+      "precision@10": 0.5,
+      "recall@10": 1.0,
+      "f1@10": 0.6667,
+      "ndcg@10": 0.834,
+      "hit_rate@10": 1.0
+    },
+    {
+      "query_id": "CH_05",
+      "query": "What are the cardiovascular considerations for using hydrochlorothiazide?",
+      "n_retrieved": 6,
+      "n_relevant": 2,
+      "n_duplicate_chunks_removed": 0,
+      "latency_ms": 26837.9,
+      "mrr": 1.0,
+      "avg_rank": 1.0,
+      "chunks_preview": [
+        {
+          "rank": 1,
+          "drug": "hydrochlorothiazide",
+          "section": "DRUG_OVERVIEW",
+          "score": 5.7849,
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "drug": "hydrochlorothiazide",
+          "section": "DOSAGE_AND_ADMINISTRATION",
+          "score": 2.8224,
+          "relevant": false
+        },
+        {
+          "rank": 3,
+          "drug": "hydrochlorothiazide",
+          "section": "WARNINGS_AND_PRECAUTIONS",
+          "score": 2.7024,
+          "relevant": true
+        },
+        {
+          "rank": 4,
+          "drug": "hydrochlorothiazide",
+          "section": "PATIENT_POPULATIONS_AND_DEMOGRAPHICS",
+          "score": 2.534,
+          "relevant": false
+        },
+        {
+          "rank": 5,
+          "drug": "lisinopril",
+          "section": "GERIATRIC_USE",
+          "score": 0.839,
+          "relevant": false
+        },
+        {
+          "rank": 6,
+          "drug": "hydrochlorothiazide",
+          "section": "DRUG_INTERACTIONS",
+          "score": 0.8034,
+          "relevant": true
+        }
+      ],
+      "precision@1": 1.0,
+      "recall@1": 0.5,
+      "f1@1": 0.6667,
+      "ndcg@1": 1.0,
+      "hit_rate@1": 1.0,
+      "precision@3": 0.6667,
+      "recall@3": 1.0,
+      "f1@3": 0.8,
+      "ndcg@3": 0.9197,
+      "hit_rate@3": 1.0,
+      "precision@5": 0.4,
+      "recall@5": 1.0,
+      "f1@5": 0.5714,
+      "ndcg@5": 0.9197,
+      "hit_rate@5": 1.0,
+      "precision@10": 0.3,
+      "recall@10": 1.0,
+      "f1@10": 0.4615,
+      "ndcg@10": 0.9197,
+      "hit_rate@10": 1.0
+    },
+    {
+      "query_id": "CH_06",
+      "query": "What antihypertensive drugs are documented as safe during pregnancy?",
+      "n_retrieved": 10,
+      "n_relevant": 4,
+      "n_duplicate_chunks_removed": 0,
+      "latency_ms": 18121.8,
+      "mrr": 0.25,
+      "avg_rank": 4.0,
+      "chunks_preview": [
+        {
+          "rank": 1,
+          "drug": "valproic_acid_sodium_valproate",
+          "section": "PATIENT_POPULATIONS_AND_DEMOGRAPHICS",
+          "score": 5.0855,
+          "relevant": false
+        },
+        {
+          "rank": 2,
+          "drug": "losartan",
+          "section": "PREGNANCY",
+          "score": 4.6353,
+          "relevant": false
+        },
+        {
+          "rank": 3,
+          "drug": "sertraline",
+          "section": "PREGNANCY",
+          "score": 3.7479,
+          "relevant": false
+        },
+        {
+          "rank": 4,
+          "drug": "labetalol",
+          "section": "DRUG_OVERVIEW",
+          "score": 3.7123,
+          "relevant": true
+        },
+        {
+          "rank": 5,
+          "drug": "valproic_acid",
+          "section": "PREGNANCY",
+          "score": 3.5887,
+          "relevant": false
+        },
+        {
+          "rank": 6,
+          "drug": "methimazole",
+          "section": "PREGNANCY",
+          "score": 2.1748,
+          "relevant": false
+        },
+        {
+          "rank": 7,
+          "drug": "doxycycline",
+          "section": "PREGNANCY",
+          "score": 1.913,
+          "relevant": false
+        },
+        {
+          "rank": 8,
+          "drug": "atorvastatin",
+          "section": "PREGNANCY",
+          "score": 1.6876,
+          "relevant": false
+        },
+        {
+          "rank": 9,
+          "drug": "leflunomide",
+          "section": "PREGNANCY",
+          "score": 1.6863,
+          "relevant": false
+        },
+        {
+          "rank": 10,
+          "drug": "thalidomide",
+          "section": "PREGNANCY",
+          "score": 1.4566,
+          "relevant": false
+        }
+      ],
+      "precision@1": 0.0,
+      "recall@1": 0.0,
+      "f1@1": 0.0,
+      "ndcg@1": 0.0,
+      "hit_rate@1": 0.0,
+      "precision@3": 0.0,
+      "recall@3": 0.0,
+      "f1@3": 0.0,
+      "ndcg@3": 0.0,
+      "hit_rate@3": 0.0,
+      "precision@5": 0.2,
+      "recall@5": 0.25,
+      "f1@5": 0.2222,
+      "ndcg@5": 0.0349,
+      "hit_rate@5": 1.0,
+      "precision@10": 0.1,
+      "recall@10": 0.25,
+      "f1@10": 0.1429,
+      "ndcg@10": 0.0349,
+      "hit_rate@10": 1.0
+    },
+    {
+      "query_id": "CH_07",
+      "query": "What is the documented dosage range for lisinopril in hypertension?",
+      "n_retrieved": 6,
+      "n_relevant": 2,
+      "n_duplicate_chunks_removed": 0,
+      "latency_ms": 14987.3,
+      "mrr": 1.0,
+      "avg_rank": 1.0,
+      "chunks_preview": [
+        {
+          "rank": 1,
+          "drug": "lisinopril",
+          "section": "DOSAGE_AND_ADMINISTRATION",
+          "score": 6.5851,
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "drug": "lisinopril",
+          "section": "GERIATRIC_USE",
+          "score": 3.6596,
+          "relevant": false
+        },
+        {
+          "rank": 3,
+          "drug": "hydrochlorothiazide",
+          "section": "DOSAGE_AND_ADMINISTRATION",
+          "score": 0.8732,
+          "relevant": false
+        },
+        {
+          "rank": 4,
+          "drug": "metoprolol",
+          "section": "DOSAGE_AND_ADMINISTRATION",
+          "score": 0.3958,
+          "relevant": false
+        },
+        {
+          "rank": 5,
+          "drug": "lisinopril",
+          "section": "DRUG_INTERACTIONS",
+          "score": 0.168,
+          "relevant": true
+        },
+        {
+          "rank": 6,
+          "drug": "losartan",
+          "section": "DOSAGE_AND_ADMINISTRATION",
+          "score": 0.1445,
+          "relevant": false
+        }
+      ],
+      "precision@1": 1.0,
+      "recall@1": 0.5,
+      "f1@1": 0.6667,
+      "ndcg@1": 1.0,
+      "hit_rate@1": 1.0,
+      "precision@3": 0.3333,
+      "recall@3": 0.5,
+      "f1@3": 0.4,
+      "ndcg@3": 0.9173,
+      "hit_rate@3": 1.0,
+      "precision@5": 0.4,
+      "recall@5": 1.0,
+      "f1@5": 0.5714,
+      "ndcg@5": 0.968,
+      "hit_rate@5": 1.0,
+      "precision@10": 0.2,
+      "recall@10": 1.0,
+      "f1@10": 0.3333,
+      "ndcg@10": 0.968,
+      "hit_rate@10": 1.0
+    },
+    {
+      "query_id": "CH_08",
+      "query": "What are the known drug interactions of warfarin with antibiotics?",
+      "n_retrieved": 8,
+      "n_relevant": 2,
+      "n_duplicate_chunks_removed": 0,
+      "latency_ms": 9504.1,
+      "mrr": 1.0,
+      "avg_rank": 1.0,
+      "chunks_preview": [
+        {
+          "rank": 1,
+          "drug": "warfarin",
+          "section": "DRUG_INTERACTIONS",
+          "score": 6.9536,
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "drug": "azithromycin",
+          "section": "DRUG_INTERACTIONS",
+          "score": 4.7286,
+          "relevant": false
+        },
+        {
+          "rank": 3,
+          "drug": "warfarin",
+          "section": "DRUG_OVERVIEW",
+          "score": 3.6867,
+          "relevant": true
+        },
+        {
+          "rank": 4,
+          "drug": "fluoxetine",
+          "section": "DRUG_INTERACTIONS",
+          "score": 2.0488,
+          "relevant": false
+        },
+        {
+          "rank": 5,
+          "drug": "sertraline",
+          "section": "DRUG_INTERACTIONS",
+          "score": 2.0354,
+          "relevant": false
+        },
+        {
+          "rank": 6,
+          "drug": "escitalopram",
+          "section": "DRUG_INTERACTIONS",
+          "score": 1.5688,
+          "relevant": false
+        },
+        {
+          "rank": 7,
+          "drug": "methimazole",
+          "section": "DRUG_INTERACTIONS",
+          "score": 1.3519,
+          "relevant": false
+        },
+        {
+          "rank": 8,
+          "drug": "valproic_acid",
+          "section": "DRUG_INTERACTIONS",
+          "score": 0.0057,
+          "relevant": false
+        }
+      ],
+      "precision@1": 1.0,
+      "recall@1": 0.5,
+      "f1@1": 0.6667,
+      "ndcg@1": 1.0,
+      "hit_rate@1": 1.0,
+      "precision@3": 0.6667,
+      "recall@3": 0.5,
+      "f1@3": 0.5714,
+      "ndcg@3": 0.7872,
+      "hit_rate@3": 1.0,
+      "precision@5": 0.4,
+      "recall@5": 0.5,
+      "f1@5": 0.4444,
+      "ndcg@5": 0.7872,
+      "hit_rate@5": 1.0,
+      "precision@10": 0.2,
+      "recall@10": 0.5,
+      "f1@10": 0.2857,
+      "ndcg@10": 0.7872,
+      "hit_rate@10": 1.0
+    },
+    {
+      "query_id": "CH_09",
+      "query": "What are the renal dosing considerations for metformin?",
+      "n_retrieved": 5,
+      "n_relevant": 3,
+      "n_duplicate_chunks_removed": 0,
+      "latency_ms": 9113.6,
+      "mrr": 1.0,
+      "avg_rank": 1.0,
+      "chunks_preview": [
+        {
+          "rank": 1,
+          "drug": "metformin",
+          "section": "GERIATRIC_USE",
+          "score": 3.6145,
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "drug": "metformin",
+          "section": "RENAL_IMPAIRMENT",
+          "score": 3.131,
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "drug": "metformin",
+          "section": "DOSAGE_AND_ADMINISTRATION",
+          "score": 2.8851,
+          "relevant": true
+        },
+        {
+          "rank": 4,
+          "drug": "metformin",
+          "section": "CONTRAINDICATIONS",
+          "score": 1.4919,
+          "relevant": true
+        },
+        {
+          "rank": 5,
+          "drug": "metformin",
+          "section": "DRUG_INTERACTIONS",
+          "score": 0.0848,
+          "relevant": false
+        }
+      ],
+      "precision@1": 1.0,
+      "recall@1": 0.3333,
+      "f1@1": 0.5,
+      "ndcg@1": 0.4286,
+      "hit_rate@1": 1.0,
+      "precision@3": 1.0,
+      "recall@3": 0.6667,
+      "f1@3": 0.8,
+      "ndcg@3": 0.5032,
+      "hit_rate@3": 1.0,
+      "precision@5": 0.8,
+      "recall@5": 1.0,
+      "f1@5": 0.8889,
+      "ndcg@5": 0.7366,
+      "hit_rate@5": 1.0,
+      "precision@10": 0.4,
+      "recall@10": 1.0,
+      "f1@10": 0.5714,
+      "ndcg@10": 0.7366,
+      "hit_rate@10": 1.0
+    },
+    {
+      "query_id": "CH_10",
+      "query": "What is the drug class and primary indication of losartan?",
+      "n_retrieved": 3,
+      "n_relevant": 2,
+      "n_duplicate_chunks_removed": 0,
+      "latency_ms": 6033.1,
+      "mrr": 1.0,
+      "avg_rank": 1.0,
+      "chunks_preview": [
+        {
+          "rank": 1,
+          "drug": "losartan",
+          "section": "DRUG_OVERVIEW",
+          "score": 7.291,
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "drug": "losartan",
+          "section": "PREGNANCY",
+          "score": 0.7517,
+          "relevant": false
+        },
+        {
+          "rank": 3,
+          "drug": "losartan",
+          "section": "PEDIATRIC_USE",
+          "score": 0.1742,
+          "relevant": false
+        }
+      ],
+      "precision@1": 1.0,
+      "recall@1": 0.5,
+      "f1@1": 0.6667,
+      "ndcg@1": 1.0,
+      "hit_rate@1": 1.0,
+      "precision@3": 0.3333,
+      "recall@3": 0.5,
+      "f1@3": 0.4,
+      "ndcg@3": 0.9173,
+      "hit_rate@3": 1.0,
+      "precision@5": 0.2,
+      "recall@5": 0.5,
+      "f1@5": 0.2857,
+      "ndcg@5": 0.9173,
+      "hit_rate@5": 1.0,
+      "precision@10": 0.1,
+      "recall@10": 0.5,
+      "f1@10": 0.1667,
+      "ndcg@10": 0.9173,
+      "hit_rate@10": 1.0
+    },
+    {
+      "query_id": "CH_11",
+      "query": "What are the safety concerns for amlodipine in elderly patients?",
+      "n_retrieved": 10,
+      "n_relevant": 2,
+      "n_duplicate_chunks_removed": 0,
+      "latency_ms": 8331.5,
+      "mrr": 1.0,
+      "avg_rank": 1.0,
+      "chunks_preview": [
+        {
+          "rank": 1,
+          "drug": "amlodipine",
+          "section": "GERIATRIC_USE",
+          "score": 5.7188,
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "drug": "amlodipine",
+          "section": "WARNINGS_AND_PRECAUTIONS",
+          "score": 3.4306,
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "drug": "amoxicillin",
+          "section": "GERIATRIC_USE",
+          "score": 3.218,
+          "relevant": false
+        },
+        {
+          "rank": 4,
+          "drug": "amoxicillin_clavulanate",
+          "section": "GERIATRIC_USE",
+          "score": 3.1897,
+          "relevant": false
+        },
+        {
+          "rank": 5,
+          "drug": "amlodipine",
+          "section": "DRUG_OVERVIEW",
+          "score": 2.6938,
+          "relevant": false
+        },
+        {
+          "rank": 6,
+          "drug": "isotretinoin",
+          "section": "GERIATRIC_USE",
+          "score": 2.3699,
+          "relevant": false
+        },
+        {
+          "rank": 7,
+          "drug": "atorvastatin",
+          "section": "GERIATRIC_USE",
+          "score": 1.9554,
+          "relevant": false
+        },
+        {
+          "rank": 8,
+          "drug": "amlodipine",
+          "section": "PEDIATRIC_USE",
+          "score": 1.4164,
+          "relevant": true
+        },
+        {
+          "rank": 9,
+          "drug": "cephalexin",
+          "section": "GERIATRIC_USE",
+          "score": 1.3851,
+          "relevant": false
+        },
+        {
+          "rank": 10,
+          "drug": "methyldopa",
+          "section": "GERIATRIC_USE",
+          "score": 0.9133,
+          "relevant": false
+        }
+      ],
+      "precision@1": 1.0,
+      "recall@1": 0.5,
+      "f1@1": 0.6667,
+      "ndcg@1": 1.0,
+      "hit_rate@1": 1.0,
+      "precision@3": 0.6667,
+      "recall@3": 1.0,
+      "f1@3": 0.8,
+      "ndcg@3": 1.0,
+      "hit_rate@3": 1.0,
+      "precision@5": 0.4,
+      "recall@5": 1.0,
+      "f1@5": 0.5714,
+      "ndcg@5": 1.0,
+      "hit_rate@5": 1.0,
+      "precision@10": 0.3,
+      "recall@10": 1.0,
+      "f1@10": 0.4615,
+      "ndcg@10": 1.0,
+      "hit_rate@10": 1.0
+    },
+    {
+      "query_id": "CH_12",
+      "query": "What patient populations should avoid methotrexate?",
+      "n_retrieved": 9,
+      "n_relevant": 2,
+      "n_duplicate_chunks_removed": 0,
+      "latency_ms": 9909.4,
+      "mrr": 1.0,
+      "avg_rank": 1.0,
+      "chunks_preview": [
+        {
+          "rank": 1,
+          "drug": "methotrexate",
+          "section": "CONTRAINDICATIONS",
+          "score": 4.503,
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "drug": "methotrexate",
+          "section": "BOXED_WARNING",
+          "score": 3.3905,
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "drug": "methotrexate",
+          "section": "WARNINGS_AND_PRECAUTIONS",
+          "score": 3.1326,
+          "relevant": true
+        },
+        {
+          "rank": 4,
+          "drug": "methotrexate",
+          "section": "RENAL_IMPAIRMENT",
+          "score": 2.478,
+          "relevant": true
+        },
+        {
+          "rank": 5,
+          "drug": "methotrexate",
+          "section": "GERIATRIC_USE",
+          "score": 2.4538,
+          "relevant": true
+        },
+        {
+          "rank": 6,
+          "drug": "methotrexate",
+          "section": "HEPATIC_IMPAIRMENT",
+          "score": 1.8944,
+          "relevant": true
+        },
+        {
+          "rank": 7,
+          "drug": "methotrexate",
+          "section": "PREGNANCY",
+          "score": 1.2963,
+          "relevant": true
+        },
+        {
+          "rank": 8,
+          "drug": "duloxetine",
+          "section": "PATIENT_POPULATIONS_AND_DEMOGRAPHICS",
+          "score": 0.1516,
+          "relevant": false
+        },
+        {
+          "rank": 9,
+          "drug": "methotrexate",
+          "section": "PEDIATRIC_USE",
+          "score": 0.1276,
+          "relevant": true
+        }
+      ],
+      "precision@1": 1.0,
+      "recall@1": 0.5,
+      "f1@1": 0.6667,
+      "ndcg@1": 1.0,
+      "hit_rate@1": 1.0,
+      "precision@3": 1.0,
+      "recall@3": 0.5,
+      "f1@3": 0.6667,
+      "ndcg@3": 0.6131,
+      "hit_rate@3": 1.0,
+      "precision@5": 1.0,
+      "recall@5": 1.0,
+      "f1@5": 1.0,
+      "ndcg@5": 0.8772,
+      "hit_rate@5": 1.0,
+      "precision@10": 0.8,
+      "recall@10": 1.0,
+      "f1@10": 0.8889,
+      "ndcg@10": 0.8772,
+      "hit_rate@10": 1.0
+    },
+    {
+      "query_id": "CH_13",
+      "query": "What are the boxed warnings for isotretinoin?",
+      "n_retrieved": 10,
+      "n_relevant": 2,
+      "n_duplicate_chunks_removed": 0,
+      "latency_ms": 9165.4,
+      "mrr": 1.0,
+      "avg_rank": 1.0,
+      "chunks_preview": [
+        {
+          "rank": 1,
+          "drug": "isotretinoin",
+          "section": "BOXED_WARNING",
+          "score": 6.9854,
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "drug": "isotretinoin",
+          "section": "WARNINGS_AND_PRECAUTIONS",
+          "score": 4.5261,
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "drug": "isotretinoin",
+          "section": "CONTRAINDICATIONS",
+          "score": 2.2427,
+          "relevant": true
+        },
+        {
+          "rank": 4,
+          "drug": "bupropion",
+          "section": "BOXED_WARNING",
+          "score": 2.2267,
+          "relevant": false
+        },
+        {
+          "rank": 5,
+          "drug": "isotretinoin",
+          "section": "RENAL_IMPAIRMENT",
+          "score": 1.5309,
+          "relevant": true
+        },
+        {
+          "rank": 6,
+          "drug": "atorvastatin",
+          "section": "BOXED_WARNING",
+          "score": 1.5153,
+          "relevant": false
+        },
+        {
+          "rank": 7,
+          "drug": "isotretinoin",
+          "section": "HEPATIC_IMPAIRMENT",
+          "score": 1.4787,
+          "relevant": true
+        },
+        {
+          "rank": 8,
+          "drug": "citalopram",
+          "section": "BOXED_WARNING",
+          "score": 1.0892,
+          "relevant": false
+        },
+        {
+          "rank": 9,
+          "drug": "methotrexate",
+          "section": "BOXED_WARNING",
+          "score": 1.064,
+          "relevant": false
+        },
+        {
+          "rank": 10,
+          "drug": "valproic_acid",
+          "section": "BOXED_WARNING",
+          "score": 1.0188,
+          "relevant": false
+        }
+      ],
+      "precision@1": 1.0,
+      "recall@1": 0.5,
+      "f1@1": 0.6667,
+      "ndcg@1": 1.0,
+      "hit_rate@1": 1.0,
+      "precision@3": 1.0,
+      "recall@3": 0.5,
+      "f1@3": 0.6667,
+      "ndcg@3": 0.7872,
+      "hit_rate@3": 1.0,
+      "precision@5": 0.8,
+      "recall@5": 1.0,
+      "f1@5": 0.8889,
+      "ndcg@5": 0.9177,
+      "hit_rate@5": 1.0,
+      "precision@10": 0.5,
+      "recall@10": 1.0,
+      "f1@10": 0.6667,
+      "ndcg@10": 0.9177,
+      "hit_rate@10": 1.0
+    },
+    {
+      "query_id": "CH_14",
+      "query": "What interactions should be monitored when combining warfarin with NSAIDs?",
+      "n_retrieved": 7,
+      "n_relevant": 3,
+      "n_duplicate_chunks_removed": 0,
+      "latency_ms": 9680.1,
+      "mrr": 0.5,
+      "avg_rank": 2.0,
+      "chunks_preview": [
+        {
+          "rank": 1,
+          "drug": "fluoxetine",
+          "section": "DRUG_INTERACTIONS",
+          "score": 4.3513,
+          "relevant": false
+        },
+        {
+          "rank": 2,
+          "drug": "warfarin",
+          "section": "DRUG_INTERACTIONS",
+          "score": 3.9675,
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "drug": "azithromycin",
+          "section": "DRUG_INTERACTIONS",
+          "score": 3.862,
+          "relevant": false
+        },
+        {
+          "rank": 4,
+          "drug": "escitalopram",
+          "section": "DRUG_INTERACTIONS",
+          "score": 2.8427,
+          "relevant": false
+        },
+        {
+          "rank": 5,
+          "drug": "methimazole",
+          "section": "DRUG_INTERACTIONS",
+          "score": 2.5048,
+          "relevant": false
+        },
+        {
+          "rank": 6,
+          "drug": "sertraline",
+          "section": "DRUG_INTERACTIONS",
+          "score": 1.2519,
+          "relevant": false
+        },
+        {
+          "rank": 7,
+          "drug": "losartan",
+          "section": "DRUG_INTERACTIONS",
+          "score": 0.8676,
+          "relevant": false
+        }
+      ],
+      "precision@1": 0.0,
+      "recall@1": 0.0,
+      "f1@1": 0.0,
+      "ndcg@1": 0.0,
+      "hit_rate@1": 0.0,
+      "precision@3": 0.3333,
+      "recall@3": 0.3333,
+      "f1@3": 0.3333,
+      "ndcg@3": 0.425,
+      "hit_rate@3": 1.0,
+      "precision@5": 0.2,
+      "recall@5": 0.3333,
+      "f1@5": 0.25,
+      "ndcg@5": 0.425,
+      "hit_rate@5": 1.0,
+      "precision@10": 0.1,
+      "recall@10": 0.3333,
+      "f1@10": 0.1538,
+      "ndcg@10": 0.425,
+      "hit_rate@10": 1.0
+    },
+    {
+      "query_id": "CH_15",
+      "query": "What are the contraindications for insulin glargine use?",
+      "n_retrieved": 8,
+      "n_relevant": 2,
+      "n_duplicate_chunks_removed": 0,
+      "latency_ms": 10117.1,
+      "mrr": 1.0,
+      "avg_rank": 1.0,
+      "chunks_preview": [
+        {
+          "rank": 1,
+          "drug": "insulin_glargine",
+          "section": "CONTRAINDICATIONS",
+          "score": 6.3257,
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "drug": "insulin_glargine",
+          "section": "WARNINGS_AND_PRECAUTIONS",
+          "score": 1.9034,
+          "relevant": true
+        },
+        {
+          "rank": 3,
+          "drug": "insulin_glargine",
+          "section": "DRUG_INTERACTIONS",
+          "score": 1.846,
+          "relevant": true
+        },
+        {
+          "rank": 4,
+          "drug": "insulin_glargine",
+          "section": "GERIATRIC_USE",
+          "score": 1.5248,
+          "relevant": false
+        },
+        {
+          "rank": 5,
+          "drug": "insulin_glargine",
+          "section": "PREGNANCY",
+          "score": 1.2444,
+          "relevant": false
+        },
+        {
+          "rank": 6,
+          "drug": "insulin_glargine",
+          "section": "HEPATIC_IMPAIRMENT",
+          "score": 0.5575,
+          "relevant": false
+        },
+        {
+          "rank": 7,
+          "drug": "nitrofurantoin",
+          "section": "CONTRAINDICATIONS",
+          "score": 0.5446,
+          "relevant": false
+        },
+        {
+          "rank": 8,
+          "drug": "insulin_glargine",
+          "section": "RENAL_IMPAIRMENT",
+          "score": 0.2175,
+          "relevant": false
+        }
+      ],
+      "precision@1": 1.0,
+      "recall@1": 0.5,
+      "f1@1": 0.6667,
+      "ndcg@1": 1.0,
+      "hit_rate@1": 1.0,
+      "precision@3": 1.0,
+      "recall@3": 1.0,
+      "f1@3": 1.0,
+      "ndcg@3": 0.9828,
+      "hit_rate@3": 1.0,
+      "precision@5": 0.6,
+      "recall@5": 1.0,
+      "f1@5": 0.75,
+      "ndcg@5": 0.9828,
+      "hit_rate@5": 1.0,
+      "precision@10": 0.3,
+      "recall@10": 1.0,
+      "f1@10": 0.4615,
+      "ndcg@10": 0.9828,
+      "hit_rate@10": 1.0
+    },
+    {
+      "query_id": "OV_01",
+      "query": "Give me an overview of lisinopril including drug class and mechanism",
+      "n_retrieved": 1,
+      "n_relevant": 2,
+      "n_duplicate_chunks_removed": 0,
+      "latency_ms": 8361.4,
+      "mrr": 1.0,
+      "avg_rank": 1.0,
+      "chunks_preview": [
+        {
+          "rank": 1,
+          "drug": "lisinopril",
+          "section": "DRUG_OVERVIEW",
+          "score": 4.8598,
+          "relevant": true
+        }
+      ],
+      "precision@1": 1.0,
+      "recall@1": 0.5,
+      "f1@1": 0.6667,
+      "ndcg@1": 1.0,
+      "hit_rate@1": 1.0,
+      "precision@3": 0.3333,
+      "recall@3": 0.5,
+      "f1@3": 0.4,
+      "ndcg@3": 0.9173,
+      "hit_rate@3": 1.0,
+      "precision@5": 0.2,
+      "recall@5": 0.5,
+      "f1@5": 0.2857,
+      "ndcg@5": 0.9173,
+      "hit_rate@5": 1.0,
+      "precision@10": 0.1,
+      "recall@10": 0.5,
+      "f1@10": 0.1667,
+      "ndcg@10": 0.9173,
+      "hit_rate@10": 1.0
+    },
+    {
+      "query_id": "OV_02",
+      "query": "What drug class does metformin belong to and what is its mechanism?",
+      "n_retrieved": 1,
+      "n_relevant": 2,
+      "n_duplicate_chunks_removed": 0,
+      "latency_ms": 8381.9,
+      "mrr": 1.0,
+      "avg_rank": 1.0,
+      "chunks_preview": [
+        {
+          "rank": 1,
+          "drug": "metformin",
+          "section": "DRUG_OVERVIEW",
+          "score": 3.3212,
+          "relevant": true
+        }
+      ],
+      "precision@1": 1.0,
+      "recall@1": 0.5,
+      "f1@1": 0.6667,
+      "ndcg@1": 1.0,
+      "hit_rate@1": 1.0,
+      "precision@3": 0.3333,
+      "recall@3": 0.5,
+      "f1@3": 0.4,
+      "ndcg@3": 0.9173,
+      "hit_rate@3": 1.0,
+      "precision@5": 0.2,
+      "recall@5": 0.5,
+      "f1@5": 0.2857,
+      "ndcg@5": 0.9173,
+      "hit_rate@5": 1.0,
+      "precision@10": 0.1,
+      "recall@10": 0.5,
+      "f1@10": 0.1667,
+      "ndcg@10": 0.9173,
+      "hit_rate@10": 1.0
+    },
+    {
+      "query_id": "OV_03",
+      "query": "Provide a drug overview for atorvastatin",
+      "n_retrieved": 10,
+      "n_relevant": 2,
+      "n_duplicate_chunks_removed": 0,
+      "latency_ms": 10427.0,
+      "mrr": 1.0,
+      "avg_rank": 1.0,
+      "chunks_preview": [
+        {
+          "rank": 1,
+          "drug": "atorvastatin",
+          "section": "DRUG_OVERVIEW",
+          "score": 5.8567,
+          "relevant": true
+        },
+        {
+          "rank": 2,
+          "drug": "rosuvastatin",
+          "section": "DRUG_OVERVIEW",
+          "score": 5.3878,
+          "relevant": false
+        },
+        {
+          "rank": 3,
+          "drug": "simvastatin",
+          "section": "DRUG_OVERVIEW",
+          "score": 4.0971,
+          "relevant": false
+        },
+        {
+          "rank": 4,
+          "drug": "atorvastatin",
+          "section": "DRUG_INTERACTIONS",
+          "score": 2.3165,
+          "relevant": true
+        },
+        {
+          "rank": 5,
+          "drug": "atorvastatin",
+          "section": "LACTATION",
+          "score": 1.9472,
+          "relevant": false
+        },
+        {
+          "rank": 6,
+          "drug": "atorvastatin",
+          "section": "PREGNANCY",
+          "score": 1.7339,
+          "relevant": false
+        },
+        {
+          "rank": 7,
+          "drug": "atorvastatin",
+          "section": "WARNINGS_AND_PRECAUTIONS",
+          "score": 0.7997,
+          "relevant": false
+        },
+        {
+          "rank": 8,
+          "drug": "atorvastatin",
+          "section": "GERIATRIC_USE",
+          "score": 0.7962,
+          "relevant": false
+        },
+        {
+          "rank": 9,
+          "drug": "atorvastatin",
+          "section": "PEDIATRIC_USE",
+          "score": 0.3096,
+          "relevant": false
+        },
+        {
+          "rank": 10,
+          "drug": "rosuvastatin",
+          "section": "DRUG_INTERACTIONS",
+          "score": 0.1378,
+          "relevant": false
+        }
+      ],
+      "precision@1": 1.0,
+      "recall@1": 0.5,
+      "f1@1": 0.6667,
+      "ndcg@1": 1.0,
+      "hit_rate@1": 1.0,
+      "precision@3": 0.3333,
+      "recall@3": 0.5,
+      "f1@3": 0.4,
+      "ndcg@3": 0.9173,
+      "hit_rate@3": 1.0,
+      "precision@5": 0.4,
+      "recall@5": 0.5,
+      "f1@5": 0.4444,
+      "ndcg@5": 0.9173,
+      "hit_rate@5": 1.0,
+      "precision@10": 0.2,
+      "recall@10": 0.5,
+      "f1@10": 0.2857,
+      "ndcg@10": 0.9173,
+      "hit_rate@10": 1.0
+    },
+    {
+      "query_id": "OV_04",
+      "query": "What is warfarin and what is it used for?",
+      "n_retrieved": 10,
+      "n_relevant": 2,
+      "n_duplicate_chunks_removed": 0,
+      "latency_ms": 9278.8,
+      "mrr": 0.3333,
+      "avg_rank": 3.0,
+      "chunks_preview": [
+        {
+          "rank": 1,
+          "drug": "warfarin",
+          "section": "PEDIATRIC_USE",
+          "score": 4.2823,
+          "relevant": false
+        },
+        {
+          "rank": 2,
+          "drug": "warfarin",
+          "section": "CONTRAINDICATIONS",
+          "score": 3.3465,
+          "relevant": false
+        },
+        {
+          "rank": 3,
+          "drug": "warfarin",
+          "section": "DRUG_INTERACTIONS",
+          "score": 2.6012,
+          "relevant": true
+        },
+        {
+          "rank": 4,
+          "drug": "warfarin",
+          "section": "GERIATRIC_USE",
+          "score": 2.5154,
+          "relevant": false
+        },
+        {
+          "rank": 5,
+          "drug": "warfarin",
+          "section": "PREGNANCY",
+          "score": 1.9381,
+          "relevant": false
+        },
+        {
+          "rank": 6,
+          "drug": "warfarin",
+          "section": "DRUG_OVERVIEW",
+          "score": 1.421,
+          "relevant": true
+        },
+        {
+          "rank": 7,
+          "drug": "warfarin",
+          "section": "LACTATION",
+          "score": 0.8273,
+          "relevant": false
+        },
+        {
+          "rank": 8,
+          "drug": "warfarin",
+          "section": "HEPATIC_IMPAIRMENT",
+          "score": 0.7688,
+          "relevant": false
+        },
+        {
+          "rank": 9,
+          "drug": "warfarin",
+          "section": "RENAL_IMPAIRMENT",
+          "score": 0.5306,
+          "relevant": false
+        },
+        {
+          "rank": 10,
+          "drug": "warfarin",
+          "section": "WARNINGS_AND_PRECAUTIONS",
+          "score": 0.0324,
+          "relevant": false
+        }
+      ],
+      "precision@1": 0.0,
+      "recall@1": 0.0,
+      "f1@1": 0.0,
+      "ndcg@1": 0.0,
+      "hit_rate@1": 0.0,
+      "precision@3": 0.3333,
+      "recall@3": 0.5,
+      "f1@3": 0.4,
+      "ndcg@3": 0.4587,
+      "hit_rate@3": 1.0,
+      "precision@5": 0.2,
+      "recall@5": 0.5,
+      "f1@5": 0.2857,
+      "ndcg@5": 0.4587,
+      "hit_rate@5": 1.0,
+      "precision@10": 0.2,
+      "recall@10": 0.5,
+      "f1@10": 0.2857,
+      "ndcg@10": 0.4587,
+      "hit_rate@10": 1.0
+    },
+    {
+      "query_id": "OV_05",
+      "query": "Overview of losartan \u2014 class, mechanism, indication",
+      "n_retrieved": 1,
+      "n_relevant": 2,
+      "n_duplicate_chunks_removed": 0,
+      "latency_ms": 8611.0,
+      "mrr": 1.0,
+      "avg_rank": 1.0,
+      "chunks_preview": [
+        {
+          "rank": 1,
+          "drug": "losartan",
+          "section": "DRUG_OVERVIEW",
+          "score": 5.4419,
+          "relevant": true
+        }
+      ],
+      "precision@1": 1.0,
+      "recall@1": 0.5,
+      "f1@1": 0.6667,
+      "ndcg@1": 1.0,
+      "hit_rate@1": 1.0,
+      "precision@3": 0.3333,
+      "recall@3": 0.5,
+      "f1@3": 0.4,
+      "ndcg@3": 0.9173,
+      "hit_rate@3": 1.0,
+      "precision@5": 0.2,
+      "recall@5": 0.5,
+      "f1@5": 0.2857,
+      "ndcg@5": 0.9173,
+      "hit_rate@5": 1.0,
+      "precision@10": 0.1,
+      "recall@10": 0.5,
+      "f1@10": 0.1667,
+      "ndcg@10": 0.9173,
+      "hit_rate@10": 1.0
+    }
+  ]
+}

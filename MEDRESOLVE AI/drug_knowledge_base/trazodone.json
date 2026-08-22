@@ -1,0 +1,50 @@
+{
+    "search_query": "Trazodone",
+    "generic_name": null,
+    "brand_name": null,
+    "pharm_class": [],
+    "label_clinical_info": {},
+    "regulatory_info": {},
+    "top_adverse_events": [
+        {
+            "term": "DRUG INEFFECTIVE",
+            "count": 6774
+        },
+        {
+            "term": "FATIGUE",
+            "count": 5899
+        },
+        {
+            "term": "NAUSEA",
+            "count": 5847
+        },
+        {
+            "term": "OFF LABEL USE",
+            "count": 5041
+        },
+        {
+            "term": "HEADACHE",
+            "count": 4627
+        },
+        {
+            "term": "PAIN",
+            "count": 4621
+        },
+        {
+            "term": "DIARRHOEA",
+            "count": 4493
+        },
+        {
+            "term": "DIZZINESS",
+            "count": 3668
+        },
+        {
+            "term": "DYSPNOEA",
+            "count": 3666
+        },
+        {
+            "term": "VOMITING",
+            "count": 3608
+        }
+    ]
+}

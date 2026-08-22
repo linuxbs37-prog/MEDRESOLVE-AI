@@ -1,0 +1,63 @@
+{
+    "search_query": "Pantoprazole",
+    "generic_name": "PANTOPRAZOLE",
+    "brand_name": "Pantoprazole",
+    "pharm_class": [
+        "Unknown"
+    ],
+    "label_clinical_info": {
+        "indications_and_usage": "1 INDICATIONS AND USAGE Pantoprazole sodium delayed-release tablets are indicated for: Pantoprazole sodium is a proton pump inhibitor (PPI) indicated for the following: Short-Term Treatment of Erosive Esophagitis Associated with Gastroesophageal Reflux Disease (GERD) ( 1.1 ) Maintenance of Healing of Erosive Esophagitis ( 1.2 ) Pathological Hypersecretory Conditions Including Zollinger-Ellison (ZE) Syndrome ( 1.3 ) 1.1 Short-Term Treatment of Erosive Esophagitis Associated With Gastroesophageal Reflux Disease (GERD) Pantoprazole sodium delayed-release tablets are indicated in adults and pediatric patients five years of age and older for the short-term treatment (up to 8 weeks) in the healing and symptomatic relief of erosive esophagitis (EE). For those adult patients who have not healed after 8 weeks of treatment, an additional 8-week course of pantoprazole sodium delayed-release tablets may be considered. Safety of treatment beyond 8 weeks in pediatric patients has not been established. 1.2 Maintenance of Healing of Erosive Esophagitis Pantoprazole sodium delayed-release tablets are indicated for maintenance of healing of EE and reduction in relapse rates of daytime and nighttime heartburn symptoms in adult patients with GERD. Controlled studies did not extend beyond 12 months. 1.3 Pathological Hypersecretory Conditions Including Zollinger-Ellison Syndrome Pantoprazole sodium delayed-release tablets are indicated for the long-term treatment of pathological hypersecretory conditions, including Zollinger-Ellison (ZE) Syndrome.",
+        "contraindications": "4 CONTRAINDICATIONS \u2022 Pantoprazole sodium delayed-release tablets are contraindicated in patients with known hypersensitivity to any component of the formulation or any substituted benzimidazole. Hypersensitivity reactions may include anaphylaxis, anaphylactic shock, angioedema, bronchospasm, acute tubulointerstitial nephritis, and urticaria [see Warnings and Precautions (5.2) , Adverse Reactions (6 ) ]. \u2022 Proton pump inhibitors (PPIs), including pantoprazole sodium delayed-release tablets, are contraindicated in patients receiving rilpivirine-containing products [see Drug Interactions ( 7 ) ]. Patients with known hypersensitivity to any component of the formulation or to substituted benzimidazoles ( 4) Patients receiving rilpivirine-containing products ( 4 , 7 )",
+        "warnings_and_precautions": "Data not provided.",
+        "boxed_warning": "No boxed warning.",
+        "drug_interactions": "7 DRUG INTERACTIONS Table 4 includes drugs with clinically important drug interactions and interaction with diagnostics when administered concomitantly with pantoprazole sodium and instructions for preventing or managing them. Consult the labeling of concomitantly used drugs to obtain further information about interactions with PPIs. Table 4: Clinically Relevant Interactions Affecting Drugs Co-Administered with Pantoprazole sodium and Interactions with Diagnostics Antiretrovirals Clinical Impact: The effect of PPIs on antiretroviral drugs is variable. The clinical importance and the mechanisms behind these interactions are not always known. Decreased exposure of some antiretroviral drugs (e.g., rilpivirine atazanavir, and nelfinavir) when used concomitantly with pantoprazole may reduce antiviral effect and promote the development of drug resistance. Increased exposure of other antiretroviral drugs (e.g., saquinavir) when used concomitantly with pantoprazole may increase toxicity of the antiretroviral drugs. There are other antiretroviral drugs which do not result in clinically relevant interactions with pantoprazole. Intervention: Rilpivirine-containing products: Concomitant use with pantoprazole sodium is contraindicated [see Contraindications ( 4 ) ]. See prescribing information. Atazanavir: See prescribing information for atazanavir for dosing information. Nelfinavir: Avoid concomitant use with pantoprazole sodium. See prescribing information for nelfinavir. Saquinavir: See the prescribing information for saquinavir and monitor for potential saquinavir toxicities. Other antiretrovirals: See prescribing information. Warfarin Clinical Impact: Increased INR and prothrombin time in patients receiving PPIs, including pantoprazole, and warfarin concomitantly. Increases in INR and prothrombin time may lead to abnormal bleeding and even death. Intervention: Monitor INR and prothrombin time. Dose adjustment of warfarin may be needed to maintain target INR range. See prescribing information for warfarin. Clopidogrel Clinical Impact: Concomitant administration of pantoprazole and clopidogrel in healthy subjects had no clinically important effect on exposure to the active metabolite of clopidogrel or clopidogrel-induced platelet inhibition [see Clinical Pharmacology ( 12.3 ) ]. Intervention: No dose adjustment of clopidogrel is necessary when administered with an approved dose of pantoprazole sodium. Methotrexate Clinical Impact: Concomitant use of PPIs with methotrexate (primarily at high dose) may elevate and prolong serum concentrations of methotrexate and/or its metabolite hydroxymethotrexate, possibly leading to methotrexate toxicities. No formal drug interaction studies of high-dose methotrexate with PPIs have been conducted [see Warnings and Precautions ( 5.13 ) ]. Intervention: A temporary withdrawal of pantoprazole sodium may be considered in some patients receiving high-dose methotrexate. Drugs Dependent on Gastric pH for Absorption (e.g., iron salts, erlotinib, dasatinib, nilotinib, mycophenolate mofetil, ketoconazole / itraconazole ) Clinical Impact: Pantoprazole can reduce the absorption of other drugs due to its effect on reducing intragastric acidity. Intervention: Mycophenolate mofetil (MMF): Co-administration of pantoprazole sodium in healthy subjects and in transplant patients receiving MMF has been reported to reduce the exposure to the active metabolite, mycophenolic acid (MPA), possibly due to a decrease in MMF solubility at an increased gastric pH [see Clinical Pharmacology ( 12.3 ) ]. The clinical relevance of reduced MPA exposure on organ rejection has not been established in transplant patients receiving pantoprazole sodium and MMF. Use pantoprazole sodium with caution in transplant patients receiving MMF. See the prescribing information for other drugs dependent on gastric pH for absorption. Interactions with Investigations of Neuroendocrine Tumors Clinical Impact: CgA levels increase secondary to PPI-induced decreases in gastric acidity. The increased CgA level may cause false positive results in diagnostic investigations for neuroendocrine tumors [see Warnings and Precautions ( 5.11 ) , Clinical Pharmacology ( 12.2 ) ]. Intervention: Temporarily stop pantoprazole sodium treatment at least 14 days before assessing CgA levels and consider repeating the test if initial CgA levels are high. If serial tests are performed (e.g. for monitoring), the same commercial laboratory should be used for testing, as reference ranges between tests may vary. False Positive Urine Tests for THC Clinical Impact: There have been reports of false positive urine screening tests for tetrahydrocannabinol (THC) in patients receiving PPIs [see Warnings and Precautions ( 5.12 ) ] . Intervention: An alternative confirmatory method should be considered to verify positive results. See full prescribing information for a list of clinically important drug interactions ( 7 )",
+        "dosage_and_administration": "2 DOSAGE AND ADMINISTRATION Indication Dose Frequency Short-Term Treatment of Erosive Esophagitis Associated With GERD ( 2.1 ) Adults 40 mg Once Daily for up to 8 wks Children (5 years and older) \u2265 15 kg to < 40 kg 20 mg Once Daily for up to 8 wks \u2265 40 kg 40 mg Maintenance of Healing of Erosive Esophagitis ( 2.1 ) Adults 40 mg Once Daily* Pathological Hypersecretory Conditions Including Zollinger-Ellison Syndrome ( 2.1 ) Adults 40 mg Twice Daily * Controlled studies did not extend beyond 12 months See full prescribing information for administration instructions 2.1 Recommended Dosing Schedule Pantoprazole sodium is supplied as delayed-release tablets. The recommended dosages are outlined in Table 1. Table 1: Recommended Dosing Schedule for Pantoprazole Sodium Delayed-Release Tablets Indication Dose Frequency Short-Term Treatment of Erosive Esophagitis Associated With GERD Adults 40 mg Once daily for up to 8 weeks* Children (5 years and older) \u2265 15 kg to < 40 kg 20 mg Once daily for up to 8 weeks \u2265 40 kg 40 mg Maintenance of Healing of Erosive Esophagitis Adults 40 mg Once daily*** Pathological Hypersecretory Conditions Including Zollinger-Ellison Syndrome Adults 40 mg Twice daily ** * For adult patients who have not healed after 8 weeks of treatment, an additional 8-week course of pantoprazole sodium delayed-release tablets may be considered. ** Dosage regimens should be adjusted to individual patient needs and should continue for as long as clinically indicated. Doses up to 240 mg daily have been administered. *** Controlled studies did not extend beyond 12 months 2.2 Administration Instructions Directions for method of administration for each dosage form are presented in Table 2. Table 2: Administration Instructions Formulation Route Instructions* Delayed-Release Tablets Oral Swallowed whole, with or without food * Do not split, chew, or crush pantoprazole sodium delayed-release tablets. Take a missed dose as soon as possible. If it is almost time for the next dose, skip the missed dose and take the next dose at the regular scheduled time. Do not take 2 doses at the same time. Pantoprazole Sodium Delayed-Release Tablets Swallow pantoprazole sodium delayed-release tablets whole, with or without food in the stomach. For patients unable to swallow a 40 mg tablet, two 20 mg tablets may be taken. Concomitant administration of antacids does not affect the absorption of pantoprazole sodium delayed-release tablets.",
+        "mechanism_of_action": "12.1 Mechanism of Action Pantoprazole is a PPI that suppresses the final step in gastric acid production by covalently binding to the (H + , K + )-ATPase enzyme system at the secretory surface of the gastric parietal cell. This effect leads to inhibition of both basal and stimulated gastric acid secretion, irrespective of the stimulus. The binding to the (H + , K + )-ATPase results in a duration of antisecretory effect that persists longer than 24 hours for all doses tested (20 mg to 120 mg)."
+    },
+    "regulatory_info": {
+        "sponsor_name": "DR REDDYS LABS LTD",
+        "approval_date": "20141221"
+    },
+    "top_adverse_events": [
+        {
+            "term": "FATIGUE",
+            "count": 15063
+        },
+        {
+            "term": "OFF LABEL USE",
+            "count": 13613
+        },
+        {
+            "term": "DRUG INEFFECTIVE",
+            "count": 13125
+        },
+        {
+            "term": "NAUSEA",
+            "count": 13011
+        },
+        {
+            "term": "DIARRHOEA",
+            "count": 12750
+        },
+        {
+            "term": "DYSPNOEA",
+            "count": 12662
+        },
+        {
+            "term": "PAIN",
+            "count": 11243
+        },
+        {
+            "term": "ACUTE KIDNEY INJURY",
+            "count": 10540
+        },
+        {
+            "term": "CHRONIC KIDNEY DISEASE",
+            "count": 10220
+        },
+        {
+            "term": "VOMITING",
+            "count": 9466
+        }
+    ]
+}

@@ -1,0 +1,116 @@
+{
+  "drug_id": "folic_acid",
+  "drug_name": "Folic Acid",
+  "category": "4. Safe Controls & True Negatives",
+  "tier": "Tier 4: Benchmark Safe Control / True Negative",
+  "aliases": [
+    "Folic Acid",
+    "Folate",
+    "Vitamin B9",
+    "Folvite"
+  ],
+  "primary_indication": "Treatment of megaloblastic anemia, dietary supplement for neural tube defect prevention prior to and during pregnancy",
+  "known_critical_risks": [
+    "Universal prenatal recommendation (400 - 800 mcg/day; 4 mg/day in high-risk history)",
+    "Can mask hematologic signs of Vitamin B12 deficiency anemia"
+  ],
+  "data_source": "DailyMed (NLM/NIH) + openFDA",
+  "spl_metadata": {
+    "setid": "5d67a268-437b-403d-9d05-6524c4a7c499",
+    "title": "M-NATAL PLUS (VITAMIN A, VITAMIN C, VITAMIN D, VITAMIN E, THIAMINE, RIBOFLAVIN, NIACIN, VITAMIN B6, FOLIC ACID, VITAMIN B12, CALCIUM, IRON, ZINC, COPPER) TABLET [REMEDYREPACK INC.]",
+    "published_date": "Aug 13, 2026",
+    "spl_version": 6
+  },
+  "regulatory_info": {
+    "sponsor_name": "APOTEX",
+    "application_number": "ANDA210456",
+    "initial_approval_date": "20260421"
+  },
+  "pharmacologic_class": {
+    "epc": [
+      "Vitamin C [EPC]",
+      "Nicotinic Acid [EPC]"
+    ],
+    "moa": [],
+    "cs": [
+      "Ascorbic Acid [CS]",
+      "Nicotinic Acids [CS]"
+    ]
+  },
+  "top_adverse_events_faers": [
+    {
+      "term": "DRUG INEFFECTIVE",
+      "count": 25963
+    },
+    {
+      "term": "FATIGUE",
+      "count": 24701
+    },
+    {
+      "term": "PAIN",
+      "count": 24320
+    },
+    {
+      "term": "ARTHRALGIA",
+      "count": 20426
+    },
+    {
+      "term": "OFF LABEL USE",
+      "count": 18658
+    },
+    {
+      "term": "RHEUMATOID ARTHRITIS",
+      "count": 18061
+    },
+    {
+      "term": "NAUSEA",
+      "count": 16918
+    },
+    {
+      "term": "DIARRHOEA",
+      "count": 15308
+    },
+    {
+      "term": "HEADACHE",
+      "count": 15270
+    },
+    {
+      "term": "RASH",
+      "count": 14355
+    }
+  ],
+  "clinical_sections": {},
+  "patient_safety_guardrails": {
+    "contraindications": "CONTRAINDICATIONS: Integra FTM is contraindicated in patients with known hypersensitivity to any of its ingredients; also, all iron compounds are contraindicated in patients with hemosiderosis, hemochromatosis, or hemolytic anemias. Pernicious anemia is a contraindication, as folic acid may obscure its signs and symptoms.",
+    "boxed_warning": "No boxed warning specified in label.",
+    "warnings_and_precautions": "High levels of folic acid may, especially in older adults, hide signs of Vitamin B-12 deficiency (such as pernicious anemia), a condition that can cause nerve damage.\nStore at 15° – 30°C (59° – 86°F). [See USP Controlled Room Temperature.] Protect from light and moisture. Dispense in a tight, light-resistant container. Notice: Contact with moisture may produce surface discoloration or erosion.\nCall your licensed medical practitioner about side effects. You may report side effects by calling Method at 1-877-250-3427 or FDA at 1-800-FDA-1088.",
+    "drug_interactions": "Drug interactions not specified in label.",
+    "overdosage": "OVERDOSE: Iron: Signs and Symptoms: Iron is toxic. Acute overdosage of iron may cause nausea and vomiting and, in severe cases, cardiovascular collapse and death. Other symptoms include pallor and cyanosis, melena, shock, drowsiness and coma. The estimated overdose of orally ingested iron is 300-mg/kg body weight. When overdoses are ingested by children, severe reactions, including fatalities, have resulted. Integra FTM should be stored beyond the reach of children to prevent against accidental iron poisoning. Keep this and all other drugs out of the reach of children. Treatment: For specific therapy, exchange transfusion and chelating agents should be used. For general management, perform gastric lavage with sodium bicarbonate solution or milk. Administer intravenous fluids and electrolytes and use oxygen."
+  },
+  "patient_population_profiles": {
+    "pregnancy_and_teratogenicity": "USAGE IN PREGNANCY: Before Integra FTM is prescribed for megaloblastic anemia in pregnancy, appropriate diagnostic exclusion of Addisonian pernicious anemia, (due to faulty or blocked absorption of vitamin B12, or extrinsic factor or either a genetic, immunological or surgical basis) should be carried out.",
+    "lactation_and_nursing": "Lactation / nursing mothers guidance not explicitly detailed.",
+    "pediatric_use": "Pediatric Use: Safety and effectiveness of this product have not been established in pediatric patients.",
+    "geriatric_use": "Geriatric Use: No clinical studies have been performed in patients age 65 and over to determine whether older persons respond differently from younger persons. Dosage should always begin at the low end of the dosage scale and should consider that elderly persons may have decreased hepatic, renal, or cardiac function and or concomitant diseases.",
+    "renal_impairment": "See Dosage and Administration / Warnings for renal dosage adjustments.",
+    "hepatic_impairment": "See Dosage and Administration / Warnings for hepatic dosage adjustments.",
+    "weight_and_obesity_considerations": "Standard flat dosing applies; check clinical guidelines for severe obesity / cachexia adjustments."
+  },
+  "clinical_usage_guidance": {
+    "indications_and_usage": "INDICATIONS: Integra FTM is indicated for the treatment of iron deficiency anemia, and folate deficiency anemia. Integra FTM is indicated in pregnancy for the prevention and treatment of iron deficiency and to supply a maintenance dosage of folic acid.",
+    "dosage_and_administration": "Before, during and/or after pregnancy, one tablet daily, with a meal, or as directed by a licensed healthcare practitioner regardless of lactation status.",
+    "adverse_reactions": "Adverse Reactions: Folic Acid: Allergic sensitizations have been reported following both oral and parenteral administration of folic acid. Ferrous Fumarate: Gastrointestinal disturbances (anorexia, nausea, diarrhea, constipation, heartburn and vomiting) occur occasionally, but are usually mild and may subside with continuation of therapy. Reducing the dose and administering it with meals will minimize these effects in the sensitive patient. Increasing fiber in the diet can relieve constipation. Iron may turn stools black. This is a harmless effect that is a result of unabsorbed iron. Although the absorption of iron is best when taken between meals, giving Integra FTM after meals may control occasional G.I. disturbances. Integra FTM is best absorbed when taken at bedtime.",
+    "mechanism_of_action": "CLINICAL PHARMACOLOGY: Integra FTM is unique in that it utilizes two (2) different forms of iron, i.e., Ferrous Fumarate and Polysaccharide Iron Complex (as cell-contracted akaganèite), making available a total of 125 mg of elemental iron per capsule as follows: Ferrous Fumarate (anhydrous) 191.1 mg Polysaccharide iron complex (PIC) 135.9 mg Ferrous Fumarate: Provides about 62.5 mg of elemental iron per dose. Ferrous Fumarate is an anhydrous salt of a combination of ferrous iron and fumaric acid, containing 33% of iron per weight. The acute toxicity in experimental animals is low and Ferrous Fumarate is well tolerated clinically. As a ferrous salt, it is more efficiently absorbed in the duodenum. Ferrous Fumarate contrasts very favorably with the availability of the 20% of elemental iron of ferrous sulfate, and the 13% of elemental iron of ferrous gluconate. Polysaccharide Iron Complex: Provides about 62.5 mg elemental iron, as a cell-contracted akaganèite. It is a product of ferric iron complexed to a low molecular weight polysaccharide. This polysaccharide is produced by the extensive hydrolysis of starch and is a dark brown powder that dissolves in water to form a very dark brown solution, which is virtually odorless and tasteless. Folic Acid: Folic Acid is one of the important hematopoetic agents necessary for proper regeneration of the blood-forming elements and their function. Folic acid is a precursor of a large family of compounds which serve as coenzymes in carbon transfer reactions. These reactions are required for the synthesis of purine and pyrimidine bases, inter-conversion of glycine and serine, biosynthesis of methionine methyl groups and degradation of histidine. Additionally, folic acid increases jejunal glycolytic enzymes and is involved in the desaturation and hydroxylation of long-chain fatty acids in the brain. A deficiency in folic acid results in megaloblastic anemia. All IntegraTM products include a unique patented source of iron, e.g. Ferrous Fumarate and Polysaccharide Iron Complex (U.S. Patent No: 11/243,043 Pending). \"An increase in tolerability is observed with the (patented formulation) and is believed to occur as the result of distributing the total iron content in the composition among compounds that provide iron to the patient's blood stream via two different mechanisms. The ferrous salts are readily absorbed in the upper gut, by direct dissolution and absorption of the ferrous iron by the bloodstream. However, the iron available from PIC is absorbed in the lower gut, via an active protein transport mechanism\".",
+    "clinical_pharmacology": "CLINICAL PHARMACOLOGY: Integra FTM is unique in that it utilizes two (2) different forms of iron, i.e., Ferrous Fumarate and Polysaccharide Iron Complex (as cell-contracted akaganèite), making available a total of 125 mg of elemental iron per capsule as follows: Ferrous Fumarate (anhydrous) 191.1 mg Polysaccharide iron complex (PIC) 135.9 mg Ferrous Fumarate: Provides about 62.5 mg of elemental iron per dose. Ferrous Fumarate is an anhydrous salt of a combination of ferrous iron and fumaric acid, containing 33% of iron per weight. The acute toxicity in experimental animals is low and Ferrous Fumarate is well tolerated clinically. As a ferrous salt, it is more efficiently absorbed in the duodenum. Ferrous Fumarate contrasts very favorably with the availability of the 20% of elemental iron of ferrous sulfate, and the 13% of elemental iron of ferrous gluconate. Polysaccharide Iron Complex: Provides about 62.5 mg elemental iron, as a cell-contracted akaganèite. It is a product of ferric iron complexed to a low molecular weight polysaccharide. This polysaccharide is produced by the extensive hydrolysis of starch and is a dark brown powder that dissolves in water to form a very dark brown solution, which is virtually odorless and tasteless. Folic Acid: Folic Acid is one of the important hematopoetic agents necessary for proper regeneration of the blood-forming elements and their function. Folic acid is a precursor of a large family of compounds which serve as coenzymes in carbon transfer reactions. These reactions are required for the synthesis of purine and pyrimidine bases, inter-conversion of glycine and serine, biosynthesis of methionine methyl groups and degradation of histidine. Additionally, folic acid increases jejunal glycolytic enzymes and is involved in the desaturation and hydroxylation of long-chain fatty acids in the brain. A deficiency in folic acid results in megaloblastic anemia. All IntegraTM products include a unique patented source of iron, e.g. Ferrous Fumarate and Polysaccharide Iron Complex (U.S. Patent No: 11/243,043 Pending). \"An increase in tolerability is observed with the (patented formulation) and is believed to occur as the result of distributing the total iron content in the composition among compounds that provide iron to the patient's blood stream via two different mechanisms. The ferrous salts are readily absorbed in the upper gut, by direct dissolution and absorption of the ferrous iron by the bloodstream. However, the iron available from PIC is absorbed in the lower gut, via an active protein transport mechanism\".",
+    "patient_counseling_information": "Advise patient to consult healthcare provider and review medication guide before use.",
+    "storage_and_handling": "Supplied as beige tablet, imprinted \"M170\" dispensed in\n\nNDC: 70518-3579-00\nNDC: 70518-3579-01\nPACKAGING: 30 in 1 BLISTER PACK\nPACKAGING: 100 in 1 BOTTLE PLASTIC\n\nHigh levels of folic acid may, especially in older adults, hide signs of Vitamin B-12 deficiency (such as pernicious anemia), a condition that can cause nerve damage.\nStore at 15° – 30°C (59° – 86°F). [See USP Controlled Room Temperature.] Protect from light and moisture. Dispense in a tight, light-resistant container. Notice: Contact with moisture may produce surface discoloration or erosion.\n\nRepackaged and Distributed By:\nRemedy Repack, Inc.\n625 Kolter Dr. Suite #4 Indiana, PA 1-724-465-8762"
+  },
+  "all_patient_factor_tags": [
+    "Age (Pediatric / Children)",
+    "Age (Geriatric / Elderly)",
+    "Pregnancy / Teratogenicity",
+    "Lactation / Breastfeeding",
+    "Renal Impairment / Kidney",
+    "Hepatic Impairment / Liver"
+  ]
+}

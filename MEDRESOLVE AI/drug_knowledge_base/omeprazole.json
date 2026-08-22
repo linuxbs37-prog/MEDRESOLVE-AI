@@ -1,0 +1,63 @@
+{
+    "search_query": "Omeprazole",
+    "generic_name": "OMEPRAZOLE",
+    "brand_name": "omeprazole",
+    "pharm_class": [
+        "Proton Pump Inhibitor [EPC]"
+    ],
+    "label_clinical_info": {
+        "indications_and_usage": "Use \u2022 treats frequent heartburn (occurs 2 or more days a week) \u2022 not intended for immediate relief of heartburn; this drug may take 1 to 4 days for full effect",
+        "contraindications": "Data not provided.",
+        "warnings_and_precautions": "Warnings Allergy alert: \u2022 do not use if you are allergic to omeprazole. \u2022 omeprazole may cause severe skin reactions. Symptoms may include: \u2022 skin reddening \u2022 blisters \u2022 rash If an allergic reaction occurs, stop use and seek medical help right away. Do not use if you have: \u2022 trouble or pain swallowing food, vomiting with blood, or bloody or black stools \u2022 heartburn with lightheadedness, sweating or dizziness \u2022 chest pain or shoulder pain with shortness of breath; sweating; pain spreading to arms, neck or shoulders; or lightheadedness \u2022 frequent chest pain These may be signs of a serious condition. See your doctor. Ask a doctor before use if you have: \u2022 had heartburn over 3 months. This may be a sign of a more serious condition. \u2022 frequent wheezing, particularly with heartburn \u2022 unexplained weight loss \u2022 nausea or vomiting \u2022 stomach pain Ask a doctor or pharmacist before use if you are taking a prescription drug. Acid reducers may interact with certain prescription drugs. Stop use and ask a doctor if: \u2022 your heartburn continues or worsens \u2022 you need to take this product for more than 14 days \u2022 you need to take more than 1 course of treatment every 4 months \u2022 you get diarrhea \u2022 you develop a rash or joint pain If pregnant or breast-feeding, ask a health professional before use. Keep out of reach of children. In case of overdose, get medical help or contact a Poison Control Center right away (1-800-222-1222).",
+        "boxed_warning": "No boxed warning.",
+        "drug_interactions": "Data not provided.",
+        "dosage_and_administration": "Directions \u2022 for adults 18 years of age and older \u2022 this product is to be used once a day (every 24 hours), every day for 14 days \u2022 it may take 1 to 4 days for full effect; some people get complete relief of symptoms within 24 hours 14-Day Course of Treatment \u2022 swallow 1 tablet with a glass of water before eating in the morning \u2022 take every day for 14 days \u2022 do not take more than 1 tablet a day \u2022 do not use for more than 14 days unless directed by your doctor \u2022 swallow whole. Do not chew or crush tablets Repeated 14-Day Courses (if needed) \u2022 you may repeat a 14-day course every 4 months \u2022 do not take for more than 14 days or more often than every 4 months unless directed by a doctor \u2022 children under 18 years of age: ask a doctor. Heartburn in children may sometimes be caused by a serious condition.",
+        "mechanism_of_action": "Data not provided."
+    },
+    "regulatory_info": {
+        "sponsor_name": "DEXCEL",
+        "approval_date": "20250605"
+    },
+    "top_adverse_events": [
+        {
+            "term": "NAUSEA",
+            "count": 11108
+        },
+        {
+            "term": "DIARRHOEA",
+            "count": 10879
+        },
+        {
+            "term": "FATIGUE",
+            "count": 10833
+        },
+        {
+            "term": "DYSPNOEA",
+            "count": 9082
+        },
+        {
+            "term": "DRUG INEFFECTIVE",
+            "count": 8458
+        },
+        {
+            "term": "HEADACHE",
+            "count": 8243
+        },
+        {
+            "term": "PAIN",
+            "count": 7961
+        },
+        {
+            "term": "OFF LABEL USE",
+            "count": 7952
+        },
+        {
+            "term": "VOMITING",
+            "count": 7742
+        },
+        {
+            "term": "DIZZINESS",
+            "count": 7338
+        }
+    ]
+}

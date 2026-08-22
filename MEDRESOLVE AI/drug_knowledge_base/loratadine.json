@@ -1,0 +1,110 @@
+{
+  "drug_id": "loratadine",
+  "drug_name": "Loratadine",
+  "category": "4. Safe Controls & True Negatives",
+  "tier": "Tier 4: Benchmark Safe Control / True Negative",
+  "aliases": [
+    "Loratadine",
+    "Claritin",
+    "Alavert"
+  ],
+  "primary_indication": "Allergic rhinitis, hives / chronic idiopathic urticaria",
+  "known_critical_risks": [
+    "Non-sedating antihistamine of choice in pregnancy and breastfeeding",
+    "Pediatric use approved >= 2 years",
+    "Dose adjustment in hepatic impairment"
+  ],
+  "data_source": "DailyMed (NLM/NIH) + openFDA",
+  "spl_metadata": {
+    "setid": "98e41ae1-677a-4583-9a0a-edba29ebbc30",
+    "title": "LORATADINE TABLET [MAJOR PHARMACEUTICALS]",
+    "published_date": "Aug 17, 2026",
+    "spl_version": 3
+  },
+  "regulatory_info": {
+    "sponsor_name": "PERRIGO",
+    "application_number": "ANDA076301",
+    "initial_approval_date": "20110923"
+  },
+  "pharmacologic_class": {
+    "epc": [],
+    "moa": [],
+    "cs": []
+  },
+  "top_adverse_events_faers": [
+    {
+      "term": "DRUG INEFFECTIVE",
+      "count": 4049
+    },
+    {
+      "term": "FATIGUE",
+      "count": 3481
+    },
+    {
+      "term": "NAUSEA",
+      "count": 2941
+    },
+    {
+      "term": "DYSPNOEA",
+      "count": 2645
+    },
+    {
+      "term": "HEADACHE",
+      "count": 2627
+    },
+    {
+      "term": "DIARRHOEA",
+      "count": 2587
+    },
+    {
+      "term": "OFF LABEL USE",
+      "count": 2423
+    },
+    {
+      "term": "DIZZINESS",
+      "count": 2283
+    },
+    {
+      "term": "PAIN",
+      "count": 2145
+    },
+    {
+      "term": "RASH",
+      "count": 1749
+    }
+  ],
+  "clinical_sections": {},
+  "patient_safety_guardrails": {
+    "contraindications": "Contraindications not explicitly detailed.",
+    "boxed_warning": "No boxed warning specified in label.",
+    "warnings_and_precautions": "Do not use if you have ever had an allergic reaction to this product or any of its ingredients.",
+    "drug_interactions": "Drug interactions not specified in label.",
+    "overdosage": "Overdosage management not specified in label."
+  },
+  "patient_population_profiles": {
+    "pregnancy_and_teratogenicity": "### If pregnant or breast-feeding,\nask a health professional before use.",
+    "lactation_and_nursing": "Lactation / nursing mothers guidance not explicitly detailed.",
+    "pediatric_use": "Pediatric use and age limitations not specified in label.",
+    "geriatric_use": "Geriatric use precautions not specified in label.",
+    "renal_impairment": "See Dosage and Administration / Warnings for renal dosage adjustments.",
+    "hepatic_impairment": "See Dosage and Administration / Warnings for hepatic dosage adjustments.",
+    "weight_and_obesity_considerations": "Standard flat dosing applies; check clinical guidelines for severe obesity / cachexia adjustments."
+  },
+  "clinical_usage_guidance": {
+    "indications_and_usage": "temporarily relieves these symptoms due to hay fever or other upper respiratory allergies:\n\n• runny nose\n• itchy, watery eyes\n• sneezing\n• itching of the nose or throat",
+    "dosage_and_administration": "adults and children 6 years and over | 1 tablet daily; not more than 1 tablet in 24 hours | children under 6 years of age | ask a doctor | consumers with liver or kidney disease | ask a doctor |",
+    "adverse_reactions": "Adverse reactions not specified in label.",
+    "mechanism_of_action": "Information not specified in active label.",
+    "clinical_pharmacology": "Clinical pharmacology details not available.",
+    "patient_counseling_information": "Advise patient to consult healthcare provider and review medication guide before use.",
+    "storage_and_handling": "• Tamper-evident: do not use if foil seal under cap, printed with \"SEALED for YOUR PROTECTION\" is missing, open or broken\n• store at 20° to 25°C (68° to 77°F)\n• protect from excessive moisture"
+  },
+  "all_patient_factor_tags": [
+    "Age (Pediatric / Children)",
+    "Age (Geriatric / Elderly)",
+    "Pregnancy / Teratogenicity",
+    "Lactation / Breastfeeding",
+    "Renal Impairment / Kidney",
+    "Hepatic Impairment / Liver"
+  ]
+}

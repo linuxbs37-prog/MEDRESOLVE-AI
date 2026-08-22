@@ -1,0 +1,64 @@
+# ═══════════════════════════════════════════════
+#  AuraMed AI — Root .gitignore
+# ═══════════════════════════════════════════════
+
+# --- Secrets and Environment ---
+.env
+.env.local
+.env.*.local
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+*.whl
+.venv/
+venv/
+
+# --- Data and Indexes (large binary artifacts) ---
+data/chroma_db/
+data/bm25_indexes/
+data/*.pkl
+
+# --- ML Model Caches ---
+.cache/
+sentence_transformers/
+
+# --- Node.js ---
+node_modules/
+package-lock.json
+
+# --- Editors and IDEs ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# --- OS ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Logs ---
+*.log
+logs/
+
+# --- Test and Coverage ---
+.pytest_cache/
+.coverage
+htmlcov/
+
+# --- Archives ---
+*.zip
+*.tar.gz
+*.rar
+
+# --- PDF (large data files) ---
+*.pdf

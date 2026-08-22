@@ -1,0 +1,50 @@
+{
+    "search_query": "Fluticasone",
+    "generic_name": null,
+    "brand_name": null,
+    "pharm_class": [],
+    "label_clinical_info": {},
+    "regulatory_info": {},
+    "top_adverse_events": [
+        {
+            "term": "DYSPNOEA",
+            "count": 1821
+        },
+        {
+            "term": "DRUG INEFFECTIVE",
+            "count": 1798
+        },
+        {
+            "term": "OFF LABEL USE",
+            "count": 1597
+        },
+        {
+            "term": "FATIGUE",
+            "count": 1582
+        },
+        {
+            "term": "HEADACHE",
+            "count": 1413
+        },
+        {
+            "term": "NAUSEA",
+            "count": 1381
+        },
+        {
+            "term": "ASTHMA",
+            "count": 1356
+        },
+        {
+            "term": "PAIN",
+            "count": 1347
+        },
+        {
+            "term": "PNEUMONIA",
+            "count": 1173
+        },
+        {
+            "term": "DIARRHOEA",
+            "count": 1094
+        }
+    ]
+}

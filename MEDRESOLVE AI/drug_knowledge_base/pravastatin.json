@@ -1,0 +1,50 @@
+{
+    "search_query": "Pravastatin",
+    "generic_name": null,
+    "brand_name": null,
+    "pharm_class": [],
+    "label_clinical_info": {},
+    "regulatory_info": {},
+    "top_adverse_events": [
+        {
+            "term": "FATIGUE",
+            "count": 2501
+        },
+        {
+            "term": "NAUSEA",
+            "count": 2136
+        },
+        {
+            "term": "DRUG INEFFECTIVE",
+            "count": 2051
+        },
+        {
+            "term": "DIARRHOEA",
+            "count": 2039
+        },
+        {
+            "term": "DYSPNOEA",
+            "count": 1971
+        },
+        {
+            "term": "DIZZINESS",
+            "count": 1709
+        },
+        {
+            "term": "HEADACHE",
+            "count": 1641
+        },
+        {
+            "term": "PAIN",
+            "count": 1625
+        },
+        {
+            "term": "OFF LABEL USE",
+            "count": 1515
+        },
+        {
+            "term": "ASTHENIA",
+            "count": 1466
+        }
+    ]
+}

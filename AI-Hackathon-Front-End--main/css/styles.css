@@ -1,0 +1,360 @@
+/* ==========================================================================
+   AuraMed AI - Global Clinical Design System Styles
+   Theme, Internationalization (RTL/LTR), Dark Mode & Accessibility
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-arabic: 'Cairo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Polished Medical Brand Colors */
+  --text-primary: #122056;       /* Pantone 2766 C (Deep Royal Navy) */
+  --color-accent: #5B65DC;       /* Pantone 2726 C (Electric Indigo Accent) */
+  --color-accent-hover: #4A54CA;
+  --color-secondary: #EEEFFD;    /* Secondary Buttons / Soft Tint */
+  --bg-app: #FAFAFD;             /* Page Background */
+  --surface-card: #FFFFFF;       /* Menubar & Tile Surface */
+  
+  --text-secondary: #47547E;
+  --text-muted: #828EA8;
+  --border-subtle: #E3E5F8;
+}
+
+/* Dark Mode Variables - High Legibility Deep Slate-Navy */
+html.dark {
+  --bg-app: #090D1F;
+  --surface-card: #111736;
+  --text-primary: #FAFAFD;
+  --text-secondary: #BAC4E6;
+  --text-muted: #7E8BAE;
+  --border-subtle: #1E285C;
+  --color-secondary: #19204A;
+  --color-accent: #6B75E6;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-app);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+html.dark body {
+  background-color: #090D1F;
+  color: #FAFAFD;
+}
+
+h1, h2, h3, h4, h5, h6, .font-heading {
+  font-family: var(--font-sans);
+}
+
+/* --------------------------------------------------------------------------
+   Arabic Typography & RTL Enhancements
+   -------------------------------------------------------------------------- */
+html[dir="rtl"],
+html[lang="ar"],
+.lang-ar {
+  font-family: var(--font-arabic), var(--font-sans);
+}
+
+html[dir="rtl"] h1,
+html[dir="rtl"] h2,
+html[dir="rtl"] h3,
+html[dir="rtl"] h4,
+html[dir="rtl"] h5,
+html[dir="rtl"] h6 {
+  font-family: var(--font-arabic), var(--font-sans);
+  letter-spacing: normal !important;
+}
+
+html[dir="rtl"] #a11yModalTrigger {
+  left: auto;
+  right: 1.25rem;
+}
+
+/* Smooth Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #c5caf5;
+  border-radius: 9999px;
+}
+html.dark ::-webkit-scrollbar-thumb {
+  background: #252e63;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #5B65DC;
+}
+
+/* Pulse animation for AI thinking indicator */
+@keyframes clinicalPulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+.animate-pulse-dot-1 {
+  animation: clinicalPulse 1.4s infinite ease-in-out;
+}
+.animate-pulse-dot-2 {
+  animation: clinicalPulse 1.4s infinite ease-in-out 0.2s;
+}
+.animate-pulse-dot-3 {
+  animation: clinicalPulse 1.4s infinite ease-in-out 0.4s;
+}
+
+/* Glowing breath animation */
+@keyframes breathGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(91, 101, 220, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(91, 101, 220, 0);
+  }
+}
+
+.animate-breath {
+  animation: breathGlow 2.5s infinite;
+}
+
+/* Chat bubble transitions */
+.message-enter {
+  animation: messageSlideUp 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes messageSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Modal fade & scale */
+.modal-overlay-enter {
+  animation: fadeIn 0.2s ease-out forwards;
+}
+.modal-card-enter {
+  animation: scaleUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Focus styling */
+input:focus, select:focus, textarea:focus, button:focus-visible {
+  outline: none;
+}
+
+/* Prose inside medical messages */
+.ai-prose h3 {
+  font-weight: 700;
+  margin-top: 0.75rem;
+  margin-bottom: 0.35rem;
+  color: inherit;
+}
+.ai-prose h4 {
+  font-weight: 600;
+  margin-top: 0.75rem;
+  margin-bottom: 0.25rem;
+  font-size: 0.95rem;
+  color: inherit;
+}
+
+.ai-prose p {
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+.ai-prose ul, .ai-prose ol {
+  padding-left: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+html[dir="rtl"] .ai-prose ul,
+html[dir="rtl"] .ai-prose ol {
+  padding-left: 0;
+  padding-right: 1.25rem;
+}
+
+.ai-prose li {
+  margin-bottom: 0.25rem;
+}
+
+.ai-prose strong {
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   Accessibility Suite Overrides
+   -------------------------------------------------------------------------- */
+/* Font Size Scaling */
+html.a11y-text-large {
+  font-size: 115% !important;
+}
+
+html.a11y-text-xlarge {
+  font-size: 130% !important;
+}
+
+/* High Contrast Mode - Strict ADA/WCAG Compliance */
+html.a11y-high-contrast {
+  filter: contrast(140%);
+}
+html.a11y-high-contrast body {
+  background-color: #000000 !important;
+  color: #FFFFFF !important;
+}
+html.a11y-high-contrast header,
+html.a11y-high-contrast section,
+html.a11y-high-contrast main,
+html.a11y-high-contrast .bg-white,
+html.a11y-high-contrast .bg-slate-50,
+html.a11y-high-contrast .bg-slate-100 {
+  background-color: #0A0A0A !important;
+  color: #FFFFFF !important;
+  border-color: #444444 !important;
+}
+html.a11y-high-contrast .text-slate-900,
+html.a11y-high-contrast .text-slate-800,
+html.a11y-high-contrast .text-slate-700,
+html.a11y-high-contrast .text-slate-600,
+html.a11y-high-contrast .text-slate-500 {
+  color: #F0F0F0 !important;
+}
+
+/* Monochrome Grayscale Mode */
+html.a11y-monochrome {
+  filter: grayscale(100%);
+}
+
+/* Dyslexia-Friendly Font Mode */
+body.a11y-dyslexic,
+body.a11y-dyslexic * {
+  font-family: 'Comic Sans MS', 'Arial Rounded MT Bold', sans-serif !important;
+  letter-spacing: 0.05em !important;
+  line-height: 1.8 !important;
+}
+
+/* Enhanced Line Spacing */
+body.a11y-enhanced-spacing * {
+  line-height: 2 !important;
+  letter-spacing: 0.06em !important;
+}
+
+/* Highlight Links & Focus */
+body.a11y-highlight-links a,
+body.a11y-highlight-links button {
+  text-decoration: underline !important;
+  outline: 3px solid #5B65DC !important;
+  outline-offset: 2px !important;
+}
+
+/* Print Styles */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  #a11yModalTrigger, #a11yModal, .no-print {
+    display: none !important;
+  }
+  /* Report: hide form, show only results when printing */
+  #reportForm, header, footer,
+  #reportLoadingOverlay, #reportErrorSection,
+  #reportNewBtn, #reportPrintBtn {
+    display: none !important;
+  }
+  #reportResultsSection {
+    margin-top: 0 !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Report Page — Risk Assessment Styles
+   -------------------------------------------------------------------------- */
+
+/* Report results entrance animation */
+.report-results-enter {
+  animation: reportSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes reportSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Risk bar fill animation */
+.risk-bar-animate {
+  transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Risk finding card hover effect */
+#reportRiskFindings > div:not(:first-child):hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(91, 101, 220, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Details toggle styling */
+#reportRiskFindings details summary {
+  user-select: none;
+}
+#reportRiskFindings details[open] summary {
+  margin-bottom: 0.25rem;
+}
+
+/* Loading pulse animation for report */
+@keyframes reportPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(91, 101, 220, 0.4);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 12px rgba(91, 101, 220, 0);
+  }
+}
+
+#reportLoadingOverlay .animate-pulse {
+  animation: reportPulse 2s infinite;
+}
+

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title data-i18n="login.title">Sign In | AuraMed AI</title>
+  
+  <!-- Tailwind CSS CDN with Custom Palette & Dark Mode Support -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              navy: '#122056',
+              accent: '#5B65DC',
+              accentHover: '#4A54CA',
+              light: '#EEEFFD',
+              bg: '#FAFAFD',
+              surface: '#FFFFFF',
+              darkBg: '#090D1F',
+              darkSurface: '#111736',
+              darkCard: '#161E45',
+              darkBorder: '#1E285C'
+            }
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'Cairo', 'Inter', 'sans-serif'],
+            body: ['Inter', 'Cairo', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Supabase JS Client CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="min-h-screen bg-[#FAFAFD] dark:bg-[#090D1F] text-[#122056] dark:text-[#FAFAFD] flex flex-col justify-between selection:bg-[#EEEFFD] selection:text-[#122056] transition-colors duration-200">
+
+  <!-- Header with Brand & Controls (Theme, Language) -->
+  <header class="w-full border-b border-[#E3E5F8] dark:border-[#1E285C] bg-white/90 dark:bg-[#111736]/90 backdrop-blur-md sticky top-0 z-30 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="index.html" class="flex items-center gap-2.5 group focus:outline-none rounded-lg p-1">
+        <div class="w-9 h-9 rounded-xl bg-[#5B65DC] text-white flex items-center justify-center shadow-sm group-hover:bg-[#4A54CA] transition-colors">
+          <i data-lucide="cross" class="w-5 h-5"></i>
+        </div>
+        <div class="flex flex-col">
+          <span class="text-base font-bold tracking-tight text-[#122056] dark:text-white leading-tight font-sans">
+            <span data-i18n="brand.name">AuraMed</span><span class="text-[#5B65DC] dark:text-[#8F9AF0]" data-i18n="brand.suffix">AI</span>
+          </span>
+          <span class="text-[10px] font-semibold text-[#47547E] dark:text-[#BAC4E6] tracking-wider uppercase hidden sm:inline" data-i18n="brand.tagline">Clinical Assistant</span>
+        </div>
+      </a>
+
+      <!-- Navbar Right Controls -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        
+        <!-- Language Switcher Button -->
+        <button
+          type="button"
+          data-action="toggle-lang"
+          class="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-[#EEEFFD] dark:bg-[#1C2555] hover:bg-[#E3E5F8] dark:hover:bg-[#252E63] text-[#122056] dark:text-[#FAFAFD] border border-[#E3E5F8] dark:border-[#1E285C] transition-colors focus:outline-none"
+          title="Switch Language / تبديل اللغة"
+        >
+          <i data-lucide="globe" class="w-3.5 h-3.5 text-[#5B65DC] dark:text-[#8F9AF0]"></i>
+          <span class="lang-label">العربية</span>
+        </button>
+
+        <!-- Dark Mode Toggle Button -->
+        <button
+          type="button"
+          data-action="toggle-theme"
+          class="p-2 rounded-full text-[#47547E] hover:text-[#122056] dark:text-[#BAC4E6] dark:hover:text-white bg-[#EEEFFD] dark:bg-[#1C2555] hover:bg-[#E3E5F8] dark:hover:bg-[#252E63] border border-[#E3E5F8] dark:border-[#1E285C] transition-colors focus:outline-none"
+          aria-label="Toggle Dark Mode"
+          title="Toggle Dark Mode"
+        >
+          <i data-lucide="moon" class="w-4 h-4"></i>
+        </button>
+
+        <!-- Security / Trust Indicator -->
+        <div class="hidden md:flex items-center gap-2 text-xs font-medium text-[#47547E] dark:text-[#BAC4E6] bg-[#EEEFFD]/80 dark:bg-[#1C2555]/80 px-3 py-1.5 rounded-full border border-[#E3E5F8] dark:border-[#1E285C]">
+          <i data-lucide="shield-check" class="w-4 h-4 text-[#5B65DC] dark:text-[#8F9AF0]"></i>
+          <span data-i18n="nav.security">256-Bit Encrypted Clinical Session</span>
+        </div>
+
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Main Content Layout -->
+  <main class="flex-1 flex items-center justify-center p-4 sm:p-6 lg:p-8">
+    <div class="w-full max-w-md">
+
+      <!-- Card Container -->
+      <div class="bg-white dark:bg-[#111736] rounded-2xl border border-[#E3E5F8] dark:border-[#1E285C] shadow-sm sm:shadow-md p-6 sm:p-8 transition-colors">
+        
+        <!-- Header Text -->
+        <div class="text-center mb-8">
+          <div class="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-[#EEEFFD] dark:bg-[#1C2555] border border-[#E3E5F8] dark:border-[#1E285C] text-[#5B65DC] dark:text-[#8F9AF0] mb-4 shadow-2xs">
+            <i data-lucide="user-check" class="w-6 h-6"></i>
+          </div>
+          <h1 class="text-2xl sm:text-3xl font-bold tracking-tight text-[#122056] dark:text-white font-sans" data-i18n="login.heading">Welcome Back</h1>
+          <p class="text-sm text-[#47547E] dark:text-[#BAC4E6] mt-1.5" data-i18n="login.subheading">Sign in to securely access your patient profile and medical AI assistant.</p>
+        </div>
+
+        <!-- Error Alert Container -->
+        <div id="errorAlert" class="hidden mb-6 p-3.5 rounded-xl bg-rose-50 dark:bg-rose-950/40 border border-rose-200 dark:border-rose-900 text-rose-800 dark:text-rose-300 text-xs sm:text-sm flex items-start gap-2.5" role="alert">
+          <i data-lucide="alert-circle" class="w-5 h-5 text-rose-600 dark:text-rose-400 flex-shrink-0 mt-0.5"></i>
+          <div class="flex-1">
+            <span id="errorMessage">Invalid username or password.</span>
+          </div>
+        </div>
+
+        <!-- Login Form -->
+        <form id="loginForm" class="space-y-4" novalidate>
+
+          <!-- Username / Email Input -->
+          <div>
+            <label for="username" class="block text-xs font-semibold uppercase tracking-wider text-[#122056] dark:text-[#BAC4E6] mb-1.5">
+              <span data-i18n="login.email.label">Email Address or Patient ID</span> <span class="text-rose-500">*</span>
+            </label>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 rtl:left-auto rtl:right-0 pl-3.5 rtl:pl-0 rtl:pr-3.5 flex items-center pointer-events-none text-[#828EA8]">
+                <i data-lucide="mail" class="w-4 h-4"></i>
+              </div>
+              <input
+                type="text"
+                id="username"
+                name="username"
+                autocomplete="username"
+                required
+                placeholder="sarah.jenkins@example.com"
+                data-i18n-placeholder="login.email.placeholder"
+                class="w-full pl-10 rtl:pl-4 rtl:pr-10 pr-4 py-2.5 text-sm bg-white dark:bg-[#161E45] border border-[#E3E5F8] dark:border-[#1E285C] rounded-xl text-[#122056] dark:text-white placeholder:text-[#828EA8] focus:border-[#5B65DC] focus:ring-2 focus:ring-[#5B65DC]/20 transition-all"
+              />
+            </div>
+          </div>
+
+          <!-- Password Input -->
+          <div>
+            <div class="flex items-center justify-between mb-1.5">
+              <label for="password" class="block text-xs font-semibold uppercase tracking-wider text-[#122056] dark:text-[#BAC4E6]">
+                <span data-i18n="login.password.label">Password</span> <span class="text-rose-500">*</span>
+              </label>
+              <a href="#" onclick="alert('Password reset instructions will be sent to your email.'); return false;" class="text-xs font-medium text-[#5B65DC] dark:text-[#8F9AF0] hover:underline" data-i18n="login.forgot">
+                Forgot password?
+              </a>
+            </div>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 rtl:left-auto rtl:right-0 pl-3.5 rtl:pl-0 rtl:pr-3.5 flex items-center pointer-events-none text-[#828EA8]">
+                <i data-lucide="lock" class="w-4 h-4"></i>
+              </div>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                autocomplete="current-password"
+                required
+                placeholder="••••••••••••"
+                data-i18n-placeholder="login.password.placeholder"
+                class="w-full pl-10 rtl:pl-11 rtl:pr-10 pr-11 py-2.5 text-sm bg-white dark:bg-[#161E45] border border-[#E3E5F8] dark:border-[#1E285C] rounded-xl text-[#122056] dark:text-white placeholder:text-[#828EA8] focus:border-[#5B65DC] focus:ring-2 focus:ring-[#5B65DC]/20 transition-all"
+              />
+              <button
+                type="button"
+                data-toggle-password="password"
+                aria-label="Show password"
+                class="absolute inset-y-0 right-0 rtl:right-auto rtl:left-0 pr-3.5 rtl:pr-0 rtl:pl-3.5 flex items-center text-[#828EA8] hover:text-[#122056] dark:hover:text-white focus:outline-none"
+              >
+                <i data-lucide="eye" class="w-4 h-4"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Remember Me Checkbox -->
+          <div class="flex items-center justify-between pt-1">
+            <label class="flex items-center gap-2 cursor-pointer select-none">
+              <input type="checkbox" id="rememberMe" class="w-4 h-4 rounded border-[#E3E5F8] text-[#5B65DC] focus:ring-[#5B65DC] dark:bg-[#161E45] dark:border-[#1E285C]" />
+              <span class="text-xs text-[#47547E] dark:text-[#BAC4E6]" data-i18n="login.remember">Remember my secure session</span>
+            </label>
+          </div>
+
+          <!-- Submit Button -->
+          <button
+            type="submit"
+            id="submitBtn"
+            class="w-full mt-2 py-3 px-4 rounded-xl bg-[#5B65DC] hover:bg-[#4A54CA] active:bg-[#3B45B5] text-white font-semibold text-sm shadow-sm hover:shadow transition-all flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-[#5B65DC] focus:ring-offset-2"
+          >
+            <i data-lucide="loader-2" id="submitSpinner" class="w-4 h-4 animate-spin hidden"></i>
+            <span id="submitText" data-i18n="login.btn">Sign In</span>
+          </button>
+        </form>
+
+        <!-- OAuth Buttons -->
+        <div class="mt-6">
+          <div class="relative">
+            <div class="absolute inset-0 flex items-center">
+              <div class="w-full border-t border-[#E3E5F8] dark:border-[#1E285C]"></div>
+            </div>
+            <div class="relative flex justify-center text-xs">
+              <span class="px-2 bg-white dark:bg-[#111736] text-[#828EA8]" data-i18n="login.or">Or continue with</span>
+            </div>
+          </div>
+
+          <div class="mt-6 grid grid-cols-2 gap-3">
+            <button
+              type="button"
+              onclick="AuthService.signInWithOAuth('google')"
+              class="w-full inline-flex justify-center items-center py-2.5 px-4 border border-[#E3E5F8] dark:border-[#1E285C] rounded-xl shadow-sm bg-white dark:bg-[#161E45] text-sm font-medium text-[#122056] dark:text-white hover:bg-gray-50 dark:hover:bg-[#1C2555] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#5B65DC] transition-colors"
+            >
+              <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+              </svg>
+              Google
+            </button>
+            
+            <button
+              type="button"
+              onclick="AuthService.signInWithOAuth('github')"
+              class="w-full inline-flex justify-center items-center py-2.5 px-4 border border-[#E3E5F8] dark:border-[#1E285C] rounded-xl shadow-sm bg-white dark:bg-[#161E45] text-sm font-medium text-[#122056] dark:text-white hover:bg-gray-50 dark:hover:bg-[#1C2555] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#5B65DC] transition-colors"
+            >
+              <svg class="w-5 h-5 mr-2 text-gray-900 dark:text-white" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.379.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.161 22 16.416 22 12c0-5.523-4.477-10-10-10z"></path>
+              </svg>
+              GitHub
+            </button>
+          </div>
+        </div>
+
+        <!-- Registration Link -->
+        <div class="mt-6 text-center text-xs sm:text-sm text-[#47547E] dark:text-[#BAC4E6]">
+          <span data-i18n="login.no_account">Don't have an account yet?</span>
+          <a href="signup.html" class="font-semibold text-[#5B65DC] dark:text-[#8F9AF0] hover:underline ml-1" data-i18n="login.signup_link">
+            Create a Patient Account
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Security Footnote -->
+      <div class="mt-6 text-center space-y-2">
+        <p class="text-[11px] text-[#47547E] dark:text-[#BAC4E6] flex items-center justify-center gap-1">
+          <i data-lucide="lock" class="w-3 h-3 text-[#5B65DC] dark:text-[#8F9AF0]"></i>
+          <span data-i18n="footer.security">Your clinical intake data is encrypted per session and never shared with third parties.</span>
+        </p>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="w-full py-4 text-center border-t border-[#E3E5F8] dark:border-[#1E285C] bg-white dark:bg-[#111736] text-xs text-[#47547E] dark:text-[#BAC4E6] transition-colors">
+    <div class="max-w-7xl mx-auto px-4">
+      <p data-i18n="footer.disclaimer">AuraMed AI provides clinical information, not formal diagnoses. In emergencies, call 911 immediately.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/i18n.js"></script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

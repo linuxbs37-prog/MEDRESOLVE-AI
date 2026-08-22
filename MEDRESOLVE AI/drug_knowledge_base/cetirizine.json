@@ -1,0 +1,110 @@
+{
+  "drug_id": "cetirizine",
+  "drug_name": "Cetirizine",
+  "category": "4. Safe Controls & True Negatives",
+  "tier": "Tier 4: Benchmark Safe Control / True Negative",
+  "aliases": [
+    "Cetirizine",
+    "Zyrtec",
+    "Alleroff"
+  ],
+  "primary_indication": "Allergic rhinitis, chronic urticaria",
+  "known_critical_risks": [
+    "Second-generation antihistamine with well-established safety in pregnancy and pediatrics >= 6 months",
+    "Mild somnolence/sedation",
+    "Renal dose adjustment"
+  ],
+  "data_source": "DailyMed (NLM/NIH) + openFDA",
+  "spl_metadata": {
+    "setid": "0210f9e5-c35b-4cfa-92d1-48555e99f1f3",
+    "title": "CHILDRENS ALLERGY RELIEF (CETIRIZINE HCL) SOLUTION [CVS PHARMACY]",
+    "published_date": "Aug 17, 2026",
+    "spl_version": 4
+  },
+  "regulatory_info": {
+    "sponsor_name": "KENVUE BRANDS",
+    "application_number": "NDA021621",
+    "initial_approval_date": "20260324"
+  },
+  "pharmacologic_class": {
+    "epc": [],
+    "moa": [],
+    "cs": []
+  },
+  "top_adverse_events_faers": [
+    {
+      "term": "FATIGUE",
+      "count": 14515
+    },
+    {
+      "term": "DRUG INEFFECTIVE",
+      "count": 14377
+    },
+    {
+      "term": "PAIN",
+      "count": 13471
+    },
+    {
+      "term": "RASH",
+      "count": 10915
+    },
+    {
+      "term": "OFF LABEL USE",
+      "count": 10413
+    },
+    {
+      "term": "ABDOMINAL DISCOMFORT",
+      "count": 10142
+    },
+    {
+      "term": "ALOPECIA",
+      "count": 10122
+    },
+    {
+      "term": "RHEUMATOID ARTHRITIS",
+      "count": 9440
+    },
+    {
+      "term": "SYSTEMIC LUPUS ERYTHEMATOSUS",
+      "count": 9299
+    },
+    {
+      "term": "PEMPHIGUS",
+      "count": 9089
+    }
+  ],
+  "clinical_sections": {},
+  "patient_safety_guardrails": {
+    "contraindications": "Contraindications not explicitly detailed.",
+    "boxed_warning": "No boxed warning specified in label.",
+    "warnings_and_precautions": "### Warnings\n\n### Do not use\nif you have ever had an allergic reaction to this product or any of its ingredients or to an antihistamine containing hydroxyzine.\n\n### Ask a doctor before use if you have\nliver or kidney disease. Your doctor should determine if you need a different dose.\n\n### Ask a doctor or pharmacist before use if you are\ntaking tranquilizers or sedatives.\n\n•\n\n### •\n\n•\n\n### •\n\n•\n\n### •\n\n•\n\n### •\n\n### Stop use and ask a doctor if\nan allergic reaction to this product occurs. Seek medical help right away.\n\n### If pregnant or breast-feeding:\n\n•\n\n### •\n\n•\n\n### •\n\n### Keep out of reach of children.\nIn case of overdose, get medical help or contact a Poison Control Center right away. (1-800-222-1222)",
+    "drug_interactions": "Drug interactions not specified in label.",
+    "overdosage": "Overdosage management not specified in label."
+  },
+  "patient_population_profiles": {
+    "pregnancy_and_teratogenicity": "### If pregnant or breast-feeding:\n\n•\n\n### •\n\n•\n\n### •",
+    "lactation_and_nursing": "Lactation / nursing mothers guidance not explicitly detailed.",
+    "pediatric_use": "Pediatric use and age limitations not specified in label.",
+    "geriatric_use": "Geriatric use precautions not specified in label.",
+    "renal_impairment": "See Dosage and Administration / Warnings for renal dosage adjustments.",
+    "hepatic_impairment": "See Dosage and Administration / Warnings for hepatic dosage adjustments.",
+    "weight_and_obesity_considerations": "Standard flat dosing applies; check clinical guidelines for severe obesity / cachexia adjustments."
+  },
+  "clinical_usage_guidance": {
+    "indications_and_usage": "### Uses\ntemporarily relieves these symptoms due to hay fever or other upper respiratory allergies:\n\n•\n\n### •\n\n•\n\n### •\n\n•\n\n### •\n\n•\n\n### •",
+    "dosage_and_administration": "### Directions\n\n•\n\n### •\n\n•\n\n### •\n\n•\n\n### •\nadults and children 6 years and over\n5 mL or 10 mL once daily depending upon severity of symptoms; do not take more than 10 mL in 24 hours.\nadults 65 years and over\n5 mL once daily; do not take more than 5 mL in 24 hours.\nchildren 2 to under 6 years of age\n2.5 mL once daily. If needed, dose can be increased to a maximum of 5 mL once daily or 2.5 mL every 12 hours. Do not give more than 5 mL in 24 hours.\nchildren under 2 years of age\nask a doctor\nconsumers with liver or kidney disease\nask a doctor",
+    "adverse_reactions": "Adverse reactions not specified in label.",
+    "mechanism_of_action": "Information not specified in active label.",
+    "clinical_pharmacology": "Clinical pharmacology details not available.",
+    "patient_counseling_information": "Advise patient to consult healthcare provider and review medication guide before use.",
+    "storage_and_handling": "### Other information\n\n•\n\n### •\n\n•\n\n### •\ndo not use if carton is opened, or if printed neckband is broken or missing\n•\n\n### •"
+  },
+  "all_patient_factor_tags": [
+    "Age (Pediatric / Children)",
+    "Age (Geriatric / Elderly)",
+    "Pregnancy / Teratogenicity",
+    "Lactation / Breastfeeding",
+    "Renal Impairment / Kidney",
+    "Hepatic Impairment / Liver"
+  ]
+}

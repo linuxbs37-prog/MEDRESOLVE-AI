@@ -1,0 +1,111 @@
+{
+  "drug_id": "acetaminophen",
+  "drug_name": "Acetaminophen",
+  "category": "4. Safe Controls & True Negatives",
+  "tier": "Tier 4: Benchmark Safe Control / True Negative",
+  "aliases": [
+    "Acetaminophen",
+    "Paracetamol",
+    "Tylenol",
+    "Mapap",
+    "Ofirmev"
+  ],
+  "primary_indication": "Temporary relief of mild-to-moderate pain and fever reduction",
+  "known_critical_risks": [
+    "First-line analgesic/antipyretic in all trimesters of pregnancy",
+    "Boxed warning: Acute liver failure with overdose (> 4,000 mg/day adult max; 3,000 mg in hepatic/chronic alcohol use)",
+    "Pediatric weight-based dosing: 10-15 mg/kg every 4-6 hours"
+  ],
+  "data_source": "DailyMed (NLM/NIH) + openFDA",
+  "spl_metadata": {
+    "setid": "0f0cc40d-7939-4d4d-a931-b4de4070fea1",
+    "title": "CVS NIGHTTIME COLD (ACETAMINOPHEN, DEXTROMETHORPHAN HYDROBROMIDE, DOXYLAMINE SUCCINATE, AND PHENYLEPHRINE HYDROCHLORIDE) SOLUTION [CVS PHARMACY]",
+    "published_date": "Aug 17, 2026",
+    "spl_version": 7
+  },
+  "regulatory_info": {
+    "sponsor_name": "BIONPHARMA",
+    "application_number": "ANDA216999",
+    "initial_approval_date": "20230801"
+  },
+  "pharmacologic_class": {
+    "epc": [],
+    "moa": [],
+    "cs": []
+  },
+  "top_adverse_events_faers": [
+    {
+      "term": "DRUG DEPENDENCE",
+      "count": 51228
+    },
+    {
+      "term": "OVERDOSE",
+      "count": 45143
+    },
+    {
+      "term": "PAIN",
+      "count": 42630
+    },
+    {
+      "term": "DEPENDENCE",
+      "count": 37002
+    },
+    {
+      "term": "DEATH",
+      "count": 29695
+    },
+    {
+      "term": "FATIGUE",
+      "count": 28521
+    },
+    {
+      "term": "TOXICITY TO VARIOUS AGENTS",
+      "count": 28326
+    },
+    {
+      "term": "DRUG INEFFECTIVE",
+      "count": 27811
+    },
+    {
+      "term": "OFF LABEL USE",
+      "count": 27196
+    },
+    {
+      "term": "NAUSEA",
+      "count": 26807
+    }
+  ],
+  "clinical_sections": {},
+  "patient_safety_guardrails": {
+    "contraindications": "Contraindications not explicitly detailed.",
+    "boxed_warning": "No boxed warning specified in label.",
+    "warnings_and_precautions": "### Sore throat warning\nIf sore throat is severe, persists for more than 2 days, is accompanied or followed by fever, headache, rash, nausea, or vomiting, consult a doctor promptly.",
+    "drug_interactions": "Drug interactions not specified in label.",
+    "overdosage": "Overdosage management not specified in label."
+  },
+  "patient_population_profiles": {
+    "pregnancy_and_teratogenicity": "If pregnant or breast-feeding , ask a health professional before use.",
+    "lactation_and_nursing": "Lactation / nursing mothers guidance not explicitly detailed.",
+    "pediatric_use": "Pediatric use and age limitations not specified in label.",
+    "geriatric_use": "Geriatric use precautions not specified in label.",
+    "renal_impairment": "See Dosage and Administration / Warnings for renal dosage adjustments.",
+    "hepatic_impairment": "See Dosage and Administration / Warnings for hepatic dosage adjustments.",
+    "weight_and_obesity_considerations": "Standard flat dosing applies; check clinical guidelines for severe obesity / cachexia adjustments."
+  },
+  "clinical_usage_guidance": {
+    "indications_and_usage": "### Uses\ntemporarily relieves common cold/flu symptoms:\n\n•\n\n### •\n\n•\n\n### •\n\n•\n\n### •\n\n•\n\n### •\n\n•\n\n### •\n\n•\n\n### •\n\n•\n\n### •\n\n•\n\n### •\n\n•\n\n### •\n\n•\n\n### •\n\n•\n\n### •\n\n•\n\n### •",
+    "dosage_and_administration": "### Directions\n\n•\n\n### •\n\n•\n\n### •\n\n•\n\n### •\nadults & children 12 yrs & over\n30 mL every 4 hrs\nchildren 4 to under 12 yrs\nask a doctor\nchildren under 4 yrs\ndo not use",
+    "adverse_reactions": "Adverse reactions not specified in label.",
+    "mechanism_of_action": "Information not specified in active label.",
+    "clinical_pharmacology": "Clinical pharmacology details not available.",
+    "patient_counseling_information": "Advise patient to consult healthcare provider and review medication guide before use.",
+    "storage_and_handling": "### Other information\n\n•\n\n### •\neach 30 mL contains: sodium 81 mg\n•\n\n### •"
+  },
+  "all_patient_factor_tags": [
+    "Age (Pediatric / Children)",
+    "Age (Geriatric / Elderly)",
+    "Pregnancy / Teratogenicity",
+    "Lactation / Breastfeeding",
+    "Hepatic Impairment / Liver"
+  ]
+}
